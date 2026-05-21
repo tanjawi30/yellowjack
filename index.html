@@ -3,1373 +3,1603 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PTL — Palm Tree Locos · Dossier GTA RP</title>
+<title>PTL — Palm Tree Locos · Dossier GTA RP · Noface WL</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  :root {
-    --gold: #C8A96E;
-    --gold-dark: #8B6F3E;
-    --gold-light: #E8D5A8;
-    --cream: #F5F0E8;
-    --ink: #12100E;
-    --ink-2: #1E1A17;
-    --ink-3: #2A2420;
-    --gray: #6B6560;
-    --gray-light: #B5AFA8;
-    --border: rgba(200,169,110,0.2);
-    --border-strong: rgba(200,169,110,0.45);
-    --ff-title: 'Cormorant Garamond', Georgia, serif;
-    --ff-body: 'Barlow', sans-serif;
-    --ff-cond: 'Barlow Condensed', sans-serif;
-  }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    background: var(--ink);
-    color: var(--cream);
-    font-family: var(--ff-body);
-    font-weight: 300;
-    line-height: 1.75;
-    overflow-x: hidden;
-  }
-
-  /* ─── GRAIN OVERLAY ─────────────────────────────── */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-    pointer-events: none;
-    z-index: 9999;
-    opacity: 0.35;
-  }
-
-  /* ─── NAVBAR ─────────────────────────────────────── */
-  nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 1000;
-    background: rgba(18,16,14,0.92);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--border);
-    padding: 0 3rem;
-    height: 64px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    transition: background 0.3s;
-  }
-
-  .nav-logo {
-    font-family: var(--ff-cond);
-    font-size: 1rem;
-    font-weight: 700;
-    letter-spacing: 0.25em;
-    color: var(--gold);
-    text-transform: uppercase;
-  }
-
-  .nav-logo span { color: var(--gray-light); font-weight: 400; }
-
-  .nav-links {
-    display: flex;
-    gap: 2.5rem;
-    list-style: none;
-    align-items: center;
-  }
-
-  .nav-links a {
-    text-decoration: none;
-    font-family: var(--ff-cond);
-    font-size: 0.78rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--gray-light);
-    transition: color 0.25s;
-    position: relative;
-  }
-
-  .nav-links a::after {
-    content: '';
-    position: absolute;
-    bottom: -4px; left: 0; right: 100%;
-    height: 1px;
-    background: var(--gold);
-    transition: right 0.3s ease;
-  }
-
-  .nav-links a:hover { color: var(--gold); }
-  .nav-links a:hover::after { right: 0; }
-
-  .nav-links a.active { color: var(--gold); }
-  .nav-links a.active::after { right: 0; }
-
-  /* hamburger */
-  .nav-toggle { display: none; cursor: pointer; flex-direction: column; gap: 5px; }
-  .nav-toggle span { width: 22px; height: 1px; background: var(--gold); display: block; transition: all 0.3s; }
-
-  /* ─── HERO ───────────────────────────────────────── */
-  #hero {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 8rem 2rem 6rem;
-    position: relative;
-    overflow: hidden;
-  }
-
-  #hero::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse 80% 60% at 50% 60%, rgba(200,169,110,0.06) 0%, transparent 70%);
-  }
-
-  .hero-eyebrow {
-    font-family: var(--ff-cond);
-    font-size: 0.72rem;
-    letter-spacing: 0.35em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 2rem;
-    opacity: 0;
-    animation: fadeUp 0.8s 0.2s forwards;
-  }
-
-  .hero-title {
-    font-family: var(--ff-title);
-    font-size: clamp(4rem, 10vw, 9rem);
-    font-weight: 300;
-    line-height: 0.95;
-    letter-spacing: -0.02em;
-    color: var(--cream);
-    opacity: 0;
-    animation: fadeUp 0.9s 0.4s forwards;
-  }
-
-  .hero-title em {
-    font-style: italic;
-    color: var(--gold);
-  }
-
-  .hero-sub {
-    margin-top: 2rem;
-    font-family: var(--ff-cond);
-    font-size: 0.8rem;
-    letter-spacing: 0.28em;
-    text-transform: uppercase;
-    color: var(--gray-light);
-    opacity: 0;
-    animation: fadeUp 0.9s 0.6s forwards;
-  }
-
-  .hero-divider {
-    width: 60px;
-    height: 1px;
-    background: var(--gold);
-    margin: 3rem auto;
-    opacity: 0;
-    animation: fadeUp 0.9s 0.7s forwards;
-  }
-
-  .hero-tagline {
-    font-family: var(--ff-title);
-    font-size: clamp(1rem, 2.5vw, 1.4rem);
-    font-weight: 300;
-    font-style: italic;
-    color: var(--gray-light);
-    max-width: 480px;
-    opacity: 0;
-    animation: fadeUp 0.9s 0.8s forwards;
-  }
-
-  .hero-scroll {
-    position: absolute;
-    bottom: 2.5rem;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-    opacity: 0;
-    animation: fadeUp 0.9s 1.2s forwards;
-  }
-
-  .hero-scroll span {
-    font-family: var(--ff-cond);
-    font-size: 0.65rem;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--gray);
-  }
-
-  .scroll-line {
-    width: 1px;
-    height: 40px;
-    background: linear-gradient(to bottom, var(--gold), transparent);
-    animation: scrollPulse 2s infinite;
-  }
-
-  /* ─── SECTIONS ───────────────────────────────────── */
-  section {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 7rem 2rem;
-  }
-
-  section.wide { max-width: 1200px; }
-
-  .section-label {
-    font-family: var(--ff-cond);
-    font-size: 0.68rem;
-    letter-spacing: 0.32em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 1rem;
-    display: block;
-  }
-
-  .section-title {
-    font-family: var(--ff-title);
-    font-size: clamp(2.2rem, 5vw, 4rem);
-    font-weight: 300;
-    line-height: 1.05;
-    color: var(--cream);
-    margin-bottom: 3rem;
-  }
-
-  .section-title em { font-style: italic; color: var(--gold); }
-
-  .section-divider {
-    width: 40px;
-    height: 1px;
-    background: var(--gold);
-    margin-bottom: 3rem;
-  }
-
-  p { color: var(--gray-light); margin-bottom: 1.4rem; font-size: 0.97rem; }
-  p strong { color: var(--cream); font-weight: 500; }
-
-  /* ─── HORIZONTAL RULE ────────────────────────────── */
-  .hr {
-    max-width: 900px;
-    margin: 0 auto;
-    border: none;
-    border-top: 1px solid var(--border);
-  }
-
-  /* ─── PULL QUOTE ─────────────────────────────────── */
-  .pull-quote {
-    border-left: 2px solid var(--gold);
-    padding: 1rem 2rem;
-    margin: 2.5rem 0;
-    font-family: var(--ff-title);
-    font-size: clamp(1.2rem, 2.5vw, 1.65rem);
-    font-style: italic;
-    color: var(--cream);
-    line-height: 1.5;
-  }
-
-  /* ─── OBJECTIVES ─────────────────────────────────── */
-  .objectives-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 1.5px;
-    margin-top: 3rem;
-    border: 1px solid var(--border);
-  }
-
-  .obj-card {
-    padding: 2.5rem 2rem;
-    border: 1px solid var(--border);
-    position: relative;
-    overflow: hidden;
-    transition: background 0.35s;
-  }
-
-  .obj-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 2px;
-    background: var(--gold);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.4s ease;
-  }
-
-  .obj-card:hover { background: rgba(200,169,110,0.04); }
-  .obj-card:hover::before { transform: scaleX(1); }
-
-  .obj-number {
-    font-family: var(--ff-title);
-    font-size: 4rem;
-    font-weight: 300;
-    color: var(--border-strong);
-    line-height: 1;
-    margin-bottom: 1rem;
-  }
-
-  .obj-label {
-    font-family: var(--ff-cond);
-    font-size: 0.65rem;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 0.5rem;
-    display: block;
-  }
-
-  .obj-title {
-    font-family: var(--ff-title);
-    font-size: 1.5rem;
-    font-weight: 300;
-    color: var(--cream);
-    margin-bottom: 1.2rem;
-    line-height: 1.2;
-  }
-
-  .obj-items { list-style: none; }
-  .obj-items li {
-    padding: 0.55rem 0;
-    border-top: 1px solid var(--border);
-    font-size: 0.88rem;
-    color: var(--gray-light);
-    display: flex;
-    gap: 0.75rem;
-    align-items: flex-start;
-  }
-
-  .obj-items li::before {
-    content: '—';
-    color: var(--gold);
-    flex-shrink: 0;
-    font-family: var(--ff-title);
-  }
-
-  /* ─── ACTIVITIES ─────────────────────────────────── */
-  .two-col {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-    margin-top: 2rem;
-  }
-
-  .activity-block { }
-
-  .activity-title {
-    font-family: var(--ff-cond);
-    font-size: 0.7rem;
-    letter-spacing: 0.28em;
-    text-transform: uppercase;
-    color: var(--gold);
-    border-bottom: 1px solid var(--border);
-    padding-bottom: 0.75rem;
-    margin-bottom: 1.5rem;
-  }
-
-  .activity-item {
-    padding: 1rem 0;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .activity-item:last-child { border-bottom: none; }
-
-  .activity-item h4 {
-    font-family: var(--ff-title);
-    font-size: 1.05rem;
-    font-weight: 400;
-    color: var(--cream);
-    margin-bottom: 0.3rem;
-  }
-
-  .activity-item p {
-    font-size: 0.85rem;
-    margin: 0;
-    color: var(--gray);
-  }
-
-  /* ─── SCHEDULE ───────────────────────────────────── */
-  .schedule-timeline {
-    position: relative;
-    margin-top: 2rem;
-  }
-
-  .schedule-timeline::before {
-    content: '';
-    position: absolute;
-    left: 90px;
-    top: 0; bottom: 0;
-    width: 1px;
-    background: var(--border-strong);
-  }
-
-  .schedule-item {
-    display: flex;
-    gap: 2rem;
-    padding: 1.5rem 0;
-    position: relative;
-  }
-
-  .schedule-item::before {
-    content: '';
-    position: absolute;
-    left: 90px;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: var(--gold);
-  }
-
-  .schedule-time {
-    font-family: var(--ff-cond);
-    font-size: 0.7rem;
-    letter-spacing: 0.1em;
-    color: var(--gold);
-    width: 70px;
-    flex-shrink: 0;
-    text-align: right;
-    padding-top: 0.15rem;
-  }
-
-  .schedule-content { padding-left: 1.5rem; }
-
-  .schedule-content h4 {
-    font-family: var(--ff-title);
-    font-size: 1rem;
-    color: var(--cream);
-    margin-bottom: 0.2rem;
-  }
-
-  .schedule-content p {
-    font-size: 0.84rem;
-    color: var(--gray);
-    margin: 0;
-  }
-
-  /* ─── STYLE ──────────────────────────────────────── */
-  .style-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    gap: 1rem;
-    margin-top: 2rem;
-  }
-
-  .style-item {
-    padding: 1.5rem 1.2rem;
-    border: 1px solid var(--border);
-    transition: border-color 0.3s, background 0.3s;
-  }
-
-  .style-item:hover {
-    border-color: var(--border-strong);
-    background: rgba(200,169,110,0.03);
-  }
-
-  .style-icon {
-    font-family: var(--ff-title);
-    font-size: 1.8rem;
-    font-style: italic;
-    color: var(--gold);
-    margin-bottom: 0.8rem;
-  }
-
-  .style-item h4 {
-    font-family: var(--ff-cond);
-    font-size: 0.72rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--cream);
-    margin-bottom: 0.4rem;
-  }
-
-  .style-item p {
-    font-size: 0.82rem;
-    color: var(--gray);
-    margin: 0;
-  }
-
-  /* ─── TERRITORY ──────────────────────────────────── */
-  .territory-block {
-    background: var(--ink-2);
-    border: 1px solid var(--border);
-    padding: 3rem;
-    margin-top: 2rem;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .territory-block::before {
-    content: 'LONG BEACH';
-    position: absolute;
-    top: -1rem;
-    right: -1rem;
-    font-family: var(--ff-cond);
-    font-size: 8rem;
-    font-weight: 700;
-    color: rgba(200,169,110,0.04);
-    line-height: 1;
-    user-select: none;
-    pointer-events: none;
-  }
-
-  .territory-streets {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-top: 1.5rem;
-  }
-
-  .street-tag {
-    font-family: var(--ff-cond);
-    font-size: 0.72rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--gold);
-    border: 1px solid var(--border-strong);
-    padding: 0.4rem 0.85rem;
-  }
-
-  /* ─── PERSONNAGES ────────────────────────────────── */
-  #personnages { padding: 7rem 2rem; }
-  #personnages .inner { max-width: 1200px; margin: 0 auto; }
-
-  .cards-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1.5rem;
-    margin-top: 3rem;
-  }
-
-  .card-wrapper {
-    perspective: 1200px;
-    height: 420px;
-    cursor: pointer;
-  }
-
-  .card-inner {
-    width: 100%;
-    height: 100%;
-    position: relative;
-    transform-style: preserve-3d;
-    transition: transform 0.7s cubic-bezier(0.4,0.2,0.2,1);
-  }
-
-  .card-wrapper.flipped .card-inner {
-    transform: rotateY(180deg);
-  }
-
-  .card-front, .card-back {
-    position: absolute;
-    inset: 0;
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-    border: 1px solid var(--border);
-    overflow: hidden;
-  }
-
-  .card-front {
-    background: var(--ink-2);
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    padding: 2rem 1.75rem;
-    position: relative;
-  }
-
-  .card-front::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to top, rgba(12,10,8,0.92) 0%, rgba(12,10,8,0.3) 55%, transparent 100%);
-    z-index: 1;
-  }
-
-  .card-bg {
-    position: absolute;
-    inset: 0;
-    background: var(--ink-3);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .card-initials {
-    font-family: var(--ff-title);
-    font-size: 7rem;
-    font-weight: 300;
-    font-style: italic;
-    color: rgba(200,169,110,0.12);
-    user-select: none;
-  }
-
-  .card-front-content {
-    position: relative;
-    z-index: 2;
-  }
-
-  .card-alias {
-    font-family: var(--ff-cond);
-    font-size: 0.65rem;
-    letter-spacing: 0.28em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 0.4rem;
-  }
-
-  .card-name {
-    font-family: var(--ff-title);
-    font-size: 1.45rem;
-    font-weight: 300;
-    color: var(--cream);
-    line-height: 1.15;
-    margin-bottom: 0.3rem;
-  }
-
-  .card-age {
-    font-family: var(--ff-cond);
-    font-size: 0.72rem;
-    color: var(--gray);
-    letter-spacing: 0.1em;
-  }
-
-  .card-flip-hint {
-    position: absolute;
-    bottom: 1.5rem;
-    right: 1.75rem;
-    z-index: 2;
-    font-family: var(--ff-cond);
-    font-size: 0.6rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--gray);
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
-  }
-
-  .flip-arrow {
-    width: 16px; height: 16px;
-    border: 1px solid var(--gray);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.7rem;
-  }
-
-  .card-back {
-    background: var(--ink-2);
-    transform: rotateY(180deg);
-    padding: 2rem 1.75rem;
-    display: flex;
-    flex-direction: column;
-    overflow-y: auto;
-  }
-
-  .card-back-header {
-    border-bottom: 1px solid var(--border);
-    padding-bottom: 1rem;
-    margin-bottom: 1.5rem;
-  }
-
-  .card-back-name {
-    font-family: var(--ff-title);
-    font-size: 1.2rem;
-    color: var(--cream);
-    margin-bottom: 0.2rem;
-  }
-
-  .card-back-meta {
-    font-family: var(--ff-cond);
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--gold);
-  }
-
-  .card-back p {
-    font-size: 0.84rem;
-    color: var(--gray-light);
-    line-height: 1.65;
-    margin-bottom: 0;
-  }
-
-  .card-role-tag {
-    display: inline-block;
-    font-family: var(--ff-cond);
-    font-size: 0.6rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    background: rgba(200,169,110,0.12);
-    color: var(--gold);
-    padding: 0.3rem 0.7rem;
-    margin-bottom: 1rem;
-  }
-
-  /* ─── CONCLUSION ─────────────────────────────────── */
-  .conclusion-block {
-    text-align: center;
-    padding: 8rem 2rem;
-    max-width: 700px;
-    margin: 0 auto;
-  }
-
-  .conclusion-seal {
-    width: 80px;
-    height: 80px;
-    border: 1px solid var(--border-strong);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 3rem;
-    font-family: var(--ff-cond);
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--gold);
-  }
-
-  /* ─── FOOTER ─────────────────────────────────────── */
-  footer {
-    border-top: 1px solid var(--border);
-    padding: 2rem;
-    text-align: center;
-    font-family: var(--ff-cond);
-    font-size: 0.65rem;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--gray);
-  }
-
-  footer span { color: var(--gold); }
-
-  /* ─── ANIMATIONS ─────────────────────────────────── */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-
-  @keyframes scrollPulse {
-    0%, 100% { opacity: 0.4; }
-    50%       { opacity: 1; }
-  }
-
-  .reveal {
-    opacity: 0;
-    transform: translateY(28px);
-    transition: opacity 0.75s ease, transform 0.75s ease;
-  }
-
-  .reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* delay utilities */
-  .d1 { transition-delay: 0.1s; }
-  .d2 { transition-delay: 0.2s; }
-  .d3 { transition-delay: 0.3s; }
-  .d4 { transition-delay: 0.4s; }
-
-  /* ─── MOBILE ─────────────────────────────────────── */
-  @media (max-width: 700px) {
-    nav { padding: 0 1.5rem; }
-    .nav-links { display: none; flex-direction: column; position: absolute; top: 64px; left: 0; right: 0; background: var(--ink); border-bottom: 1px solid var(--border); padding: 1.5rem; gap: 1.5rem; }
-    .nav-links.open { display: flex; }
-    .nav-toggle { display: flex; }
-    section { padding: 5rem 1.5rem; }
-    .two-col { grid-template-columns: 1fr; gap: 2rem; }
-    .territory-block { padding: 2rem 1.5rem; }
-    .schedule-timeline::before { left: 70px; }
-    .schedule-item::before { left: 70px; }
-    .schedule-time { width: 55px; }
-  }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --gold:#D4A843;
+  --gold2:#F5C842;
+  --amber:#E8832A;
+  --teal:#2ABBE8;
+  --violet:#8B5CF6;
+  --rose:#F43F5E;
+  --bg:#060608;
+  --bg2:#0D0D12;
+  --glass:rgba(255,255,255,0.04);
+  --glass-border:rgba(255,255,255,0.10);
+  --glass-hover:rgba(255,255,255,0.08);
+  --text:#F0EDE8;
+  --muted:rgba(240,237,232,0.55);
+  --muted2:rgba(240,237,232,0.3);
+  --ff-display:'Playfair Display',Georgia,serif;
+  --ff-body:'DM Sans',sans-serif;
+  --ff-mono:'DM Mono',monospace;
+}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--ff-body);
+  font-weight:300;
+  line-height:1.7;
+  overflow-x:hidden;
+  cursor:none;
+}
+
+/* ── CURSOR ──────────────────────────────────────────── */
+#cursor{
+  width:10px;height:10px;
+  background:var(--gold);
+  border-radius:50%;
+  position:fixed;
+  pointer-events:none;
+  z-index:99999;
+  transition:transform 0.15s ease,opacity 0.3s;
+  mix-blend-mode:difference;
+}
+#cursor-ring{
+  width:36px;height:36px;
+  border:1px solid rgba(212,168,67,0.5);
+  border-radius:50%;
+  position:fixed;
+  pointer-events:none;
+  z-index:99998;
+  transition:transform 0.45s cubic-bezier(0.23,1,0.32,1),width 0.3s,height 0.3s,border-color 0.3s;
+}
+body:hover #cursor{opacity:1}
+
+/* ── ANIMATED BG ─────────────────────────────────────── */
+#bg-canvas{
+  position:fixed;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+}
+.orb{
+  position:absolute;
+  border-radius:50%;
+  filter:blur(120px);
+  opacity:0.18;
+  animation:orbFloat linear infinite;
+}
+.orb1{width:700px;height:700px;background:var(--gold);top:-200px;left:-200px;animation-duration:25s}
+.orb2{width:500px;height:500px;background:var(--violet);top:40%;right:-150px;animation-duration:32s;animation-delay:-10s}
+.orb3{width:400px;height:400px;background:var(--teal);bottom:-100px;left:30%;animation-duration:20s;animation-delay:-5s}
+.orb4{width:300px;height:300px;background:var(--rose);top:20%;left:50%;animation-duration:28s;animation-delay:-15s}
+@keyframes orbFloat{
+  0%{transform:translate(0,0) scale(1)}
+  25%{transform:translate(80px,-60px) scale(1.08)}
+  50%{transform:translate(-40px,100px) scale(0.95)}
+  75%{transform:translate(100px,40px) scale(1.05)}
+  100%{transform:translate(0,0) scale(1)}
+}
+
+/* ── NOISE OVERLAY ───────────────────────────────────── */
+body::after{
+  content:'';
+  position:fixed;
+  inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+  pointer-events:none;
+  z-index:1;
+  opacity:0.45;
+}
+
+/* ── NAV ─────────────────────────────────────────────── */
+nav{
+  position:fixed;
+  top:0;left:0;right:0;
+  z-index:1000;
+  height:68px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 2.5rem;
+  background:rgba(6,6,8,0.6);
+  backdrop-filter:blur(24px) saturate(1.5);
+  -webkit-backdrop-filter:blur(24px) saturate(1.5);
+  border-bottom:1px solid var(--glass-border);
+  transition:background 0.4s;
+}
+.nav-logo{
+  font-family:var(--ff-mono);
+  font-size:0.8rem;
+  letter-spacing:0.2em;
+  color:var(--gold);
+  display:flex;align-items:center;gap:0.8rem;
+}
+.nav-logo-badge{
+  width:28px;height:28px;
+  border-radius:50%;
+  border:1px solid var(--gold);
+  display:flex;align-items:center;justify-content:center;
+  font-size:0.6rem;
+  font-weight:500;
+}
+.nav-links{
+  display:flex;gap:2rem;list-style:none;
+}
+.nav-links a{
+  text-decoration:none;
+  font-size:0.75rem;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  color:var(--muted);
+  transition:color 0.25s;
+  font-weight:400;
+}
+.nav-links a:hover,.nav-links a.active{color:var(--text)}
+.nav-cta{
+  font-family:var(--ff-mono);
+  font-size:0.7rem;
+  letter-spacing:0.15em;
+  color:var(--gold);
+  border:1px solid rgba(212,168,67,0.4);
+  padding:0.5rem 1.2rem;
+  border-radius:100px;
+  text-decoration:none;
+  transition:all 0.3s;
+  background:rgba(212,168,67,0.05);
+}
+.nav-cta:hover{background:rgba(212,168,67,0.12);border-color:var(--gold)}
+
+/* ── HERO ────────────────────────────────────────────── */
+#hero{
+  position:relative;
+  z-index:2;
+  min-height:100vh;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  text-align:center;
+  padding:8rem 2rem 6rem;
+  overflow:hidden;
+}
+.hero-chip{
+  display:inline-flex;align-items:center;gap:0.6rem;
+  background:rgba(212,168,67,0.08);
+  border:1px solid rgba(212,168,67,0.25);
+  border-radius:100px;
+  padding:0.45rem 1.2rem;
+  font-family:var(--ff-mono);
+  font-size:0.68rem;
+  letter-spacing:0.2em;
+  color:var(--gold);
+  margin-bottom:2.5rem;
+  opacity:0;
+  animation:heroIn 0.9s 0.2s cubic-bezier(0.16,1,0.3,1) forwards;
+}
+.hero-chip-dot{
+  width:6px;height:6px;border-radius:50%;
+  background:var(--gold);
+  animation:pulse 2s infinite;
+}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(0.8)}}
+
+.hero-title{
+  font-family:var(--ff-display);
+  font-size:clamp(4.5rem,12vw,11rem);
+  font-weight:900;
+  line-height:0.9;
+  letter-spacing:-0.03em;
+  margin-bottom:1.5rem;
+  opacity:0;
+  animation:heroIn 1s 0.4s cubic-bezier(0.16,1,0.3,1) forwards;
+}
+.hero-title .line1{display:block;color:var(--text)}
+.hero-title .line2{
+  display:block;
+  font-style:italic;
+  background:linear-gradient(135deg,var(--gold2) 0%,var(--amber) 50%,var(--gold) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+
+.hero-sub{
+  font-family:var(--ff-mono);
+  font-size:0.75rem;
+  letter-spacing:0.3em;
+  text-transform:uppercase;
+  color:var(--muted);
+  margin-bottom:3rem;
+  opacity:0;
+  animation:heroIn 0.9s 0.6s cubic-bezier(0.16,1,0.3,1) forwards;
+}
+
+.hero-stats{
+  display:flex;gap:3rem;justify-content:center;flex-wrap:wrap;
+  opacity:0;
+  animation:heroIn 0.9s 0.8s cubic-bezier(0.16,1,0.3,1) forwards;
+}
+.hero-stat{text-align:center}
+.hero-stat-n{
+  font-family:var(--ff-display);
+  font-size:2.5rem;
+  font-weight:700;
+  background:linear-gradient(135deg,var(--gold2),var(--amber));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  line-height:1;
+}
+.hero-stat-l{
+  font-family:var(--ff-mono);
+  font-size:0.62rem;
+  letter-spacing:0.2em;
+  text-transform:uppercase;
+  color:var(--muted2);
+  margin-top:0.3rem;
+}
+
+.hero-scroll-indicator{
+  position:absolute;
+  bottom:2.5rem;
+  left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:0.75rem;
+  opacity:0;
+  animation:heroIn 0.9s 1.2s forwards;
+}
+.hero-scroll-indicator span{
+  font-family:var(--ff-mono);
+  font-size:0.6rem;
+  letter-spacing:0.3em;
+  text-transform:uppercase;
+  color:var(--muted2);
+}
+.scroll-track{
+  width:1px;height:50px;
+  background:linear-gradient(to bottom,var(--gold),transparent);
+  position:relative;overflow:hidden;
+}
+.scroll-dot{
+  width:3px;height:12px;
+  background:var(--gold);
+  position:absolute;
+  left:-1px;top:-12px;
+  border-radius:2px;
+  animation:scrollDown 1.8s ease-in-out infinite;
+}
+@keyframes scrollDown{
+  0%{top:-12px;opacity:0}
+  20%{opacity:1}
+  80%{opacity:1}
+  100%{top:50px;opacity:0}
+}
+
+@keyframes heroIn{
+  from{opacity:0;transform:translateY(30px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+/* ── SECTIONS WRAPPER ────────────────────────────────── */
+.section-wrap{
+  position:relative;
+  z-index:2;
+  max-width:1200px;
+  margin:0 auto;
+  padding:7rem 2.5rem;
+}
+.section-wrap.narrow{max-width:860px}
+
+.s-tag{
+  display:inline-flex;align-items:center;gap:0.5rem;
+  font-family:var(--ff-mono);
+  font-size:0.65rem;
+  letter-spacing:0.25em;
+  text-transform:uppercase;
+  color:var(--gold);
+  margin-bottom:1.2rem;
+}
+.s-tag::before{
+  content:'';
+  width:20px;height:1px;
+  background:var(--gold);
+  display:block;
+}
+
+.s-title{
+  font-family:var(--ff-display);
+  font-size:clamp(2.8rem,6vw,5.5rem);
+  font-weight:700;
+  line-height:1;
+  letter-spacing:-0.02em;
+  color:var(--text);
+  margin-bottom:3rem;
+}
+.s-title em{
+  font-style:italic;
+  background:linear-gradient(135deg,var(--gold2),var(--amber));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.s-title .teal{
+  background:linear-gradient(135deg,var(--teal),#5BE2F5);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+
+p{color:var(--muted);font-size:0.97rem;margin-bottom:1.4rem;line-height:1.8}
+p strong{color:var(--text);font-weight:500}
+
+/* ── GLASS CARD ──────────────────────────────────────── */
+.glass-card{
+  background:var(--glass);
+  border:1px solid var(--glass-border);
+  border-radius:24px;
+  backdrop-filter:blur(20px) saturate(1.4);
+  -webkit-backdrop-filter:blur(20px) saturate(1.4);
+  padding:2.5rem;
+  transition:background 0.35s,border-color 0.35s,transform 0.35s;
+  position:relative;
+  overflow:hidden;
+}
+.glass-card::before{
+  content:'';
+  position:absolute;
+  top:0;left:0;right:0;
+  height:1px;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,0.15),transparent);
+}
+.glass-card:hover{
+  background:var(--glass-hover);
+  border-color:rgba(212,168,67,0.25);
+  transform:translateY(-3px);
+}
+
+/* ── DIVIDER ─────────────────────────────────────────── */
+.hr-section{
+  max-width:1200px;
+  margin:0 auto;
+  height:1px;
+  background:linear-gradient(90deg,transparent,var(--glass-border),transparent);
+  position:relative;z-index:2;
+}
+
+/* ── PULL QUOTE ──────────────────────────────────────── */
+.pull-quote{
+  border-left:2px solid var(--gold);
+  padding:1.2rem 2rem;
+  margin:3rem 0;
+  font-family:var(--ff-display);
+  font-size:clamp(1.2rem,2.5vw,1.7rem);
+  font-style:italic;
+  color:var(--text);
+  line-height:1.5;
+  position:relative;
+}
+.pull-quote::before{
+  content:'"';
+  position:absolute;
+  top:-0.5rem;left:0.8rem;
+  font-size:4rem;
+  font-family:var(--ff-display);
+  color:rgba(212,168,67,0.2);
+  line-height:1;
+  pointer-events:none;
+}
+
+/* ── PERSONNAGES ─────────────────────────────────────── */
+#personnages{padding:7rem 2.5rem;position:relative;z-index:2}
+#personnages .inner{max-width:1300px;margin:0 auto}
+
+.characters-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1.5rem;
+  margin-top:3.5rem;
+}
+@media(max-width:900px){.characters-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:580px){.characters-grid{grid-template-columns:1fr}}
+
+.char-card{
+  height:480px;
+  perspective:1400px;
+  cursor:none;
+}
+.char-inner{
+  width:100%;height:100%;
+  position:relative;
+  transform-style:preserve-3d;
+  transition:transform 0.8s cubic-bezier(0.4,0.2,0.2,1);
+}
+.char-card.flipped .char-inner{transform:rotateY(180deg)}
+
+.char-front,.char-back{
+  position:absolute;inset:0;
+  backface-visibility:hidden;
+  -webkit-backface-visibility:hidden;
+  border-radius:24px;
+  overflow:hidden;
+  border:1px solid var(--glass-border);
+}
+
+/* Front */
+.char-front{
+  background:var(--glass);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  display:flex;flex-direction:column;
+  justify-content:flex-end;
+  position:relative;
+}
+.char-front-aura{
+  position:absolute;
+  inset:0;
+  opacity:0.15;
+  transition:opacity 0.5s;
+}
+.char-card:hover .char-front-aura{opacity:0.25}
+
+.char-initials-bg{
+  position:absolute;
+  inset:0;
+  display:flex;align-items:center;justify-content:center;
+}
+.char-initials-text{
+  font-family:var(--ff-display);
+  font-size:9rem;
+  font-weight:900;
+  font-style:italic;
+  color:rgba(255,255,255,0.04);
+  user-select:none;
+  line-height:1;
+}
+
+.char-front-glow{
+  position:absolute;
+  bottom:0;left:0;right:0;
+  height:70%;
+  background:linear-gradient(to top,rgba(6,6,8,0.95) 0%,rgba(6,6,8,0.5) 60%,transparent 100%);
+}
+
+.char-front-top{
+  position:absolute;
+  top:1.5rem;right:1.5rem;
+  display:flex;align-items:center;gap:0.5rem;
+}
+.char-badge{
+  font-family:var(--ff-mono);
+  font-size:0.58rem;
+  letter-spacing:0.2em;
+  padding:0.3rem 0.8rem;
+  border-radius:100px;
+  border:1px solid rgba(255,255,255,0.15);
+  background:rgba(255,255,255,0.05);
+  color:var(--muted);
+}
+
+.char-front-content{
+  position:relative;z-index:2;
+  padding:2rem;
+}
+.char-alias{
+  font-family:var(--ff-mono);
+  font-size:0.7rem;
+  letter-spacing:0.2em;
+  color:var(--gold);
+  margin-bottom:0.4rem;
+}
+.char-name{
+  font-family:var(--ff-display);
+  font-size:1.5rem;
+  font-weight:700;
+  color:var(--text);
+  line-height:1.15;
+  margin-bottom:0.5rem;
+}
+.char-role{
+  display:inline-flex;align-items:center;gap:0.4rem;
+  font-size:0.72rem;
+  color:var(--muted2);
+  border:1px solid rgba(255,255,255,0.08);
+  padding:0.25rem 0.7rem;
+  border-radius:100px;
+}
+
+.char-flip-btn{
+  position:absolute;
+  bottom:1.5rem;right:1.5rem;
+  width:36px;height:36px;
+  border-radius:50%;
+  border:1px solid rgba(212,168,67,0.4);
+  background:rgba(212,168,67,0.08);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--gold);
+  font-size:1rem;
+  z-index:3;
+  transition:all 0.3s;
+}
+.char-card:hover .char-flip-btn{background:rgba(212,168,67,0.18);border-color:var(--gold)}
+
+/* Back */
+.char-back{
+  background:rgba(10,10,14,0.97);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  transform:rotateY(180deg);
+  padding:2rem;
+  display:flex;flex-direction:column;
+  border:1px solid rgba(212,168,67,0.2);
+}
+.char-back::before{
+  content:'';
+  position:absolute;
+  top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+}
+.char-back-header{
+  border-bottom:1px solid rgba(255,255,255,0.07);
+  padding-bottom:1.2rem;
+  margin-bottom:1.5rem;
+}
+.char-back-name{
+  font-family:var(--ff-display);
+  font-size:1.15rem;
+  font-weight:700;
+  color:var(--text);
+  margin-bottom:0.3rem;
+}
+.char-back-sub{
+  font-family:var(--ff-mono);
+  font-size:0.62rem;
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  color:var(--gold);
+}
+.char-back-body{
+  flex:1;overflow-y:auto;
+  padding-right:0.3rem;
+  scrollbar-width:thin;
+  scrollbar-color:rgba(212,168,67,0.2) transparent;
+}
+.char-back-body p{font-size:0.84rem;line-height:1.7;color:rgba(240,237,232,0.65);margin-bottom:1rem}
+.char-back-body p:last-child{margin-bottom:0}
+.char-back-tag{
+  display:inline-block;
+  font-family:var(--ff-mono);
+  font-size:0.6rem;
+  letter-spacing:0.15em;
+  text-transform:uppercase;
+  background:rgba(212,168,67,0.1);
+  color:var(--gold);
+  border:1px solid rgba(212,168,67,0.25);
+  padding:0.3rem 0.8rem;
+  border-radius:100px;
+  margin-bottom:1.2rem;
+}
+.char-close-btn{
+  margin-top:1rem;
+  font-family:var(--ff-mono);
+  font-size:0.62rem;
+  letter-spacing:0.2em;
+  text-transform:uppercase;
+  color:var(--muted2);
+  background:none;border:1px solid rgba(255,255,255,0.08);
+  padding:0.6rem 1rem;border-radius:100px;
+  cursor:none;
+  transition:all 0.3s;
+  text-align:center;
+}
+.char-close-btn:hover{color:var(--text);border-color:rgba(255,255,255,0.2)}
+
+/* ── LORE LAYOUT ─────────────────────────────────────── */
+.lore-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:1.5rem;
+  margin-top:2.5rem;
+}
+@media(max-width:700px){.lore-grid{grid-template-columns:1fr}}
+
+.lore-card{
+  padding:2.5rem 2rem;
+  border-radius:20px;
+  border:1px solid var(--glass-border);
+  background:var(--glass);
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+  position:relative;
+  overflow:hidden;
+  transition:transform 0.35s,border-color 0.35s;
+}
+.lore-card:hover{transform:translateY(-4px);border-color:rgba(255,255,255,0.18)}
+.lore-card-accent{
+  position:absolute;
+  top:0;left:0;
+  width:60px;height:3px;
+  border-radius:0 0 4px 0;
+}
+.lore-card-n{
+  font-family:var(--ff-display);
+  font-size:5rem;
+  font-weight:900;
+  font-style:italic;
+  line-height:1;
+  opacity:0.06;
+  margin-bottom:1rem;
+}
+.lore-card-title{
+  font-family:var(--ff-display);
+  font-size:1.3rem;
+  font-weight:700;
+  color:var(--text);
+  margin-bottom:0.3rem;
+}
+.lore-card-sub{
+  font-family:var(--ff-mono);
+  font-size:0.62rem;
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  margin-bottom:1rem;
+}
+.lore-card p{font-size:0.85rem;color:var(--muted);margin:0}
+
+/* ── OBJECTIFS ───────────────────────────────────────── */
+.obj-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1.5rem;
+  margin-top:3rem;
+}
+@media(max-width:800px){.obj-grid{grid-template-columns:1fr}}
+
+.obj-card{
+  border-radius:24px;
+  border:1px solid var(--glass-border);
+  background:var(--glass);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  padding:2.5rem 2rem;
+  position:relative;
+  overflow:hidden;
+  transition:transform 0.4s,border-color 0.4s;
+}
+.obj-card:hover{transform:translateY(-6px)}
+.obj-card::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  border-radius:24px;
+  opacity:0;
+  transition:opacity 0.4s;
+}
+.obj-card:hover::before{opacity:1}
+
+.obj-card.ct{--accent:var(--teal)}
+.obj-card.mt{--accent:var(--gold)}
+.obj-card.lt{--accent:var(--violet)}
+
+.obj-card:hover{border-color:var(--accent)}
+
+.obj-num{
+  font-family:var(--ff-display);
+  font-size:5rem;
+  font-weight:900;
+  font-style:italic;
+  line-height:1;
+  color:var(--accent);
+  opacity:0.15;
+  margin-bottom:1rem;
+}
+.obj-pill{
+  display:inline-block;
+  font-family:var(--ff-mono);
+  font-size:0.6rem;
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  border:1px solid var(--accent);
+  color:var(--accent);
+  padding:0.3rem 0.8rem;
+  border-radius:100px;
+  margin-bottom:1rem;
+  background:rgba(255,255,255,0.03);
+}
+.obj-title{
+  font-family:var(--ff-display);
+  font-size:1.4rem;
+  font-weight:700;
+  color:var(--text);
+  line-height:1.2;
+  margin-bottom:1.5rem;
+}
+.obj-list{list-style:none}
+.obj-list li{
+  padding:0.7rem 0;
+  border-top:1px solid rgba(255,255,255,0.06);
+  font-size:0.84rem;
+  color:var(--muted);
+  display:flex;gap:0.75rem;align-items:flex-start;
+  line-height:1.6;
+}
+.obj-list li::before{
+  content:'';
+  width:5px;height:5px;border-radius:50%;
+  background:var(--accent);
+  flex-shrink:0;margin-top:0.55em;
+}
+
+/* ── ACTIVITES ───────────────────────────────────────── */
+.act-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:1.5rem;
+  margin-top:2.5rem;
+}
+@media(max-width:700px){.act-grid{grid-template-columns:1fr}}
+
+.act-col-title{
+  font-family:var(--ff-mono);
+  font-size:0.65rem;
+  letter-spacing:0.25em;
+  text-transform:uppercase;
+  margin-bottom:1.5rem;
+  display:flex;align-items:center;gap:0.6rem;
+}
+.act-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+
+.act-item{
+  padding:1.4rem;
+  border-radius:16px;
+  border:1px solid var(--glass-border);
+  background:var(--glass);
+  margin-bottom:1rem;
+  transition:border-color 0.3s,background 0.3s;
+}
+.act-item:hover{border-color:rgba(255,255,255,0.15);background:var(--glass-hover)}
+.act-item h4{
+  font-family:var(--ff-display);
+  font-size:1rem;font-weight:700;
+  color:var(--text);margin-bottom:0.4rem;
+}
+.act-item p{font-size:0.82rem;color:var(--muted);margin:0;line-height:1.65}
+
+/* ── STYLE DE VIE ────────────────────────────────────── */
+.style-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1rem;
+  margin-top:2rem;
+}
+@media(max-width:700px){.style-grid{grid-template-columns:1fr 1fr}}
+
+.style-item{
+  padding:1.8rem 1.4rem;
+  border-radius:20px;
+  border:1px solid var(--glass-border);
+  background:var(--glass);
+  text-align:center;
+  transition:all 0.35s;
+}
+.style-item:hover{
+  background:var(--glass-hover);
+  border-color:rgba(212,168,67,0.3);
+  transform:translateY(-3px);
+}
+.style-glyph{
+  font-family:var(--ff-display);
+  font-size:2.5rem;
+  font-style:italic;
+  font-weight:700;
+  background:linear-gradient(135deg,var(--gold2),var(--amber));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  margin-bottom:0.8rem;line-height:1;
+}
+.style-item h4{
+  font-family:var(--ff-mono);
+  font-size:0.65rem;letter-spacing:0.18em;text-transform:uppercase;
+  color:var(--text);margin-bottom:0.4rem;
+}
+.style-item p{font-size:0.78rem;color:var(--muted2);margin:0}
+
+/* ── TIMELINE ────────────────────────────────────────── */
+.timeline{position:relative;margin-top:3rem;padding-left:2rem}
+.timeline::before{
+  content:'';
+  position:absolute;
+  left:0;top:0;bottom:0;
+  width:1px;
+  background:linear-gradient(to bottom,var(--gold),rgba(212,168,67,0.1));
+}
+.tl-item{
+  position:relative;
+  padding:0 0 2.5rem 2.5rem;
+}
+.tl-item::before{
+  content:'';
+  position:absolute;
+  left:-4px;top:0.5rem;
+  width:9px;height:9px;border-radius:50%;
+  background:var(--bg);
+  border:2px solid var(--gold);
+  box-shadow:0 0 12px rgba(212,168,67,0.5);
+}
+.tl-time{
+  font-family:var(--ff-mono);
+  font-size:0.68rem;letter-spacing:0.15em;
+  color:var(--gold);
+  margin-bottom:0.4rem;
+}
+.tl-title{
+  font-family:var(--ff-display);
+  font-size:1.1rem;font-weight:700;
+  color:var(--text);margin-bottom:0.3rem;
+}
+.tl-text{font-size:0.85rem;color:var(--muted);margin:0}
+
+/* ── TERRITOIRE ──────────────────────────────────────── */
+.territory-hero{
+  border-radius:28px;
+  border:1px solid rgba(42,187,232,0.2);
+  background:rgba(42,187,232,0.03);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  padding:3.5rem 3rem;
+  margin-top:2.5rem;
+  position:relative;
+  overflow:hidden;
+}
+.territory-hero::before{
+  content:'LONG BEACH';
+  position:absolute;
+  top:50%;left:50%;transform:translate(-50%,-50%);
+  font-family:var(--ff-display);
+  font-size:12rem;font-weight:900;font-style:italic;
+  color:rgba(42,187,232,0.03);
+  white-space:nowrap;pointer-events:none;user-select:none;
+  line-height:1;
+}
+.territory-hero::after{
+  content:'';
+  position:absolute;
+  top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(42,187,232,0.4),transparent);
+}
+.territory-sub{
+  font-family:var(--ff-mono);
+  font-size:0.65rem;letter-spacing:0.25em;text-transform:uppercase;
+  color:rgba(42,187,232,0.7);margin-bottom:1.5rem;
+}
+.territory-title{
+  font-family:var(--ff-display);
+  font-size:2.5rem;font-weight:700;
+  background:linear-gradient(135deg,var(--teal),#8BE8F5);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  margin-bottom:1.5rem;line-height:1.1;
+}
+.streets-wrap{display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:2rem}
+.street-pill{
+  font-family:var(--ff-mono);
+  font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;
+  border:1px solid rgba(42,187,232,0.25);
+  color:rgba(42,187,232,0.8);
+  padding:0.4rem 0.9rem;border-radius:100px;
+  background:rgba(42,187,232,0.06);
+  transition:all 0.25s;
+}
+.street-pill:hover{background:rgba(42,187,232,0.12);border-color:rgba(42,187,232,0.5)}
+
+/* ── CONCLUSION ──────────────────────────────────────── */
+.conclusion-wrap{
+  position:relative;z-index:2;
+  text-align:center;
+  padding:8rem 2.5rem;
+  max-width:800px;
+  margin:0 auto;
+}
+.conclusion-ring{
+  width:100px;height:100px;
+  border-radius:50%;
+  border:1px solid rgba(212,168,67,0.3);
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 3rem;
+  position:relative;
+}
+.conclusion-ring::before{
+  content:'';
+  position:absolute;inset:-8px;
+  border-radius:50%;
+  border:1px solid rgba(212,168,67,0.1);
+}
+.conclusion-ring::after{
+  content:'';
+  position:absolute;inset:-16px;
+  border-radius:50%;
+  border:1px solid rgba(212,168,67,0.05);
+}
+.conclusion-ring-text{
+  font-family:var(--ff-mono);
+  font-size:0.6rem;letter-spacing:0.12em;
+  color:var(--gold);
+  text-align:center;line-height:1.5;
+}
+
+/* ── FOOTER ──────────────────────────────────────────── */
+footer{
+  position:relative;z-index:2;
+  border-top:1px solid var(--glass-border);
+  padding:2rem 2.5rem;
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:1rem;
+}
+.footer-left{
+  font-family:var(--ff-mono);
+  font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--muted2);
+}
+.footer-right{
+  font-family:var(--ff-mono);
+  font-size:0.65rem;letter-spacing:0.15em;
+  color:var(--gold);
+  opacity:0.7;
+}
+
+/* ── REVEAL ──────────────────────────────────────────── */
+.reveal{
+  opacity:0;transform:translateY(36px);
+  transition:opacity 0.8s ease,transform 0.8s ease;
+}
+.reveal.v{opacity:1;transform:none}
+.d1{transition-delay:0.1s}.d2{transition-delay:0.2s}
+.d3{transition-delay:0.3s}.d4{transition-delay:0.4s}
+
+/* ── MOBILE NAV ──────────────────────────────────────── */
+@media(max-width:768px){
+  .nav-links{display:none}
+  .nav-cta{display:none}
+  body{cursor:auto}
+  #cursor,#cursor-ring{display:none}
+}
 </style>
 </head>
 <body>
 
-<!-- ─── NAVBAR ──────────────────────────────────────── -->
-<nav id="navbar">
-  <div class="nav-logo">PTL <span>·</span> Palm Tree Locos</div>
-  <ul class="nav-links" id="nav-links">
-    <li><a href="#personnages">Personnages</a></li>
+<!-- CURSOR -->
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+
+<!-- ANIMATED BACKGROUND -->
+<div id="bg-canvas">
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="orb orb3"></div>
+  <div class="orb orb4"></div>
+</div>
+
+<!-- ── NAV ──────────────────────────────────────────── -->
+<nav>
+  <div class="nav-logo">
+    <div class="nav-logo-badge">P</div>
+    PTL · PALM TREE LOCOS
+  </div>
+  <ul class="nav-links">
+    <li><a href="#personnages">Membres</a></li>
     <li><a href="#lore">Lore</a></li>
     <li><a href="#histoire">Histoire</a></li>
-    <li><a href="#membres">Liens</a></li>
     <li><a href="#objectifs">Objectifs</a></li>
     <li><a href="#activites">Activités</a></li>
-    <li><a href="#style">Style</a></li>
     <li><a href="#territoire">Territoire</a></li>
     <li><a href="#conclusion">Conclusion</a></li>
   </ul>
-  <div class="nav-toggle" id="nav-toggle" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </div>
+  <a href="#personnages" class="nav-cta">Noface WL · 2025</a>
 </nav>
 
-<!-- ─── HERO ────────────────────────────────────────── -->
-<section id="hero" style="padding-top:0">
-  <div class="hero-eyebrow">Noface WL · Dossier GTA RP · 2025</div>
-  <h1 class="hero-title">Palm Tree<br><em>Locos</em></h1>
-  <div class="hero-sub">PTL · Clique des Playeros 13 · Long Beach</div>
-  <div class="hero-divider"></div>
-  <p class="hero-tagline">La playa es nuestra. La plage a toujours été à nous.</p>
-  <div class="hero-scroll">
+<!-- ── HERO ──────────────────────────────────────────── -->
+<section id="hero">
+  <div class="hero-chip">
+    <div class="hero-chip-dot"></div>
+    Noface WL · Dossier GTA RP · 2026
+  </div>
+  <h1 class="hero-title">
+    <span class="line1">Palm Tree</span>
+    <span class="line2">Locos</span>
+  </h1>
+  <div class="hero-sub">PTL · Clique des Playeros 13 · Long Beach, Los Santos</div>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <div class="hero-stat-n">6</div>
+      <div class="hero-stat-l">Membres actifs</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-n">P13</div>
+      <div class="hero-stat-l">Playeros 13</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-n">LB</div>
+      <div class="hero-stat-l">Long Beach</div>
+    </div>
+  </div>
+  <div class="hero-scroll-indicator">
     <span>Défiler</span>
-    <div class="scroll-line"></div>
+    <div class="scroll-track"><div class="scroll-dot"></div></div>
   </div>
 </section>
 
-<hr class="hr">
+<div class="hr-section"></div>
 
-<!-- ─── PERSONNAGES ─────────────────────────────────── -->
-<div id="personnages" style="padding: 7rem 2rem;">
-  <div class="inner" style="max-width:1200px;margin:0 auto;">
-    <span class="section-label reveal">Les Membres</span>
-    <h2 class="section-title reveal d1">Les <em>Visages</em> de la PTL</h2>
-    <div class="section-divider reveal d2"></div>
-    <p class="reveal d3" style="max-width:600px;">Six frères que la vie a forgés dans le même creuset. Cliquez sur chaque carte pour découvrir leur histoire.</p>
+<!-- ── PERSONNAGES ───────────────────────────────────── -->
+<div id="personnages" style="padding:7rem 2.5rem;position:relative;z-index:2">
+  <div class="inner" style="max-width:1300px;margin:0 auto">
+    <div class="s-tag reveal">Identités</div>
+    <h2 class="s-title reveal d1">Les <em>Visages</em><br>de la PTL</h2>
+    <p class="reveal d2" style="max-width:550px">Six frères que la vie a forgés dans le même creuset. Cliquez sur chaque carte pour révéler leur histoire.</p>
 
-    <div class="cards-grid">
+    <div class="characters-grid">
 
       <!-- MATEO -->
-      <div class="card-wrapper reveal" onclick="this.classList.toggle('flipped')">
-        <div class="card-inner">
-          <div class="card-front">
-            <div class="card-bg"><div class="card-initials">MA</div></div>
-            <div class="card-front-content">
-              <div class="card-alias">"La Eme"</div>
-              <div class="card-name">Mateo Aguilar</div>
-              <div class="card-age">20 ans · Musicien</div>
+      <div class="char-card reveal" onclick="this.classList.toggle('flipped')">
+        <div class="char-inner">
+          <div class="char-front">
+            <div class="char-front-aura" style="background:radial-gradient(ellipse at 50% 30%,rgba(212,168,67,0.3),transparent 70%)"></div>
+            <div class="char-initials-bg"><div class="char-initials-text">MA</div></div>
+            <div class="char-front-glow"></div>
+            <div class="char-front-top">
+              <div class="char-badge">20 ans</div>
             </div>
-            <div class="card-flip-hint"><div class="flip-arrow">↺</div> Histoire</div>
+            <div class="char-front-content">
+              <div class="char-alias">"La Eme"</div>
+              <div class="char-name">Mateo Aguilar</div>
+              <div class="char-role">🎵 Musicien · Façade légale</div>
+            </div>
+            <div class="char-flip-btn">↺</div>
           </div>
-          <div class="card-back">
-            <div class="card-back-header">
-              <div class="card-back-name">Mateo "La Eme" Aguilar</div>
-              <div class="card-back-meta">20 ans · Facette légale : Musique</div>
+          <div class="char-back">
+            <div class="char-back-header">
+              <div class="char-back-name">Mateo "La Eme" Aguilar</div>
+              <div class="char-back-sub">20 ans · Artiste & Voix du Barrio</div>
             </div>
-            <div class="card-role-tag">Artiste & Voix du Barrio</div>
-            <p>Mateo est le fils que personne n'attendait : né dans une chambre trop petite entre la 115ème et la 116ème, il a grandi avec un stylo dans une main et le regard des anciens sur les épaules. À dix ans, il beatboxait dans la cour. À quinze, il enregistrait dans un couloir avec un téléphone.</p>
-            <p>Aujourd'hui sa musique parle de la plage, du béton, de la fidélité. Il ne cache pas ses origines — il les chante. Son surnom "La Eme" lui a été donné non pas par peur, mais par respect : il a la précision d'un couteau dans ses paroles.</p>
-            <p>Pour les PTL, il est bien plus qu'un musicien : il est le visage propre, celui qui ouvre des portes dans des salles où les autres n'entrent pas.</p>
+            <div class="char-back-tag">Façade Légale · Musique</div>
+            <div class="char-back-body">
+              <p>Mateo est né dans une chambre trop petite entre la 115ème et la 116ème, avec un père absent et une mère qui travaillait double shift. Il a grandi avec un stylo dans une main et le regard des anciens sur les épaules. À dix ans, il beatboxait dans la cour. À quinze, il enregistrait dans un couloir avec un téléphone.</p>
+              <p>Aujourd'hui sa musique parle de la plage, du béton, de la fidélité. Il ne cache pas ses origines — il les chante. Son surnom "La Eme" lui a été donné non par peur, mais par respect : la précision d'un couteau dans les paroles.</p>
+              <p>Pour les PTL, il est le visage propre, celui qui ouvre des portes dans des salles où les autres n'entrent pas. Sa carrière est réelle, sa loyauté l'est encore plus.</p>
+            </div>
+            <button class="char-close-btn" onclick="event.stopPropagation();this.closest('.char-card').classList.remove('flipped')">↺ Retourner</button>
           </div>
         </div>
       </div>
 
       <!-- SUEÑO -->
-      <div class="card-wrapper reveal d1" onclick="this.classList.toggle('flipped')">
-        <div class="card-inner">
-          <div class="card-front">
-            <div class="card-bg"><div class="card-initials">ST</div></div>
-            <div class="card-front-content">
-              <div class="card-alias">"Guapo"</div>
-              <div class="card-name">Sueño Tavarez</div>
-              <div class="card-age">21 ans</div>
+      <div class="char-card reveal d1" onclick="this.classList.toggle('flipped')">
+        <div class="char-inner">
+          <div class="char-front">
+            <div class="char-front-aura" style="background:radial-gradient(ellipse at 50% 30%,rgba(139,92,246,0.3),transparent 70%)"></div>
+            <div class="char-initials-bg"><div class="char-initials-text">ST</div></div>
+            <div class="char-front-glow"></div>
+            <div class="char-front-top"><div class="char-badge">21 ans</div></div>
+            <div class="char-front-content">
+              <div class="char-alias">"Guapo"</div>
+              <div class="char-name">Sueño Tavarez</div>
+              <div class="char-role">🤝 Relations · Réseaux</div>
             </div>
-            <div class="card-flip-hint"><div class="flip-arrow">↺</div> Histoire</div>
+            <div class="char-flip-btn">↺</div>
           </div>
-          <div class="card-back">
-            <div class="card-back-header">
-              <div class="card-back-name">Sueño "Guapo" Tavarez</div>
-              <div class="card-back-meta">21 ans · Le Charme du Barrio</div>
+          <div class="char-back">
+            <div class="char-back-header">
+              <div class="char-back-name">Sueño "Guapo" Tavarez</div>
+              <div class="char-back-sub">21 ans · Le Charme du Barrio</div>
             </div>
-            <div class="card-role-tag">Relations & Réseaux</div>
-            <p>Sueño est né avec ce don rare : faire parler les gens. Un sourire qui désarme, un bagou qui rassure, une mémoire des noms qui touche les egos dans le bon sens. Dans une autre vie, il aurait été vendeur de voitures ou politicien.</p>
-            <p>Dans celle-ci, c'est lui qui tisse les liens entre la clique et le quartier, qui négocie avant que les pistolets sortent, qui sait quand reculer sans perdre la face. Son surnom "Guapo" — le beau — est à double sens : il est l'image présentable de la PTL quand il le faut.</p>
-            <p>Mais derrière le sourire, Sueño porte une loyauté absolue envers ses frères. Ceux qui l'ont testé une fois ne recommencent pas.</p>
+            <div class="char-back-tag">Relations & Négociation</div>
+            <div class="char-back-body">
+              <p>Sueño est né avec ce don rare : faire parler les gens. Un sourire qui désarme, un bagou qui rassure, une mémoire des noms qui touche les égos dans le bon sens. Dans une autre vie, il aurait été vendeur de voitures ou politicien.</p>
+              <p>C'est lui qui tisse les liens entre la clique et le quartier, qui négocie avant que les pistolets sortent, qui sait quand reculer sans perdre la face. Son surnom "Guapo" est à double sens : il est l'image présentable de la PTL quand il le faut.</p>
+              <p>Mais derrière le sourire, une loyauté absolue envers ses frères. Ceux qui l'ont testé une fois ne recommencent pas.</p>
+            </div>
+            <button class="char-close-btn" onclick="event.stopPropagation();this.closest('.char-card').classList.remove('flipped')">↺ Retourner</button>
           </div>
         </div>
       </div>
 
       <!-- LUIS -->
-      <div class="card-wrapper reveal d2" onclick="this.classList.toggle('flipped')">
-        <div class="card-inner">
-          <div class="card-front">
-            <div class="card-bg"><div class="card-initials">LN</div></div>
-            <div class="card-front-content">
-              <div class="card-alias">"Shaggon"</div>
-              <div class="card-name">Luis-Ramirez Navarro</div>
-              <div class="card-age">22 ans · L'Aîné</div>
+      <div class="char-card reveal d2" onclick="this.classList.toggle('flipped')">
+        <div class="char-inner">
+          <div class="char-front">
+            <div class="char-front-aura" style="background:radial-gradient(ellipse at 50% 30%,rgba(244,63,94,0.25),transparent 70%)"></div>
+            <div class="char-initials-bg"><div class="char-initials-text">LN</div></div>
+            <div class="char-front-glow"></div>
+            <div class="char-front-top"><div class="char-badge">22 ans</div></div>
+            <div class="char-front-content">
+              <div class="char-alias">"Shaggon"</div>
+              <div class="char-name">Luis-Ramirez Navarro</div>
+              <div class="char-role">🧠 Tête pensante</div>
             </div>
-            <div class="card-flip-hint"><div class="flip-arrow">↺</div> Histoire</div>
+            <div class="char-flip-btn">↺</div>
           </div>
-          <div class="card-back">
-            <div class="card-back-header">
-              <div class="card-back-name">Luis-Ramirez "Shaggon" Navarro</div>
-              <div class="card-back-meta">22 ans · Le Plus Ancien</div>
+          <div class="char-back">
+            <div class="char-back-header">
+              <div class="char-back-name">Luis-Ramirez "Shaggon" Navarro</div>
+              <div class="char-back-sub">22 ans · L'Aîné</div>
             </div>
-            <div class="card-role-tag">Tête pensante</div>
-            <p>L'aîné. Deux années de plus qui ressemblent à dix de sagesse. Luis-Ramirez a connu le quartier quand il était encore plus dur, quand les codes n'étaient pas encore écrits et que la survie se négociait à la nuit tombée.</p>
-            <p>Son surnom vient d'une nuit où tout le monde a paniqué et lui seul est resté immobile, impassible, comme si rien ne pouvait l'atteindre. Depuis, les autres viennent le voir quand ça chauffe. Il parle peu, pèse chaque mot, ne promet que ce qu'il peut tenir.</p>
-            <p>C'est lui qui a posé les premières règles de la PTL : pas de violence gratuite sur le territoire, pas de commerce avec les mineurs, et jamais trahir un frère pour une somme d'argent.</p>
+            <div class="char-back-tag">Leadership · Stratégie</div>
+            <div class="char-back-body">
+              <p>L'aîné. Deux années de plus qui ressemblent à dix de sagesse. Luis-Ramirez a connu le quartier quand il était encore plus dur, quand les codes n'étaient pas écrits et que la survie se négociait à la nuit tombée.</p>
+              <p>Son surnom vient d'une nuit où tout le monde a paniqué et lui seul est resté immobile, impassible. Depuis, les autres viennent le voir quand ça chauffe. Il parle peu, pèse chaque mot, ne promet que ce qu'il peut tenir.</p>
+              <p>C'est lui qui a posé les premières règles de la PTL : pas de violence gratuite, pas de commerce avec les mineurs, jamais trahir un frère pour de l'argent.</p>
+            </div>
+            <button class="char-close-btn" onclick="event.stopPropagation();this.closest('.char-card').classList.remove('flipped')">↺ Retourner</button>
           </div>
         </div>
       </div>
 
       <!-- RODRIGO -->
-      <div class="card-wrapper reveal d1" onclick="this.classList.toggle('flipped')">
-        <div class="card-inner">
-          <div class="card-front">
-            <div class="card-bg"><div class="card-initials">RV</div></div>
-            <div class="card-front-content">
-              <div class="card-alias">Rodrigo</div>
-              <div class="card-name">Rodrigo Vargas</div>
-              <div class="card-age">18 ans · Le Petit</div>
+      <div class="char-card reveal d1" onclick="this.classList.toggle('flipped')">
+        <div class="char-inner">
+          <div class="char-front">
+            <div class="char-front-aura" style="background:radial-gradient(ellipse at 50% 30%,rgba(42,187,232,0.25),transparent 70%)"></div>
+            <div class="char-initials-bg"><div class="char-initials-text">RV</div></div>
+            <div class="char-front-glow"></div>
+            <div class="char-front-top"><div class="char-badge">18 ans</div></div>
+            <div class="char-front-content">
+              <div class="char-alias">Rodrigo</div>
+              <div class="char-name">Rodrigo Vargas</div>
+              <div class="char-role">⚡ Loyauté brute</div>
             </div>
-            <div class="card-flip-hint"><div class="flip-arrow">↺</div> Histoire</div>
+            <div class="char-flip-btn">↺</div>
           </div>
-          <div class="card-back">
-            <div class="card-back-header">
-              <div class="card-back-name">Rodrigo Vargas</div>
-              <div class="card-back-meta">18 ans · Le Cadet</div>
+          <div class="char-back">
+            <div class="char-back-header">
+              <div class="char-back-name">Rodrigo Vargas</div>
+              <div class="char-back-sub">18 ans · Le Cadet</div>
             </div>
-            <div class="card-role-tag">Loyauté brute</div>
-            <p>Il a 18 ans mais dans ses yeux on en lit trente. Rodrigo a grandi sans père, à trois dans un appartement d'une pièce, avec une mère qui faisait trois ménages par semaine sans jamais se plaindre. Il a grandi en regardant les PTL tenir le quartier ensemble, et un jour il a simplement dit : je suis là.</p>
-            <p>Le plus jeune, le plus impulsif aussi. Shaggon lui a mis la main sur l'épaule le jour de son arrivée : "ici on calcule avant d'agir". Il apprend. Vite. Son courage — certains diraient son inconscience — est une ressource pour la clique. Il ferait n'importe quoi pour ses frères.</p>
-            <p>Sa mère l'appelle encore Rodriguito. Personne dans la PTL ne lui dirait ça.</p>
+            <div class="char-back-tag">Impulsion · Présence Terrain</div>
+            <div class="char-back-body">
+              <p>Il a 18 ans mais dans ses yeux on en lit trente. Rodrigo a grandi sans père, à trois dans un appartement d'une pièce, avec une mère qui faisait trois ménages par semaine sans jamais se plaindre.</p>
+              <p>Le plus jeune, le plus impulsif. Shaggon lui a mis la main sur l'épaule le jour de son arrivée : "ici on calcule avant d'agir". Il apprend. Vite. Son courage — certains diraient son inconscience — est une ressource pour la clique.</p>
+              <p>Sa mère l'appelle encore Rodriguito. Personne dans la PTL ne lui dirait ça.</p>
+            </div>
+            <button class="char-close-btn" onclick="event.stopPropagation();this.closest('.char-card').classList.remove('flipped')">↺ Retourner</button>
           </div>
         </div>
       </div>
 
       <!-- ALEJANDRO -->
-      <div class="card-wrapper reveal d2" onclick="this.classList.toggle('flipped')">
-        <div class="card-inner">
-          <div class="card-front">
-            <div class="card-bg"><div class="card-initials">AR</div></div>
-            <div class="card-front-content">
-              <div class="card-alias">Alejandro</div>
-              <div class="card-name">Alejandro Ríos</div>
-              <div class="card-age">19 ans</div>
+      <div class="char-card reveal d2" onclick="this.classList.toggle('flipped')">
+        <div class="char-inner">
+          <div class="char-front">
+            <div class="char-front-aura" style="background:radial-gradient(ellipse at 50% 30%,rgba(232,131,42,0.25),transparent 70%)"></div>
+            <div class="char-initials-bg"><div class="char-initials-text">AR</div></div>
+            <div class="char-front-glow"></div>
+            <div class="char-front-top"><div class="char-badge">19 ans</div></div>
+            <div class="char-front-content">
+              <div class="char-alias">Alejandro</div>
+              <div class="char-name">Alejandro Ríos</div>
+              <div class="char-role">👁 Renseignement</div>
             </div>
-            <div class="card-flip-hint"><div class="flip-arrow">↺</div> Histoire</div>
+            <div class="char-flip-btn">↺</div>
           </div>
-          <div class="card-back">
-            <div class="card-back-header">
-              <div class="card-back-name">Alejandro Ríos</div>
-              <div class="card-back-meta">19 ans · L'Observateur</div>
+          <div class="char-back">
+            <div class="char-back-header">
+              <div class="char-back-name">Alejandro Ríos</div>
+              <div class="char-back-sub">19 ans · L'Observateur</div>
             </div>
-            <div class="card-role-tag">Renseignement & Terrain</div>
-            <p>Alejandro ne parle pas pour ne rien dire. Ceux qui l'ont rencontré une fois se souviennent de ses yeux — toujours en train d'enregistrer, de cartographier, de mémoriser. Il connaît chaque coin de Long Beach, chaque rotation de patrouille, chaque visage qui ne devrait pas être là.</p>
-            <p>Il est arrivé dans le groupe par Sueño, un soir où il avait couvert une de leurs retraites sans qu'on lui demande rien. Depuis, il est devenu la mémoire vive de la PTL : qui doit quoi, qui a dit quoi, qui était là quand ça a dégénéré.</p>
-            <p>Il dessine aussi — des portraits, des palmiers, des rues. Il dit que c'est sa façon de ne rien oublier.</p>
+            <div class="char-back-tag">Intel · Mémoire du Terrain</div>
+            <div class="char-back-body">
+              <p>Alejandro ne parle pas pour ne rien dire. Ceux qui l'ont rencontré une fois se souviennent de ses yeux — toujours en train d'enregistrer, de cartographier, de mémoriser. Il connaît chaque coin de Long Beach, chaque rotation de patrouille.</p>
+              <p>Il est arrivé dans le groupe par Sueño, un soir où il avait couvert une de leurs retraites sans qu'on lui demande rien. Depuis, il est la mémoire vive de la PTL : qui doit quoi, qui a dit quoi, qui était là quand ça a dégénéré.</p>
+              <p>Il dessine aussi — des portraits, des palmiers, des rues. Sa façon de ne rien oublier.</p>
+            </div>
+            <button class="char-close-btn" onclick="event.stopPropagation();this.closest('.char-card').classList.remove('flipped')">↺ Retourner</button>
           </div>
         </div>
       </div>
 
       <!-- DIEGO -->
-      <div class="card-wrapper reveal d3" onclick="this.classList.toggle('flipped')">
-        <div class="card-inner">
-          <div class="card-front">
-            <div class="card-bg"><div class="card-initials">DM</div></div>
-            <div class="card-front-content">
-              <div class="card-alias">"Lito"</div>
-              <div class="card-name">Diego Morales</div>
-              <div class="card-age">19 ans</div>
+      <div class="char-card reveal d3" onclick="this.classList.toggle('flipped')">
+        <div class="char-inner">
+          <div class="char-front">
+            <div class="char-front-aura" style="background:radial-gradient(ellipse at 50% 30%,rgba(245,200,66,0.2),transparent 70%)"></div>
+            <div class="char-initials-bg"><div class="char-initials-text">DM</div></div>
+            <div class="char-front-glow"></div>
+            <div class="char-front-top"><div class="char-badge">19 ans</div></div>
+            <div class="char-front-content">
+              <div class="char-alias">"Lito"</div>
+              <div class="char-name">Diego Morales</div>
+              <div class="char-role">❤ Âme du groupe</div>
             </div>
-            <div class="card-flip-hint"><div class="flip-arrow">↺</div> Histoire</div>
+            <div class="char-flip-btn">↺</div>
           </div>
-          <div class="card-back">
-            <div class="card-back-header">
-              <div class="card-back-name">Diego "Lito" Morales</div>
-              <div class="card-back-meta">19 ans · L'Âme du Groupe</div>
+          <div class="char-back">
+            <div class="char-back-header">
+              <div class="char-back-name">Diego "Lito" Morales</div>
+              <div class="char-back-sub">19 ans · Cœur Battant</div>
             </div>
-            <div class="card-role-tag">Cohésion & Moral</div>
-            <p>"Lito" — petit Diego — est le cœur battant de la clique. C'est lui qui propose de se retrouver quand tout le monde part dans tous les sens. C'est lui qui rappelle pourquoi on fait ça, ce qu'on protège, ce qu'on refuse de laisser derrière.</p>
-            <p>Il parle vite, rit fort, et peut passer du sérieux absolu à l'éclat de rire en trente secondes. Mais personne ne se trompe : quand Lito baisse la voix, tout le monde écoute.</p>
-            <p>Il a perdu son cousin il y a deux ans sur un malentendu, une rue plus loin. C'est cette douleur précise qui l'a ancré à la PTL — pas pour la violence, mais pour éviter qu'elle arrive encore aux siens.</p>
+            <div class="char-back-tag">Cohésion · Moral collectif</div>
+            <div class="char-back-body">
+              <p>"Lito" est le cœur battant de la clique. C'est lui qui propose de se retrouver quand tout le monde part dans tous les sens. C'est lui qui rappelle pourquoi on fait ça, ce qu'on protège, ce qu'on refuse de laisser derrière.</p>
+              <p>Il parle vite, rit fort, et peut passer du sérieux absolu à l'éclat de rire en trente secondes. Mais quand Lito baisse la voix, tout le monde écoute.</p>
+              <p>Il a perdu son cousin il y a deux ans, une rue plus loin, sur un malentendu. C'est cette douleur précise qui l'a ancré à la PTL — pas pour la violence, mais pour éviter qu'elle arrive encore aux siens.</p>
+            </div>
+            <button class="char-close-btn" onclick="event.stopPropagation();this.closest('.char-card').classList.remove('flipped')">↺ Retourner</button>
           </div>
         </div>
       </div>
 
-    </div><!-- /.cards-grid -->
+    </div>
   </div>
 </div>
 
-<hr class="hr">
+<div class="hr-section"></div>
 
-<!-- ─── LORE ─────────────────────────────────────────── -->
+<!-- ── LORE ──────────────────────────────────────────── -->
 <section id="lore">
-  <span class="section-label reveal">Origines</span>
-  <h2 class="section-title reveal d1">Playeros <em>13</em></h2>
-  <div class="section-divider reveal d2"></div>
+  <div class="section-wrap">
+    <div class="s-tag reveal">Origines</div>
+    <h2 class="s-title reveal d1">Playeros <em>13</em></h2>
 
-  <p class="reveal d2">Les <strong>Playeros 13</strong> — ceux de la plage, ceux qui appartiennent à l'eau et au sable — ne sont pas nés d'une nuit de violence ou d'un coup de force. Ils sont nés d'un territoire. D'une bande de béton longeant l'océan, d'une communauté latino qui s'y est enracinée génération après génération, et d'un besoin primitif : protéger ce qui est à soi.</p>
+    <p class="reveal d2">Les <strong>Playeros 13</strong> — ceux de la plage, ceux qui appartiennent à l'eau et au sable — ne sont pas nés d'une nuit de violence ou d'un coup de force. Ils sont nés d'un territoire. D'une bande de béton longeant l'océan, d'une communauté latino qui s'y est enracinée génération après génération, et d'un besoin primitif : protéger ce qui est à soi.</p>
 
-  <p class="reveal d2">Dans l'univers de Los Santos, les Playeros 13 sont l'un des gangs hispaniques les plus anciens de Long Beach. Leur territoire borde les plages, leurs couleurs évoquent le sable et l'or, leur numéro — 13 — témoigne d'une allégeance à une hiérarchie carcérale qui dépasse les rues. Ils ne sont pas un gang de banlieue. Ils sont un gang de côte, et cette différence compte.</p>
-
-  <div class="pull-quote reveal">
-    "Nous sommes nés ici, dans le sel et le vent. Long Beach ne nous appartient pas — nous lui appartenons."
-  </div>
-
-  <p class="reveal">Le gang est structuré en deux cliques distinctes, chacune ayant sa zone, ses habitudes et sa couleur au sein de la même famille :</p>
-
-  <div class="two-col reveal" style="margin-top:2rem">
-    <div>
-      <div class="activity-title">East Side Playeros — ESP</div>
-      <div class="activity-item">
-        <h4>La Branche Historique</h4>
-        <p>Ancrée sur le flanc est du territoire, l'ESP est la colonne vertébrale du gang. Elle est présente depuis les premières années, elle a posé les codes, établi les alliances et traversé les guerres de rue. C'est dans l'ESP que la légende des Playeros s'est construite.</p>
-      </div>
+    <div class="pull-quote reveal">
+      "Nous sommes nés ici, dans le sel et le vent. Long Beach ne nous appartient pas — nous lui appartenons."
     </div>
-    <div>
-      <div class="activity-title">Palm Tree Locos — PTL</div>
-      <div class="activity-item">
-        <h4>La Clique du Renouveau</h4>
-        <p>Née plus tard, la PTL a hérité du nom, des valeurs et de l'espace — mais elle a su développer sa propre identité. Plus jeune, plus mobile, ancrée dans la culture autant que dans la rue, elle représente l'avenir des Playeros sur Long Beach.</p>
+
+    <p class="reveal">Le gang est structuré en deux cliques distinctes, chacune avec sa zone, ses habitudes et sa couleur au sein de la même famille. Le numéro 13 témoigne d'une allégeance à une hiérarchie qui dépasse les rues, ancrée dans les établissements correctionnels d'État.</p>
+
+    <div class="lore-grid reveal">
+      <div class="lore-card">
+        <div class="lore-card-accent" style="background:linear-gradient(90deg,var(--rose),var(--amber))"></div>
+        <div class="lore-card-n" style="color:var(--rose)">ESP</div>
+        <div class="lore-card-title">East Side Playeros</div>
+        <div class="lore-card-sub" style="color:var(--rose)">La Branche Historique</div>
+        <p>Ancrée sur le flanc est du territoire, l'ESP est la colonne vertébrale du gang. Elle a posé les codes, établi les alliances et traversé les guerres de rue. C'est dans l'ESP que la légende des Playeros s'est construite, bloc après bloc.</p>
+      </div>
+      <div class="lore-card">
+        <div class="lore-card-accent" style="background:linear-gradient(90deg,var(--teal),var(--violet))"></div>
+        <div class="lore-card-n" style="color:var(--teal)">PTL</div>
+        <div class="lore-card-title">Palm Tree Locos</div>
+        <div class="lore-card-sub" style="color:var(--teal)">La Clique du Renouveau</div>
+        <p>Plus jeune, plus mobile, ancrée dans la culture autant que dans la rue. La PTL a hérité du nom, des valeurs et du territoire — mais elle a su développer sa propre identité et représenter l'avenir des Playeros sur Long Beach.</p>
       </div>
     </div>
   </div>
 </section>
 
-<hr class="hr">
+<div class="hr-section"></div>
 
-<!-- ─── HISTOIRE PTL ──────────────────────────────────── -->
+<!-- ── HISTOIRE ──────────────────────────────────────── -->
 <section id="histoire">
-  <span class="section-label reveal">Genèse</span>
-  <h2 class="section-title reveal d1">L'Histoire des<br><em>Palm Tree Locos</em></h2>
-  <div class="section-divider reveal d2"></div>
+  <div class="section-wrap narrow">
+    <div class="s-tag reveal">Genèse</div>
+    <h2 class="s-title reveal d1">L'Histoire des<br><em>Palm Tree Locos</em></h2>
 
-  <p class="reveal d2">L'histoire de la PTL ne commence pas avec un coup de feu ou une déclaration de guerre. Elle commence dans une arrière-cour, à l'ombre d'un palmier que personne n'avait songé à couper, entre des gamins qui n'avaient nulle part ailleurs où aller. C'est là, dans cet espace sans nom, que les premières conversations ont eu lieu.</p>
+    <p class="reveal d2">L'histoire de la PTL ne commence pas avec un coup de feu ou une déclaration de guerre. Elle commence dans une arrière-cour, à l'ombre d'un palmier que personne n'avait songé à couper, entre des gamins qui n'avaient nulle part ailleurs où aller. C'est là, dans cet espace sans nom, que les premières conversations ont eu lieu.</p>
 
-  <p class="reveal d2">Long Beach, dans les années qui ont précédé, avait vu sa communauté hispanique se densifier, se compresser entre les grandes artères. Les familles arrivaient du Mexique avec peu de bagages et beaucoup d'espoir, s'entassaient dans des appartements trop petits entre la 112ème et la 119ème, trouvaient du travail dans les ports ou les cuisines. Leurs enfants, eux, grandissaient dans l'entre-deux : trop latinos pour certains, trop américains pour d'autres.</p>
+    <p class="reveal">Long Beach avait vu sa communauté hispanique se densifier, se compresser entre les grandes artères. Les familles arrivaient avec peu de bagages et beaucoup d'espoir, s'entassaient entre la 112ème et la 119ème, trouvaient du travail dans les ports ou les cuisines. Leurs enfants grandissaient dans l'entre-deux : trop latinos pour certains, trop américains pour d'autres.</p>
 
-  <div class="pull-quote reveal">
-    "On n'a pas choisi le quartier. On a choisi de s'y tenir debout ensemble."
+    <div class="pull-quote reveal">
+      "On n'a pas choisi le quartier. On a choisi de s'y tenir debout ensemble."
+    </div>
+
+    <p class="reveal">Les Palm Tree Locos sont nés de ce vide. Un groupe d'amis d'enfance, soudés par les rues communes, les mêmes galères, les mêmes humiliations silencieuses. Ils ont commencé à se retrouver sous ce palmier à l'angle du bloc, à veiller ensemble, à faire savoir que ce coin-là avait des habitants qui ne partiraient pas.</p>
+
+    <p class="reveal">Le rattachement aux Playeros 13 n'est pas arrivé du jour au lendemain. Il a été le résultat d'un long processus de reconnaissance mutuelle. La PTL protégeait un territoire jouxtant celui des anciens Playeros, respectait leurs codes, n'empiétait pas sur leurs affaires. Quand le contact a été établi, la famille s'est agrandie naturellement. Les PTL n'ont pas rejoint les Playeros 13 par soumission — ils y ont été accueillis par mérite.</p>
   </div>
-
-  <p class="reveal">Les Palmer Tree Locos sont nés de ce vide. Un groupe d'amis d'enfance, soudés par les rues communes, les mêmes galères, les mêmes humiliations silencieuses. Ils ont commencé à se retrouver sous ce palmier à l'angle du bloc, à veiller ensemble, à faire savoir que ce coin-là avait des habitants qui ne partiraient pas.</p>
-
-  <p class="reveal">Le rattachement aux Playeros 13 n'est pas arrivé du jour au lendemain. Il a été le résultat d'un long processus de reconnaissance mutuelle : la PTL protégeait un territoire qui jouxtait celui des anciens Playeros, respectait leurs codes, n'empiétait pas sur leurs affaires. Quand le contact a été établi, la famille s'est agrandie naturellement. Les PTL n'ont pas rejoint les Playeros 13 par soumission — ils y ont été accueillis par mérite.</p>
-
-  <p class="reveal">Depuis, la clique a traversé des périodes de calme et des périodes de tension. Des membres ont fait de la prison. D'autres ont quitté les rues pour quelque chose de légitime. Mais le noyau dur — ces six là — est resté. Il a tenu. Et il tient encore.</p>
 </section>
 
-<hr class="hr">
+<div class="hr-section"></div>
 
-<!-- ─── LIENS ─────────────────────────────────────────── -->
-<section id="membres">
-  <span class="section-label reveal">La Fraternité</span>
-  <h2 class="section-title reveal d1">Une Famille<br><em>Choisie</em></h2>
-  <div class="section-divider reveal d2"></div>
+<!-- ── LIENS ─────────────────────────────────────────── -->
+<section id="liens">
+  <div class="section-wrap narrow">
+    <div class="s-tag reveal">La Fraternité</div>
+    <h2 class="s-title reveal d1">Une Famille<br><em>Choisie</em></h2>
 
-  <p class="reveal d2">Ils ne sont pas nés du même sang. Certains ne partagent pas la même langue d'origine, ni les mêmes quartiers d'enfance à la lettre près. Mais quelque chose les a tissés ensemble d'une façon que seuls ceux qui l'ont vécu peuvent comprendre.</p>
+    <p class="reveal d2">Ils ne sont pas nés du même sang. Certains ne partagent pas la même langue d'origine, ni les mêmes quartiers d'enfance. Mais quelque chose les a tissés ensemble d'une façon que seuls ceux qui l'ont vécu peuvent comprendre.</p>
 
-  <p class="reveal">C'est Shaggon qui les a, un par un, ramenés vers un centre commun. Pas par des mots — par des actes. Par le fait d'être là quand ça comptait. Diego a couvert ses arrières une nuit sans qu'on lui demande. Alejandro a mis les informations sur la table sans exiger de contrepartie. Sueño a négocié une trêve qui aurait pu mal tourner. Mateo a chanté pour l'enterrement d'un proche de Rodrigo, gratuitement, parce que c'était juste. Et Rodrigo, le plus jeune, a simplement refusé de partir quand tout le monde aurait pu s'en aller.</p>
+    <p class="reveal">C'est Shaggon qui les a, un par un, ramenés vers un centre commun. Pas par des mots — par des actes. Diego a couvert ses arrières une nuit sans qu'on lui demande. Alejandro a mis les informations sur la table sans exiger de contrepartie. Sueño a négocié une trêve qui aurait pu mal tourner. Mateo a chanté pour l'enterrement d'un proche de Rodrigo, gratuitement. Et Rodrigo, le plus jeune, a simplement refusé de partir quand tout le monde aurait pu s'en aller.</p>
 
-  <div class="pull-quote reveal">
-    "On se dispute comme des frères. On se protège comme des frères. On se tait comme des frères."
+    <div class="pull-quote reveal">
+      "On se dispute comme des frères. On se protège comme des frères. On se tait comme des frères."
+    </div>
+
+    <p class="reveal">Dans la PTL, les rôles n'ont pas été assignés par la force. Ils sont apparus naturellement : Shaggon pense, Sueño parle, Alejandro observe, Mateo représente, Diego tient le moral et Rodrigo ne recule pas. Ensemble, ils forment quelque chose qui dépasse chacun d'eux.</p>
   </div>
-
-  <p class="reveal">Ce lien n'est pas romantique. Ce n'est pas de la camaraderie d'été. C'est le genre de lien que forgent les nuits où rien ne va, où l'argent manque, où les tensions débordent et où pourtant personne ne part. Ce sont des dettes qui ne se remboursent jamais complètement. Des silences qui valent des discours.</p>
-
-  <p class="reveal">Dans la PTL, les rôles ne sont pas assignés par la force ou le rang. Ils sont apparus naturellement : Shaggon pense, Sueño parle, Alejandro observe, Mateo représente, Diego tient le moral et Rodrigo ne recule pas. Ensemble, ils forment quelque chose qui dépasse chacun d'eux.</p>
 </section>
 
-<hr class="hr">
+<div class="hr-section"></div>
 
-<!-- ─── OBJECTIFS ─────────────────────────────────────── -->
+<!-- ── OBJECTIFS ─────────────────────────────────────── -->
 <section id="objectifs">
-  <span class="section-label reveal">Vision</span>
-  <h2 class="section-title reveal d1">Ce que les PTL<br><em>Construisent</em></h2>
-  <div class="section-divider reveal d2"></div>
-  <p class="reveal d2">Trois horizons de temps. Trois états différents d'une même ambition : exister, durer, compter.</p>
+  <div class="section-wrap">
+    <div class="s-tag reveal">Vision</div>
+    <h2 class="s-title reveal d1">Ce que les PTL<br><em>Construisent</em></h2>
+    <p class="reveal d2">Trois horizons. Trois états différents d'une même ambition : exister, durer, compter.</p>
 
-  <div class="objectives-grid">
+    <div class="obj-grid">
 
-    <div class="obj-card reveal">
-      <div class="obj-number">01</div>
-      <span class="obj-label">Court terme</span>
-      <div class="obj-title">Reprendre pied, reprendre souffle</div>
-      <ul class="obj-items">
-        <li>Réaffirmer physiquement la présence PTL sur les blocs de Long Beach — visibilité constante, patrouilles informelles, marques territoriales discrètes mais lisibles</li>
-        <li>Rétablir les flux financiers : relancer les réseaux de distribution de stupéfiants, reprendre les zones d'extorsion sur les commerçants du secteur</li>
-        <li>Identifier et combler les vides laissés pendant les périodes d'absence : contacts perdus, zones laissées à des tiers, dette de réputation à rembourser</li>
-        <li>Poser les premières briques légales : emplois de façade, accès à des locaux commerciaux, légitimité sociale dans le quartier</li>
-        <li>Mettre fin aux tensions internes et consolider la confiance au sein du groupe avant d'engager toute expansion</li>
-      </ul>
+      <div class="obj-card ct reveal">
+        <div class="obj-num">01</div>
+        <div class="obj-pill">Court terme</div>
+        <div class="obj-title">Reprendre pied, reprendre souffle</div>
+        <ul class="obj-list">
+          <li>Réaffirmer physiquement la présence PTL sur les blocs de Long Beach — visibilité constante et lisible</li>
+          <li>Rétablir les flux financiers : relancer les réseaux de distribution, reprendre les zones d'extorsion</li>
+          <li>Combler les vides laissés pendant les périodes d'absence, reconstruire la réputation</li>
+          <li>Poser les premières briques légales : emplois de façade, locaux commerciaux, légitimité sociale</li>
+          <li>Consolider la confiance interne avant toute expansion extérieure</li>
+        </ul>
+      </div>
+
+      <div class="obj-card mt reveal d1">
+        <div class="obj-num">02</div>
+        <div class="obj-pill">Moyen terme</div>
+        <div class="obj-title">Étendre l'influence, bâtir la façade</div>
+        <ul class="obj-list">
+          <li>Développer des activités légales crédibles : présence dans les soirées, gestion d'événements culturels</li>
+          <li>Utiliser la musique de Mateo comme vecteur d'influence — notoriété locale qui ouvre des portes</li>
+          <li>Organiser des Hood Days réguliers pour ancrer la PTL dans la mémoire collective du quartier</li>
+          <li>Structurer les circuits illicites pour minimiser l'exposition directe des membres clés</li>
+          <li>Nouer des contacts avec d'autres factions pour commercer plutôt que combattre</li>
+        </ul>
+      </div>
+
+      <div class="obj-card lt reveal d2">
+        <div class="obj-num">03</div>
+        <div class="obj-pill">Long terme</div>
+        <div class="obj-title">L'influence sans la guerre</div>
+        <ul class="obj-list">
+          <li>Que le nom PTL évoque le respect, non plus la peur — devenir une force informelle du quartier</li>
+          <li>Réduire drastiquement l'exposition à la violence : sous-traiter les conflits, ne jamais être en premier ligne</li>
+          <li>Développer les activités légales pour que certains membres puissent s'en sortir autrement</li>
+          <li>Faire de Long Beach un territoire stable — moins de guerres, plus de flux contrôlés</li>
+          <li>Laisser une trace durable : quelque chose que les enfants du barrio raconteront autrement qu'avec honte</li>
+        </ul>
+      </div>
+
     </div>
-
-    <div class="obj-card reveal d1">
-      <div class="obj-number">02</div>
-      <span class="obj-label">Moyen terme</span>
-      <div class="obj-title">Étendre l'influence, bâtir la façade</div>
-      <ul class="obj-items">
-        <li>Développer des activités économiques légales crédibles : employeurs de quelques membres, présence dans les soirées, gestion d'événements culturels du barrio</li>
-        <li>Utiliser la musique de Mateo comme vecteur d'influence : concerts de quartier, collaborations, notoriété locale qui ouvre des portes</li>
-        <li>Organiser des Hood Days réguliers pour ancrer la PTL dans la mémoire collective du quartier — être associé à la fête autant qu'à la rue</li>
-        <li>Structurer les circuits financiers illicites pour minimiser l'exposition directe des membres clés, déléguer la première ligne</li>
-        <li>Nouer des contacts avec d'autres factions pour commercer plutôt que combattre — l'argent circule mieux que les balles</li>
-      </ul>
-    </div>
-
-    <div class="obj-card reveal d2">
-      <div class="obj-number">03</div>
-      <span class="obj-label">Long terme</span>
-      <div class="obj-title">L'influence sans la guerre</div>
-      <ul class="obj-items">
-        <li>Que le nom PTL évoque le respect et non plus la peur immédiate — devenir une force politique informelle du quartier</li>
-        <li>Réduire drastiquement l'exposition directe à la violence : sous-traiter les conflits, ne jamais être le premier visage sur une scène</li>
-        <li>Développer suffisamment les activités légales pour que certains membres puissent s'en sortir sans dépendre uniquement de l'illégal</li>
-        <li>Faire de Long Beach un territoire stable et prévisible — moins de guerres, plus de flux, une économie souterraine maîtrisée</li>
-        <li>Laisser une trace durable dans le quartier : avoir construit quelque chose que les enfants du barrio pourront un jour raconter autrement qu'avec honte</li>
-      </ul>
-    </div>
-
   </div>
 </section>
 
-<hr class="hr">
+<div class="hr-section"></div>
 
-<!-- ─── ACTIVITÉS ─────────────────────────────────────── -->
+<!-- ── ACTIVITES ─────────────────────────────────────── -->
 <section id="activites">
-  <span class="section-label reveal">Opérations</span>
-  <h2 class="section-title reveal d1">Ce que font<br><em>les PTL</em></h2>
-  <div class="section-divider reveal d2"></div>
+  <div class="section-wrap">
+    <div class="s-tag reveal">Opérations</div>
+    <h2 class="s-title reveal d1">Ce que font<br><em>les PTL</em></h2>
 
-  <div class="two-col reveal">
-    <div>
-      <div class="activity-title">Activités Légales</div>
-
-      <div class="activity-item">
-        <h4>Événements & Soirées</h4>
-        <p>Les PTL participent aux soirées de Los Santos pour se faire voir dans les bons endroits. Organisation, présence, investissement dans la vie nocturne légale pour construire un réseau relationnel diversifié.</p>
+    <div class="act-grid reveal">
+      <div>
+        <div class="act-col-title" style="color:var(--teal)">
+          <div class="act-dot" style="background:var(--teal)"></div>
+          Activités Légales
+        </div>
+        <div class="act-item">
+          <h4>Événements & Soirées</h4>
+          <p>Les PTL participent aux soirées de Los Santos pour tisser un réseau relationnel diversifié. Présence, organisation, investissement dans la vie nocturne légitime.</p>
+        </div>
+        <div class="act-item">
+          <h4>Hood Days · Journées du Quartier</h4>
+          <p>Barbecues, musique live, tournois de basket sur le territoire. L'objectif est politique autant que social : ancrer leur image comme force bienveillante du barrio.</p>
+        </div>
+        <div class="act-item">
+          <h4>Emplois de Façade</h4>
+          <p>Livreur, employé de chantier, vendeur. Ces postes justifient des revenus, permettent la libre circulation et crédibilisent une vie légale aux yeux des autorités.</p>
+        </div>
+        <div class="act-item">
+          <h4>Carrière de La Eme</h4>
+          <p>La musique de Mateo ouvre des portes dans des cercles où les autres n'entrent pas. Radio locale, soirées, contacts dans les milieux légaux. Une vitrine qui vaut de l'or.</p>
+        </div>
       </div>
 
-      <div class="activity-item">
-        <h4>Hood Days — Journées du Quartier</h4>
-        <p>Régulièrement, les PTL organisent des Hood Days sur leur territoire : barbecues, musique live, tournois de basket. L'objectif est politique autant que social : ancrer leur image dans le quartier comme force bienveillante.</p>
-      </div>
-
-      <div class="activity-item">
-        <h4>Emplois de Façade</h4>
-        <p>Chaque membre cherche ou maintient un emploi officiel : livreur, employé de chantier, vendeur. Ces emplois servent à justifier des revenus, à circuler librement et à crédibiliser une vie légale.</p>
-      </div>
-
-      <div class="activity-item">
-        <h4>Carrière Musicale de Mateo</h4>
-        <p>La musique de La Eme sert de couverture narrative pour la clique entière : il passe à la radio locale, se produit en soirée, attire des contacts dans les milieux légaux. Une vitrine qui vaut de l'or.</p>
-      </div>
-    </div>
-
-    <div>
-      <div class="activity-title">Activités Illicites</div>
-
-      <div class="activity-item">
-        <h4>Trafic de Stupéfiants</h4>
-        <p>Principal revenu de la clique. Les PTL contrôlent la distribution sur leur zone de Long Beach : weed, coke, pills. Organisation en cercles pour minimiser l'exposition des chefs.</p>
-      </div>
-
-      <div class="activity-item">
-        <h4>Extorsion & Taxation</h4>
-        <p>Les commerces du bloc paient une taxe de protection. Pas de violence inutile — la menace implicite suffit, le rapport est souvent respectueux sur la durée. C'est un revenu stable et prévisible.</p>
-      </div>
-
-      <div class="activity-item">
-        <h4>Racket & Intimidation</h4>
-        <p>Sur des cibles précises, ponctuellement. Le racket est utilisé comme outil de pression plus que comme source de revenus systématique. Un message envoyé, une ligne posée.</p>
-      </div>
-
-      <div class="activity-item">
-        <h4>Cambriolages</h4>
-        <p>Opérations ciblées, préparées, sur des zones et biens identifiés. Jamais dans le quartier — toujours à l'extérieur du territoire pour ne pas se polluer l'image locale.</p>
+      <div>
+        <div class="act-col-title" style="color:var(--rose)">
+          <div class="act-dot" style="background:var(--rose)"></div>
+          Activités Illicites
+        </div>
+        <div class="act-item">
+          <h4>Trafic de Stupéfiants</h4>
+          <p>Principal revenu de la clique. Les PTL contrôlent la distribution sur leur zone : weed, coke, pills. Organisation en cercles pour minimiser l'exposition des têtes.</p>
+        </div>
+        <div class="act-item">
+          <h4>Extorsion & Taxation</h4>
+          <p>Les commerces du bloc paient une taxe de protection. La menace implicite suffit. Le rapport est souvent respectueux sur la durée — un revenu stable et prévisible.</p>
+        </div>
+        <div class="act-item">
+          <h4>Racket & Intimidation</h4>
+          <p>Sur des cibles précises, ponctuellement. Le racket est un outil de pression plus qu'une source de revenus systématique. Un message envoyé, une ligne posée.</p>
+        </div>
+        <div class="act-item">
+          <h4>Cambriolages Ciblés</h4>
+          <p>Opérations préparées, toujours hors du territoire PTL — pour ne pas polluer l'image locale. Jamais dans le barrio. Toujours à l'extérieur, jamais à l'improviste.</p>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<hr class="hr">
+<div class="hr-section"></div>
 
-<!-- ─── STYLE & VIE ───────────────────────────────────── -->
+<!-- ── STYLE & VIE ────────────────────────────────────── -->
 <section id="style">
-  <span class="section-label reveal">Identité Visuelle</span>
-  <h2 class="section-title reveal d1">Le Style<br><em>PTL</em></h2>
-  <div class="section-divider reveal d2"></div>
+  <div class="section-wrap">
+    <div class="s-tag reveal">Identité</div>
+    <h2 class="s-title reveal d1">Style de Vie<br><em>PTL</em></h2>
 
-  <p class="reveal d2">Le style des Palm Tree Locos n'est pas un uniforme — c'est une signature. Assez reconnaissable pour ceux qui savent lire, assez sobre pour ne pas se faire remarquer des mauvaises personnes.</p>
+    <p class="reveal d2">Le style des Palm Tree Locos n'est pas un uniforme — c'est une signature. Assez reconnaissable pour ceux qui savent lire, assez sobre pour ne pas se faire remarquer des mauvaises personnes.</p>
 
-  <div class="style-grid reveal">
-    <div class="style-item">
-      <div class="style-icon">Ch.</div>
-      <h4>Chinos & Dickies</h4>
-      <p>Pantalons beige, crème ou kaki, bien repassés. L'élégance de rue à la californienne.</p>
-    </div>
-    <div class="style-item">
-      <div class="style-icon">Fl.</div>
-      <h4>Flannels & Buttondowns</h4>
-      <p>Chemises à carreaux portées ouvertes ou boutonnées, souvent de couleurs sombres ou beige.</p>
-    </div>
-    <div class="style-item">
-      <div class="style-icon">Sn.</div>
-      <h4>Sneakers Classiques</h4>
-      <p>Cortez, Air Force ou Chuck Taylor. Blanc, noir, crème. Rien d'ostentatoire.</p>
-    </div>
-    <div class="style-item">
-      <div class="style-icon">Bn.</div>
-      <h4>Beanie & Casquette</h4>
-      <p>Bonnet roulé ou casquette unie. Les couleurs restent dans des tons neutres à sombres.</p>
-    </div>
-    <div class="style-item">
-      <div class="style-icon">Tk.</div>
-      <h4>Tattoos</h4>
-      <p>Tatouages personnels : palmier, 13, PTL. Jamais tape-à-l'œil, souvent dans le cou ou l'avant-bras.</p>
-    </div>
-    <div class="style-item">
-      <div class="style-icon">Au.</div>
-      <h4>Accessoires Sobres</h4>
-      <p>Chaîne fine, montre d'occasion, pas de bijoux visibles. La discrétion comme esthétique.</p>
-    </div>
-  </div>
-
-  <h3 style="font-family:var(--ff-title);font-size:1.8rem;font-weight:300;color:var(--cream);margin:4rem 0 2rem;" class="reveal">Une journée <em>dans le barrio</em></h3>
-
-  <div class="schedule-timeline">
-    <div class="schedule-item reveal">
-      <div class="schedule-time">08h – 11h</div>
-      <div class="schedule-content">
-        <h4>Le Matin Lent</h4>
-        <p>Lever tardif pour ceux qui ont veillé. Café chez l'un d'eux, musique basse, échange des informations de la nuit. Mateo compose ou révise des lyrics. Luis-Ramirez fait le point sur les flux de la veille.</p>
+    <div class="style-grid reveal">
+      <div class="style-item">
+        <div class="style-glyph">Ch.</div>
+        <h4>Chinos & Dickies</h4>
+        <p>Beige, crème ou kaki, bien repassés. L'élégance de rue à la californienne.</p>
+      </div>
+      <div class="style-item">
+        <div class="style-glyph">Fl.</div>
+        <h4>Flannels & Buttondowns</h4>
+        <p>Chemises à carreaux portées ouvertes, couleurs sombres ou neutres.</p>
+      </div>
+      <div class="style-item">
+        <div class="style-glyph">Sn.</div>
+        <h4>Sneakers Classiques</h4>
+        <p>Cortez, Air Force ou Chuck Taylor. Blanc, noir, crème. Rien d'ostentatoire.</p>
+      </div>
+      <div class="style-item">
+        <div class="style-glyph">Bn.</div>
+        <h4>Beanie & Casquette</h4>
+        <p>Bonnet roulé ou casquette unie. Tons neutres à sombres systématiquement.</p>
+      </div>
+      <div class="style-item">
+        <div class="style-glyph">Tk.</div>
+        <h4>Tattoos PTL</h4>
+        <p>Palmier, 13, PTL. Jamais tape-à-l'œil, souvent dans le cou ou l'avant-bras.</p>
+      </div>
+      <div class="style-item">
+        <div class="style-glyph">Au.</div>
+        <h4>Accessoires Sobres</h4>
+        <p>Chaîne fine, montre d'occasion. La discrétion comme esthétique première.</p>
       </div>
     </div>
-    <div class="schedule-item reveal d1">
-      <div class="schedule-time">11h – 15h</div>
-      <div class="schedule-content">
-        <h4>Les Mouvements du Midi</h4>
-        <p>Présence dans le quartier, visibilité sur le territoire. Collecte, contacts avec les revendeurs, passage dans les commerces alliés. Sueño s'occupe des relations, Alejandro cartographie les anomalies.</p>
+
+    <h3 class="reveal" style="font-family:var(--ff-display);font-size:2.2rem;font-weight:700;color:var(--text);margin:5rem 0 2.5rem;letter-spacing:-0.02em">Une journée dans <em style="background:linear-gradient(135deg,var(--gold2),var(--amber));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">le barrio</em></h3>
+
+    <div class="timeline reveal">
+      <div class="tl-item">
+        <div class="tl-time">08h · 11h</div>
+        <div class="tl-title">Le Matin Lent</div>
+        <div class="tl-text">Lever tardif pour ceux qui ont veillé. Café chez l'un d'eux, musique basse, échange des infos de la nuit. Mateo compose ou révise des lyrics. Shaggon fait le point sur les flux de la veille.</div>
       </div>
-    </div>
-    <div class="schedule-item reveal d2">
-      <div class="schedule-time">15h – 19h</div>
-      <div class="schedule-content">
-        <h4>L'Après-Midi Sociale</h4>
-        <p>Basket sur le court entre la 116ème et la 117ème. Discussions de quartier. Rodrigo traîne avec les plus jeunes, Diego entretient le moral collectif. Mateo peut avoir des sessions ou des rendez-vous.</p>
+      <div class="tl-item">
+        <div class="tl-time">11h · 15h</div>
+        <div class="tl-title">Les Mouvements du Midi</div>
+        <div class="tl-text">Présence dans le quartier, visibilité sur le territoire. Collecte, contacts avec les revendeurs, passage dans les commerces alliés. Sueño s'occupe des relations, Alejandro cartographie les anomalies.</div>
       </div>
-    </div>
-    <div class="schedule-item reveal d1">
-      <div class="schedule-time">19h – 23h</div>
-      <div class="schedule-content">
-        <h4>Le Soir Actif</h4>
-        <p>Soirée, événement, ou temps calme selon les jours. Si Mateo joue quelque part, au moins deux membres sont présents en soutien. Sinon, le groupe se retrouve — à manger, à parler, à veiller.</p>
+      <div class="tl-item">
+        <div class="tl-time">15h · 19h</div>
+        <div class="tl-title">L'Après-Midi Sociale</div>
+        <div class="tl-text">Basket sur le court entre la 116ème et la 117ème. Discussions de quartier. Rodrigo traîne avec les plus jeunes, Diego entretient le moral collectif. Mateo peut avoir des sessions ou des rendez-vous.</div>
       </div>
-    </div>
-    <div class="schedule-item reveal d2">
-      <div class="schedule-time">23h – 04h</div>
-      <div class="schedule-content">
-        <h4>La Nuit de Travail</h4>
-        <p>Les activités illicites s'activent. Rondes territoriales, mouvements de marchandise, transactions. Toujours discrets, jamais inutilement exposés. La nuit est leur espace — ils la connaissent mieux que quiconque.</p>
+      <div class="tl-item">
+        <div class="tl-time">19h · 23h</div>
+        <div class="tl-title">Le Soir Actif</div>
+        <div class="tl-text">Soirée, événement, ou temps calme selon les jours. Si Mateo joue quelque part, au moins deux membres sont présents. Sinon le groupe se retrouve — à manger, à parler, à veiller ensemble.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">23h · 04h</div>
+        <div class="tl-title">La Nuit de Travail</div>
+        <div class="tl-text">Les activités illicites s'activent. Rondes territoriales, mouvements de marchandise, transactions. Toujours discrets, jamais inutilement exposés. La nuit est leur espace — ils la connaissent mieux que quiconque.</div>
       </div>
     </div>
   </div>
 </section>
 
-<hr class="hr">
+<div class="hr-section"></div>
 
-<!-- ─── TERRITOIRE ────────────────────────────────────── -->
+<!-- ── TERRITOIRE ─────────────────────────────────────── -->
 <section id="territoire">
-  <span class="section-label reveal">Implantation</span>
-  <h2 class="section-title reveal d1">Long Beach,<br><em>Notre Terrain</em></h2>
-  <div class="section-divider reveal d2"></div>
+  <div class="section-wrap">
+    <div class="s-tag reveal">Implantation</div>
+    <h2 class="s-title reveal d1">Long Beach,<br><span class="teal">Notre Terrain</span></h2>
 
-  <p class="reveal d2">Les Palm Tree Locos sont implantés dans la zone centrale de Long Beach, entre la 112ème et la 119ème avenue, du nord vers la 142ème jusqu'au sud sur la 144ème. Un quadrilatère qu'ils connaissent dans ses moindres recoins : chaque entrée d'immeuble, chaque angle mort, chaque toit accessible.</p>
+    <p class="reveal d2">Les Palm Tree Locos sont implantés dans la zone centrale de Long Beach, entre la 112ème et la 119ème avenue, du nord sur la 142ème jusqu'au sud sur la 144ème. Un quadrilatère qu'ils connaissent dans ses moindres recoins : chaque entrée d'immeuble, chaque angle mort, chaque toit accessible.</p>
 
-  <div class="territory-block reveal">
-    <h3 style="font-family:var(--ff-title);font-size:1.6rem;font-weight:300;color:var(--cream);margin-bottom:1rem;">Zone de Contrôle</h3>
-    <p style="font-size:0.9rem;margin-bottom:0;">Les PTL ne revendiquent pas tout Long Beach — ils contrôlent leur bande de manière effective et profonde. Ce n'est pas la taille qui compte, c'est la profondeur de l'enracinement.</p>
-    <div class="territory-streets">
-      <span class="street-tag">112ème Ave</span>
-      <span class="street-tag">113ème Ave</span>
-      <span class="street-tag">114ème Ave</span>
-      <span class="street-tag">115ème Ave</span>
-      <span class="street-tag">116ème Ave</span>
-      <span class="street-tag">117ème Ave</span>
-      <span class="street-tag">118ème Ave</span>
-      <span class="street-tag">119ème Ave</span>
-      <span class="street-tag">142ème Rue</span>
-      <span class="street-tag">143ème Rue</span>
-      <span class="street-tag">144ème Rue</span>
+    <div class="territory-hero reveal">
+      <div class="territory-sub">Zone de Contrôle · PTL · Playeros 13</div>
+      <div class="territory-title">112ème — 119ème<br>142ème — 144ème</div>
+      <p style="color:rgba(42,187,232,0.6);font-size:0.88rem;max-width:500px;margin:0">Les PTL ne revendiquent pas tout Long Beach — ils contrôlent leur bande de manière effective et profonde. Ce n'est pas la taille qui compte, c'est la profondeur de l'enracinement.</p>
+      <div class="streets-wrap">
+        <span class="street-pill">112ème Ave</span>
+        <span class="street-pill">113ème Ave</span>
+        <span class="street-pill">114ème Ave</span>
+        <span class="street-pill">115ème Ave</span>
+        <span class="street-pill">116ème Ave</span>
+        <span class="street-pill">117ème Ave</span>
+        <span class="street-pill">118ème Ave</span>
+        <span class="street-pill">119ème Ave</span>
+        <span class="street-pill">142ème Rue</span>
+        <span class="street-pill">143ème Rue</span>
+        <span class="street-pill">144ème Rue</span>
+        <span class="street-pill">Axe 115ème</span>
+      </div>
     </div>
-  </div>
 
-  <p class="reveal" style="margin-top:2rem;">La 115ème est l'axe principal — l'artère qui traverse tout et que les PTL surveillent en priorité. C'est là que les transactions importantes ont lieu, là que les messages sont envoyés, là que la présence se fait la plus visible. Le palmier qui a donné son nom à la clique est toujours là, à l'angle d'un bloc, à l'ombre duquel tout a commencé.</p>
+    <p class="reveal" style="margin-top:2rem">La 115ème est l'axe principal — l'artère que les PTL surveillent en priorité. C'est là que les transactions importantes ont lieu, là que les messages sont envoyés, là que la présence se fait la plus visible. Le palmier qui a donné son nom à la clique est toujours là, à l'angle d'un bloc, à l'ombre duquel tout a commencé.</p>
+  </div>
 </section>
 
-<hr class="hr">
+<div class="hr-section"></div>
 
-<!-- ─── CONCLUSION ────────────────────────────────────── -->
+<!-- ── CONCLUSION ─────────────────────────────────────── -->
 <section id="conclusion">
-  <div class="conclusion-block">
-    <div class="conclusion-seal reveal">PTL · P13</div>
-    <span class="section-label reveal" style="justify-content:center;display:block;text-align:center;">Pour finir</span>
-    <h2 class="section-title reveal d1" style="text-align:center;">Un Dossier,<br>Une <em>Intention</em></h2>
-    <div class="section-divider reveal d2" style="margin-left:auto;margin-right:auto;"></div>
+  <div class="conclusion-wrap">
+    <div class="conclusion-ring reveal">
+      <div class="conclusion-ring-text">PTL<br>P·13</div>
+    </div>
+    <div class="s-tag reveal" style="justify-content:center;display:block;text-align:center">Pour finir</div>
+    <h2 class="s-title reveal d1" style="text-align:center">Une clique,<br>Une <em>Intention</em></h2>
 
-    <p class="reveal d2" style="text-align:center;">Les Palm Tree Locos ne se déposent pas comme un concept abstrait. Ils arrivent avec une histoire, une cohérence interne, des personnages dont chaque décision de jeu s'enracinera dans quelque chose de réel et de construit.</p>
+    <p class="reveal d2" style="text-align:center;max-width:620px;margin-left:auto;margin-right:auto">Les Palm Tree Locos ne se déposent pas comme un concept abstrait. Ils arrivent avec une histoire, une cohérence interne, des personnages dont chaque décision de jeu s'enracinera dans quelque chose de réel et de construit.</p>
 
-    <p class="reveal d2" style="text-align:center;">Ce dossier est la promesse d'un RP ancré, nuancé, où la violence n'est pas le premier recours mais la conséquence d'une pression, où la culture est aussi réelle que la criminalité, où chaque interaction sur Long Beach sera portée par des personnages qui savent qui ils sont et d'où ils viennent.</p>
+    <p class="reveal d2" style="text-align:center;max-width:620px;margin-left:auto;margin-right:auto">Ce dossier est la promesse d'un RP ancré, nuancé, où la violence n'est pas le premier recours mais la conséquence d'une pression. Où la culture est aussi réelle que la criminalité. Où chaque interaction sera portée par des personnages qui savent qui ils sont et d'où ils viennent.</p>
 
-    <div class="pull-quote reveal" style="text-align:left;margin:3rem 0;">
+    <div class="pull-quote reveal" style="text-align:left">
       "On ne cherche pas à régner. On cherche à rester. Et pour rester, on est prêts à tout."
     </div>
 
-    <p class="reveal d3" style="text-align:center;font-family:var(--ff-cond);font-size:0.75rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);">Playa · Familia · Respeto</p>
+    <p class="reveal d3" style="text-align:center;font-family:var(--ff-mono);font-size:0.78rem;letter-spacing:0.3em;text-transform:uppercase;background:linear-gradient(135deg,var(--gold2),var(--amber));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Playa · Familia · Respeto</p>
   </div>
 </section>
 
 <footer>
-  <span>PTL</span> · Palm Tree Locos · Playeros 13 · <span>Noface WL</span> · Dossier RP
+  <div class="footer-left">PTL · Palm Tree Locos · Playeros 13 · Noface WL</div>
+  <div class="footer-right">Palm Tree Locos · Los Santos · 2026</div>
 </footer>
 
 <script>
-  // Navbar active + scroll
-  const navbar = document.getElementById('navbar');
-  window.addEventListener('scroll', () => {
-    navbar.style.background = window.scrollY > 60
-      ? 'rgba(12,10,8,0.97)'
-      : 'rgba(18,16,14,0.92)';
+/* ── CURSOR ──────────────────────────────────────── */
+const cur = document.getElementById('cursor');
+const ring = document.getElementById('cursor-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{
+  mx=e.clientX;my=e.clientY;
+  cur.style.left=mx-5+'px';cur.style.top=my-5+'px';
+});
+(function animateRing(){
+  rx+=(mx-rx-18)*0.12;
+  ry+=(my-ry-18)*0.12;
+  ring.style.left=rx+'px';ring.style.top=ry+'px';
+  requestAnimationFrame(animateRing);
+})();
+document.querySelectorAll('a,button,.char-card,.obj-card,.glass-card,.act-item,.style-item').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{
+    ring.style.width='56px';ring.style.height='56px';
+    ring.style.borderColor='rgba(212,168,67,0.8)';
   });
+  el.addEventListener('mouseleave',()=>{
+    ring.style.width='36px';ring.style.height='36px';
+    ring.style.borderColor='rgba(212,168,67,0.5)';
+  });
+});
 
-  // Active nav link
-  const sections = document.querySelectorAll('section[id], div[id]');
-  const navLinks = document.querySelectorAll('.nav-links a');
-  const obs = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        navLinks.forEach(l => l.classList.remove('active'));
-        const active = document.querySelector(`.nav-links a[href="#${e.target.id}"]`);
-        if (active) active.classList.add('active');
-      }
-    });
-  }, { threshold: 0.3 });
-  sections.forEach(s => obs.observe(s));
+/* ── SCROLL REVEAL ────────────────────────────── */
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){e.target.classList.add('v');obs.unobserve(e.target)}
+  });
+},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 
-  // Mobile toggle
-  const toggle = document.getElementById('nav-toggle');
-  const navMenu = document.getElementById('nav-links');
-  toggle.addEventListener('click', () => navMenu.classList.toggle('open'));
-  navMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navMenu.classList.remove('open')));
+/* ── ACTIVE NAV ───────────────────────────────── */
+const sobs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      document.querySelectorAll('.nav-links a').forEach(a=>a.classList.remove('active'));
+      const a=document.querySelector(`.nav-links a[href="#${e.target.id}"]`);
+      if(a)a.classList.add('active');
+    }
+  });
+},{threshold:0.35});
+document.querySelectorAll('section[id],div[id]').forEach(s=>sobs.observe(s));
 
-  // Reveal on scroll
-  const reveals = document.querySelectorAll('.reveal');
-  const revealObs = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-        revealObs.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.12 });
-  reveals.forEach(r => revealObs.observe(r));
+/* ── NAV SCROLL BG ────────────────────────────── */
+window.addEventListener('scroll',()=>{
+  document.querySelector('nav').style.background=
+    window.scrollY>80?'rgba(6,6,8,0.9)':'rgba(6,6,8,0.6)';
+});
 </script>
 </body>
 </html>
