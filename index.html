@@ -167,7 +167,7 @@ p strong{color:var(--text);font-weight:500}
 .scrap-label{position:absolute;bottom:-22px;left:50%;transform:translateX(-50%);font-family:var(--ff-m);font-size:0.52rem;letter-spacing:0.15em;color:var(--muted2);white-space:nowrap}
 
 /* LORE GRID */
-.lore-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-top:2.5rem}
+.lore-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.2rem;margin-top:2.5rem}
 @media(max-width:700px){.lore-grid{grid-template-columns:1fr}}
 .lg-card{padding:2rem;border-radius:18px;border:1px solid var(--glass-border);background:var(--glass);position:relative;overflow:hidden;transition:border-color 0.3s}
 .lg-card:hover{border-color:rgba(255,255,255,0.22)}
@@ -325,7 +325,7 @@ footer{position:relative;z-index:2;border-top:1px solid var(--glass-border);padd
     <div id="loader-percent">0%</div>
     <div id="loader-bar-wrap"><div id="loader-bar"></div></div>
   </div>
-  <div id="loader-server">Noface WL · Dossier RP · 2025</div>
+  <div id="loader-server">Noface WL · Dossier RP · 2026</div>
 </div>
 
 <!-- NAV -->
@@ -342,6 +342,7 @@ footer{position:relative;z-index:2;border-top:1px solid var(--glass-border);padd
     <li><a href="#territoire">Territoire</a></li>
     <li><a href="#vocab">Vocab</a></li>
     <li><a href="#lead">Lead</a></li>
+    <li><a href="#ambitions">Vision</a></li>
     <li><a href="#conclusion">Fin</a></li>
   </ul>
   <div class="nav-sep"></div>
@@ -350,7 +351,7 @@ footer{position:relative;z-index:2;border-top:1px solid var(--glass-border);padd
 
 <!-- HERO -->
 <section id="hero">
-  <div class="hero-chip"><div style="width:6px;height:6px;border-radius:50%;background:var(--gold);animation:pulse 2s infinite"></div>Noface WL · Dossier GTA RP · 2025</div>
+  <div class="hero-chip"><div style="width:6px;height:6px;border-radius:50%;background:var(--gold);animation:pulse 2s infinite"></div>Noface WL · Dossier GTA RP · 2026</div>
   <h1 class="hero-t"><span class="l1">Palm Tree</span><span class="l2">Locos</span></h1>
   <div class="hero-sub">PTL · Clique des Playeros 13 · Long Beach, Los Santos</div>
   <div class="hero-stats">
@@ -390,9 +391,10 @@ footer{position:relative;z-index:2;border-top:1px solid var(--glass-border);padd
           <div class="cc-bh"><div class="cc-bn">Mateo "La Eme" Aguilar</div><div class="cc-bm">20 ans · Artiste & Voix du Barrio</div></div>
           <div class="cc-bt">Façade Légale · Musique</div>
           <div class="cc-bb">
-            <p>Mateo a grandi entre la 115ème et la 116ème dans un appartement trop petit pour quatre personnes. Son père est parti tôt, sa mère travaillait double shift dans une laverie. Il a grandi avec un stylo dans une main et la rue en fond sonore.</p>
-            <p>À dix ans il beatboxait dans la cour. À quinze il enregistrait dans le couloir avec un téléphone calé contre une chaussette en guise de filtre. Aujourd'hui sa musique parle de la plage, du béton, de la fidélité — il ne cache rien de ses origines, il les chante.</p>
-            <p>Son surnom "La Eme" ne lui vient pas de la violence. Il lui vient du tranchant de ses paroles : la précision d'un couteau dans chaque punchline. Pour les PTL, il est le visage propre, celui qui ouvre des portes dans des salles où les autres n'entrent pas. Sa carrière est réelle. Sa loyauté l'est encore plus.</p>
+            <p>Mateo a grandi entre la 115ème et la 116ème dans un appartement trop petit pour quatre personnes. Son père est parti quand il avait six ans, sans explication, sans retour. Sa mère travaillait double shift dans une laverie — elle rentrait les mains abîmées et ne se plaignait jamais. Mateo a appris le silence de sa mère et les mots de la rue.</p>
+            <p>À dix ans il beatboxait dans la cour d'école, entouré de gamins qui tapaient sur les bancs. À treize il écrivait ses premiers couplets dans les marges de ses cahiers de cours. À quinze il enregistrait dans le couloir de l'appart avec un téléphone calé contre une chaussette en guise de filtre, sa mère qui dormait derrière la porte. Il a tout appris seul, par écoute, par imitation, puis par instinct.</p>
+            <p>Son surnom "La Eme" ne vient pas de la violence — il vient du tranchant de ses paroles. Chaque punchline tombe comme une sentence. Il a ce don de dire ce que tout le monde ressent sans savoir le formuler. Ses morceaux parlent du barrio sans l'enjoliver ni le caricaturer. Ils sonnent vrais parce qu'ils le sont.</p>
+            <p>Pour la PTL, Mateo est bien plus qu'un musicien. Il est le visage propre, celui qui entre dans des salles où les autres n'ont pas accès. Il connaît des gens du milieu légal, des organisateurs de soirées, des journalistes locaux qui ne savent pas exactement à qui ils parlent. Sa carrière est réelle. Sa loyauté l'est encore plus. Et il n'a jamais eu à choisir entre les deux — pour l'instant.</p>
           </div>
           <button class="cc-close" onclick="event.stopPropagation();this.closest('.cc').classList.remove('flip')">↺ Retourner</button>
         </div>
@@ -418,9 +420,10 @@ footer{position:relative;z-index:2;border-top:1px solid var(--glass-border);padd
           <div class="cc-bh"><div class="cc-bn">Sueño "Guapo" Tavarez</div><div class="cc-bm">21 ans · Le Charme du Barrio</div></div>
           <div class="cc-bt">Relations & Négociation</div>
           <div class="cc-bb">
-            <p>Sueño est né avec ce don rare : faire parler les gens. Un sourire qui désarme, une mémoire des noms qui touche les égos dans le bon sens, un sens naturel de la négociation. Dans une autre vie il aurait fait de la politique ou vendu des voitures de luxe.</p>
-            <p>C'est lui qui tisse les liens entre la clique et l'extérieur. Quand une tension monte avec un autre set, c'est Sueño qu'on envoie en premier — il peut rentrer d'une conversation hostile avec un accord et un échange de numéros. Il sait exactement quand reculer sans perdre la face.</p>
-            <p>Son surnom "Guapo" est à double sens : il est beau et il le sait, et il s'en sert. L'image présentable de la PTL dans les soirées, les événements, les rencontres avec des gens du milieu légal. Derrière le sourire, une loyauté absolue envers ses frères. Ceux qui l'ont testé une fois ne recommencent pas.</p>
+            <p>Sueño est né avec ce don rare : faire parler les gens. Un sourire qui désarme, une mémoire des noms qui touche les egos dans le bon sens, une façon de poser une question qui donne l'impression d'être écouté vraiment. Dans une autre vie il aurait fait de la politique ou vendu des voitures de luxe. Dans celle-ci, il fait les deux à sa manière.</p>
+            <p>Il a grandi dans une famille nombreuse, quatrième d'une fratrie de six, où apprendre à négocier sa place à table était une compétence de survie quotidienne. Son père tient un petit commerce dans le quartier depuis vingt ans — Sueño a regardé son père sourire à des clients difficiles et comprendre que le charme est une forme d'intelligence.</p>
+            <p>C'est lui qui tisse les liens entre la PTL et l'extérieur. Quand une tension monte avec un autre set, c'est Sueño qu'on envoie en premier. Il peut rentrer d'une conversation hostile avec un accord, un échange de numéros, et parfois un futur partenaire commercial. Il sait exactement quand reculer sans perdre la face — et c'est plus rare qu'on ne le croit.</p>
+            <p>Son surnom "Guapo" est à double sens : il est beau, il le sait, et il s'en sert stratégiquement. L'image présentable de la PTL dans les soirées et les événements. Mais ceux qui l'ont sous-estimé à cause du sourire ont vite compris leur erreur. Derrière la façade, une loyauté absolue. Et une mémoire qui n'oublie rien.</p>
           </div>
           <button class="cc-close" onclick="event.stopPropagation();this.closest('.cc').classList.remove('flip')">↺ Retourner</button>
         </div>
@@ -446,9 +449,10 @@ footer{position:relative;z-index:2;border-top:1px solid var(--glass-border);padd
           <div class="cc-bh"><div class="cc-bn">Luis-Ramirez "Shaggon" Navarro</div><div class="cc-bm">22 ans · L'Aîné</div></div>
           <div class="cc-bt">Leadership · Stratégie</div>
           <div class="cc-bb">
-            <p>L'aîné. Deux années de plus qui ressemblent à dix de sagesse. Luis-Ramirez a connu le quartier quand il était encore plus imprévisible — avant que les codes soient écrits, avant que les lignes soient tracées. Il a appris à lire une situation avant qu'elle dégénère.</p>
-            <p>Son surnom vient d'une nuit où tout le monde a paniqué et lui seul est resté immobile, impassible, les mains dans les poches, comme si rien ne pouvait l'atteindre. Les autres l'ont regardé et se sont calmés. Depuis ce soir-là, le groupe vient le voir quand ça chauffe.</p>
-            <p>Il parle peu. Pèse chaque mot. Ne promet que ce qu'il peut tenir. C'est lui qui a posé les premières règles non écrites de la PTL : pas de violence gratuite sur le territoire, jamais toucher aux mineurs, ne jamais trahir un frère pour une somme d'argent. Ces règles ne sont pas dans un cahier. Elles sont dans la tête de chacun.</p>
+            <p>L'aîné. Vingt-deux ans qui ressemblent à dix de sagesse de plus. Luis-Ramirez a connu le quartier quand il était encore moins prévisible — avant que les codes soient posés, avant que les lignes soient tracées, quand une soirée pouvait basculer sur un regard de travers. Il a appris à lire une situation avant qu'elle dégénère. C'est devenu un réflexe.</p>
+            <p>Son père était chauffeur routier, absent la moitié de l'année. Sa mère gérait tout avec une précision froide et une tendresse cachée. Luis-Ramirez a hérité des deux : la capacité de tout gérer seul et la discrétion de ne jamais le montrer. Il a fait deux ans de lycée avant de décrocher — pas par abandon, mais parce que la rue lui apprenait des choses que l'école n'enseignait pas.</p>
+            <p>Son surnom "Shaggon" vient d'une nuit chaude de juillet où une altercation a failli dégénérer en quelque chose d'irréparable. Tout le monde a paniqué. Lui est resté immobile, les mains dans les poches, le regard calme. Les autres l'ont regardé et se sont calmés d'instinct. Depuis cette nuit, quand ça chauffe, on vient le voir.</p>
+            <p>Il parle peu. Pèse chaque mot. Ne promet que ce qu'il peut tenir. C'est lui qui a posé les premières règles non écrites de la PTL — pas de violence gratuite sur le territoire, jamais toucher aux mineurs, ne jamais trahir un frère pour de l'argent. Ces règles ne sont écrites nulle part. Elles sont dans la tête de chacun. Et personne ne les a jamais enfreintes en sa présence.</p>
           </div>
           <button class="cc-close" onclick="event.stopPropagation();this.closest('.cc').classList.remove('flip')">↺ Retourner</button>
         </div>
@@ -474,9 +478,9 @@ footer{position:relative;z-index:2;border-top:1px solid var(--glass-border);padd
           <div class="cc-bh"><div class="cc-bn">Rodrigo "Spyder" Vargas</div><div class="cc-bm">18 ans · Le Cadet</div></div>
           <div class="cc-bt">Terrain · Impulsion</div>
           <div class="cc-bb">
-            <p>Il a 18 ans mais dans ses yeux on en lit trente. Rodrigo a grandi sans père, dans un appartement à trois avec une mère qui enchaînait les ménages sans jamais se plaindre. Il a tout vu tôt : la précarité, la pression des voisins, les dealers qui tiennent les coins.</p>
-            <p>On l'appelle "Spyder" parce qu'il se glisse partout sans qu'on l'entende. Il est dans le corner avant que quelqu'un remarque qu'il est arrivé. Il mémorise les allées et venues sans avoir l'air d'y faire attention. Ses yeux bougent tout le temps mais son corps reste immobile.</p>
-            <p>Le plus jeune, le plus impulsif. Shaggon lui a mis la main sur l'épaule le jour de son arrivée : "ici on calcule avant d'agir". Rodrigo apprend vite. Son courage — certains diraient son inconscience — est une ressource pour la clique. Il ferait n'importe quoi pour ses frères. Sa mère l'appelle encore Rodriguito. Personne dans la PTL ne lui dirait ça.</p>
+            <p>Il a 18 ans mais dans ses yeux on en lit trente. Rodrigo a grandi sans père — pas un père absent, un père inexistant, dont le nom n'était jamais prononcé à la maison. Sa mère faisait des ménages six jours sur sept, rentrait épuisée, et trouvait encore l'énergie de lui préparer à manger. Il a grandi en regardant sa mère porter tout ça sans jamais se plaindre. Il a décidé très tôt qu'il ne serait jamais une charge pour elle.</p>
+            <p>On l'appelle "Spyder" parce qu'il se glisse partout sans qu'on l'entende. Il est dans le corner avant que quelqu'un remarque qu'il est arrivé. Il mémorise les plaques d'immatriculation des voitures qui passent deux fois. Il sait quels appartements sont vides depuis combien de temps, quels commerçants ferment à quelle heure, quelles ruelles ne sont jamais surveillées. Ce n'est pas de la paranoïa. C'est de l'attention. Et dans le quartier, l'attention c'est ce qui différencie ceux qui restent debout de ceux qui tombent.</p>
+            <p>Le plus jeune, le plus impulsif — mais pas stupide. Shaggon lui a mis la main sur l'épaule le premier jour : "ici on calcule avant d'agir". Rodrigo a hoché la tête et écouté. Il apprend plus vite que la plupart. Son courage — certains diraient son inconscience — est une ressource pour la clique dans les moments où le reste du groupe hésite. Il ne recule pas. Il n'a jamais appris à le faire. Sa mère l'appelle encore Rodriguito. Dans la PTL, c'est Spyder. Et il préfère ça.</p>
           </div>
           <button class="cc-close" onclick="event.stopPropagation();this.closest('.cc').classList.remove('flip')">↺ Retourner</button>
         </div>
@@ -502,9 +506,10 @@ footer{position:relative;z-index:2;border-top:1px solid var(--glass-border);padd
           <div class="cc-bh"><div class="cc-bn">Alejandro "Chuco" Ríos</div><div class="cc-bm">19 ans · L'Observateur</div></div>
           <div class="cc-bt">Intel · Mémoire du Terrain</div>
           <div class="cc-bb">
-            <p>Alejandro ne parle pas pour ne rien dire. Ceux qui l'ont rencontré une fois se souviennent surtout de ses yeux — toujours en train d'enregistrer, de cartographier, de mémoriser. Il connaît chaque coin de Long Beach, chaque rotation de patrouille, chaque visage qui ne devrait pas être là.</p>
-            <p>"Chuco" est arrivé dans le groupe par Sueño, un soir où il avait couvert une retraite de la clique sans qu'on lui demande rien. Il n'a pas demandé de remerciements. Il est juste resté. Depuis, il est la mémoire vive de la PTL : qui doit quoi, qui a dit quoi, qui était là quand ça a dégénéré.</p>
-            <p>Il dessine aussi. Des portraits, des palmiers, des plans de rues. Il dit que c'est sa façon de ne rien oublier. Dans ses carnets, toute l'histoire du bloc depuis trois ans. Si la PTL avait un archiviste, ce serait lui.</p>
+            <p>Alejandro ne parle pas pour ne rien dire. Ceux qui l'ont rencontré une fois se souviennent surtout de ses yeux — toujours en train d'enregistrer, de cartographier, de mémoriser. Il a cette capacité à être dans une pièce sans qu'on le remarque vraiment, à écouter trois conversations en même temps en ayant l'air de regarder son téléphone. Un talent naturel que la rue a affiné en quelque chose d'utile.</p>
+            <p>Il a grandi dans une famille de travailleurs discrets — son père maçon, sa mère aide-soignante. Pas de drame, pas de violence à la maison. Juste une vie modeste et une mère qui lui répétait que la discrétion protège mieux que la force. Il a pris ça au sérieux. Trop sérieux, selon certains. À juste titre, selon les résultats.</p>
+            <p>"Chuco" est arrivé dans le groupe par Sueño, un soir où il avait couvert une retraite de la clique sans qu'on lui demande rien. Il avait vu la situation se tendre de loin, avait évalué les sorties disponibles, et avait simplement guidé le groupe vers la bonne rue au bon moment. Il n'a pas demandé de remerciements. Il est juste resté. Depuis, il est la mémoire vive de la PTL.</p>
+            <p>Il dessine dans ses temps libres — des portraits, des plans de rues, des palmiers stylisés. Ses carnets sont une archive vivante du quartier et de la clique. Chaque visage important y est, chaque tension notée, chaque événement daté. Si la PTL avait un greffier, ce serait lui. Et personne n'a jamais demandé à voir ces carnets. Par instinct, tout le monde comprend que c'est mieux ainsi.</p>
           </div>
           <button class="cc-close" onclick="event.stopPropagation();this.closest('.cc').classList.remove('flip')">↺ Retourner</button>
         </div>
@@ -530,9 +535,10 @@ footer{position:relative;z-index:2;border-top:1px solid var(--glass-border);padd
           <div class="cc-bh"><div class="cc-bn">Diego "Lito" Morales</div><div class="cc-bm">19 ans · Cœur Battant</div></div>
           <div class="cc-bt">Cohésion · Moral collectif</div>
           <div class="cc-bb">
-            <p>"Lito" est le cœur battant de la clique. C'est lui qui propose de se retrouver quand tout le monde part dans tous les sens. C'est lui qui rappelle pourquoi on fait ça, ce qu'on protège, ce qu'on refuse de laisser derrière soi.</p>
-            <p>Il parle vite, rit fort, et peut passer du sérieux absolu à l'éclat de rire en trente secondes. Il a une énergie qui ralentit rarement. Mais quand Lito baisse la voix, tout le monde dans la pièce fait pareil sans qu'on leur demande.</p>
-            <p>Il a perdu son cousin il y a deux ans, une rue plus loin, sur un malentendu stupide. Un mot de trop, un mauvais soir. Cette douleur précise l'a ancré à la PTL — pas pour la violence, mais pour éviter qu'elle arrive encore aux siens. Il ne l'oublie pas. Il ne le dit pas non plus. Il vit avec.</p>
+            <p>"Lito" est le cœur battant de la clique. C'est lui qui envoie le premier message le matin. C'est lui qui propose de se retrouver quand les tensions commencent à pousser les gens vers leurs coins respectifs. C'est lui qui rappelle pourquoi on est là, ce qu'on protège, ce qu'on refuse de laisser derrière soi. Sans lui, la PTL serait six individus. Avec lui, c'est un groupe.</p>
+            <p>Diego a grandi dans une famille soudée — parents encore ensemble, deux sœurs plus jeunes qu'il a aidé à élever par intermittence. Il a cette capacité naturelle à prendre soin des autres sans que ça ressemble à de la faiblesse. Il est le premier à remarquer quand quelqu'un va mal, et le premier à ne pas en faire tout un événement. Un regard, une blague au bon moment, une présence qui dit "j'ai vu, c'est ok".</p>
+            <p>Il parle vite, rit fort, et peut passer du sérieux absolu à l'éclat de rire en trente secondes. Mais quand Lito baisse la voix, tout le monde dans la pièce fait pareil d'instinct. Il a une autorité morale que personne ne lui a donnée et que personne ne lui conteste. Elle s'est construite dans les faits, dans les moments difficiles où il a été là.</p>
+            <p>Il a perdu son cousin Marco il y a deux ans, une rue plus loin, sur un malentendu qui n'aurait pas dû coûter une vie. Un regard de travers, une escalade stupide, un mauvais soir. Diego n'en parle jamais directement. Mais c'est cette douleur précise qui l'a ancré à la PTL — pas pour la violence, mais pour que ça n'arrive plus aux siens. Pour que le quartier soit un endroit où les gens peuvent vivre, pas juste survivre.</p>
           </div>
           <button class="cc-close" onclick="event.stopPropagation();this.closest('.cc').classList.remove('flip')">↺ Retourner</button>
         </div>
@@ -586,28 +592,55 @@ footer{position:relative;z-index:2;border-top:1px solid var(--glass-border);padd
 <!-- LORE -->
 <section id="lore">
 <div class="sw">
-  <div class="stag rv">Origines</div>
-  <h2 class="st rv d1">Playeros <em>13</em></h2>
-  <p class="rv d2">Les <strong>Playeros 13</strong> ne sont pas nés d'une nuit de violence ou d'un coup de force. Ils sont nés d'un territoire. D'une bande de béton longeant l'océan, d'une communauté latino qui s'y est enracinée génération après génération, et d'un besoin primitif : protéger ce qui est à soi.</p>
-  <p class="rv">Long Beach, dans les décennies passées, a vu affluer des familles hispaniques fuyant la précarité mexicaine, nicaraguayenne, salvadorienne. Elles s'entassaient dans les quartiers du sud de la ville, prenaient les emplois que personne d'autre ne voulait, envoyaient les enfants à l'école avec un lunch bag et espéraient. Ces enfants, eux, grandissaient dans l'entre-deux : trop latinos pour certains, trop américains pour d'autres. Entre deux cultures et appartenant vraiment à aucune.</p>
-  <p class="rv">C'est dans ce vide identitaire que les gangs ont prospéré. Pas comme un choix par défaut, mais comme une réponse à un besoin réel d'appartenance, de protection, de reconnaissance. Les Playeros 13 sont nés de ce besoin et ont su le cristalliser autour d'un territoire : la côte. La plage. Le béton qui borde l'eau salée.</p>
-  <div class="pq rv">"Nous sommes nés ici, dans le sel et le vent. Long Beach ne nous appartient pas — nous lui appartenons."</div>
-  <p class="rv">Le "13" dans leur nom n'est pas un chiffre au hasard. Il témoigne d'une allégeance à une structure qui dépasse les rues — ancrée dans les établissements correctionnels d'État, où les hiérarchies se consolident loin des caméras de surveillance. Cette affiliation confère aux Playeros à la fois une protection dans les murs et une légitimité dans le quartier.</p>
-  <p class="rv">Le gang est structuré en deux cliques qui opèrent en parallèle sur Long Beach, chacune avec sa zone, ses membres et ses codes au sein de la même famille.</p>
-  <div class="lore-grid rv">
+  <div class="stag rv">Lore & Histoire</div>
+  <h2 class="st rv d1">Palm Tree <em>Locos</em></h2>
+  <p class="rv d2">La PTL est une clique née au cœur du set Playeros 13 sur Long Beach. Pas une dissidence, pas un groupe satellite — une émanation directe de jeunes du quartier qui ont grandi ensemble sous les mêmes palmiers, sur les mêmes blocs, et qui ont formé leur propre unité soudée au sein de la structure.</p>
+  <p class="rv">Long Beach a toujours été un carrefour. Les familles salvadoriennes, mexicaines, honduriennes s'y sont entassées génération après génération, cherchant du travail dans les ports, dans les cuisines, dans les chantiers. Leurs enfants ont grandi dans l'entre-deux : trop latinos pour certains, trop américains pour d'autres. C'est dans ce vide identitaire que la rue a prospéré. Et dans cette rue, le set Playeros 13 a imposé son nom.</p>
+  <p class="rv">La PTL est née de ce terreau. Un groupe d'amis d'enfance issus du set — des gamins qui se retrouvaient à l'ombre d'un palmier à l'angle d'un bloc, qui veillaient ensemble, qui faisaient savoir que ce coin-là avait des habitants qui ne partiraient pas. Avec le temps, leur unité s'est formalisée. Leur nom est venu naturellement : <strong>Palm Tree Locos</strong>. Le palmier était là. Il est resté.</p>
+  <div class="pq rv">"On ne nous a pas mis là. On a poussé là, comme les palmiers. Et on reste."</div>
+
+  <div class="lore-grid rv" style="margin-top:2.5rem">
     <div class="lg-card">
-      <div class="lg-acc" style="background:linear-gradient(90deg,var(--rose),var(--amber))"></div>
-      <div class="lg-n" style="color:var(--rose)">ESP</div>
-      <div class="lg-title">East Side Playeros</div>
-      <div class="lg-sub" style="color:var(--rose)">La branche historique</div>
-      <p>Ancrée sur le flanc est du territoire, l'ESP est la colonne vertébrale du gang. Elle a posé les codes, établi les alliances et traversé les guerres de rue. C'est dans l'ESP que la légende des Playeros s'est construite, bloc après bloc.</p>
+      <div class="lg-acc" style="background:linear-gradient(90deg,var(--gold),var(--amber))"></div>
+      <div class="lg-n" style="color:var(--gold)">2019</div>
+      <div class="lg-title">Les Débuts Informels</div>
+      <div class="lg-sub" style="color:var(--gold)">L'ombre du palmier</div>
+      <p>Avant même d'avoir un nom, le groupe existe. Ce sont des amis d'enfance qui traînent ensemble, qui veillent le même bloc, qui règlent les problèmes du quartier entre eux. Pas d'organisation, pas de hiérarchie — juste un instinct commun de protection et d'appartenance.</p>
     </div>
     <div class="lg-card">
       <div class="lg-acc" style="background:linear-gradient(90deg,var(--teal),var(--violet))"></div>
-      <div class="lg-n" style="color:var(--teal)">PTL</div>
-      <div class="lg-title">Palm Tree Locos</div>
-      <div class="lg-sub" style="color:var(--teal)">La clique du renouveau</div>
-      <p>Née au sein même du set, la PTL n'a pas rejoint les Playeros 13 — elle en est issue. Plus jeune, plus mobile, ancrée dans la culture autant que dans la rue, elle représente l'avenir du gang sur Long Beach.</p>
+      <div class="lg-n" style="color:var(--teal)">2021</div>
+      <div class="lg-title">La Reconnaissance</div>
+      <div class="lg-sub" style="color:var(--teal)">Intégration au set</div>
+      <p>Le groupe gagne en cohésion et en réputation dans le quartier. Les anciens du set Playeros 13 reconnaissent leur présence, leur sérieux, leur capacité à tenir un bloc sans créer de chaos inutile. La PTL est officiellement reconnue comme clique au sein du set.</p>
+    </div>
+    <div class="lg-card">
+      <div class="lg-acc" style="background:linear-gradient(90deg,var(--rose),var(--violet))"></div>
+      <div class="lg-n" style="color:var(--rose)">2022</div>
+      <div class="lg-title">La Première Épreuve</div>
+      <div class="lg-sub" style="color:var(--rose)">Le feu qui forge</div>
+      <p>Un conflit territorial avec un groupe rival met la clique à l'épreuve pour la première fois. La PTL tient. Plusieurs membres sont arrêtés, d'autres disparaissent. Ceux qui restent ressortent de cette période avec quelque chose d'indestructible : la certitude que le groupe peut survivre à n'importe quoi tant qu'il reste soudé.</p>
+    </div>
+    <div class="lg-card">
+      <div class="lg-acc" style="background:linear-gradient(90deg,var(--amber),var(--gold2))"></div>
+      <div class="lg-n" style="color:var(--amber)">2023</div>
+      <div class="lg-title">La Reconstruction</div>
+      <div class="lg-sub" style="color:var(--amber)">Poser les fondations</div>
+      <p>La PTL change d'approche. Moins d'exposition directe, plus de structure. Le Palm Garage ouvre ses portes. L'Island Grill s'installe sur Figueroa. Les premiers revenus légaux entrent. La clique apprend à exister sur deux registres simultanément — la rue et la façade. Shaggon pose les premières règles non écrites.</p>
+    </div>
+    <div class="lg-card">
+      <div class="lg-acc" style="background:linear-gradient(90deg,var(--violet),var(--teal))"></div>
+      <div class="lg-n" style="color:var(--violet)">2024</div>
+      <div class="lg-title">La Consolidation</div>
+      <div class="lg-sub" style="color:var(--violet)">Six, pas un de moins</div>
+      <p>Mateo sort ses premiers morceaux qui circulent dans le quartier. Sueño tisse les premiers contacts hors du bloc. Spyder et Chuco solidifient la présence terrain. Lito organise le premier Hood Day de la PTL. Pour la première fois, la clique n'est plus seulement connue pour ce qu'elle fait la nuit — elle commence à exister le jour aussi.</p>
+    </div>
+    <div class="lg-card">
+      <div class="lg-acc" style="background:linear-gradient(90deg,var(--teal),var(--gold))"></div>
+      <div class="lg-n" style="color:var(--teal)">2026</div>
+      <div class="lg-title">Los Santos</div>
+      <div class="lg-sub" style="color:var(--teal)">Un nouveau chapitre</div>
+      <p>La PTL arrive à Los Santos avec quelque chose que peu de cliques ont : une identité construite sur du concret. Un nom qui a du poids. Des membres qui savent exactement qui ils sont. L'objectif n'est pas de tout recommencer — c'est de continuer ce qui a été commencé à Long Beach, dans un terrain neuf, avec les mêmes codes.</p>
     </div>
   </div>
 </div>
@@ -660,8 +693,8 @@ footer{position:relative;z-index:2;border-top:1px solid var(--glass-border);padd
       <ul class="oc-list">
         <li>Remettre des yeux sur chaque coin du secteur. Le réseau de guetteurs est réorganisé, chaque intersection stratégique a son poste.</li>
         <li>Les corners de vente sont reconsolidés. Les spots grillés abandonnés, de nouveaux ouverts dans des ruelles résidentielles moins surveillées. Rotation constante, zéro heat.</li>
-        <li>Lancer l'Island Grill, le food-truck caribéen sur Figueroa. Cuisine caribéenne — colombo de cabri, acras. Revenue propre en façade, écoulement discret en back.</li>
-        <li>Ouvrir le Cornerstone Garage : réparation auto officiellement, point de stockage et de réunion officieusement. L'argent propre et l'argent sale entrent par la même porte.</li>
+        <li>Lancer l'Island Grill, le food-truck salvadorien sur Figueroa. Cuisine caribéenne — colombo de cabri, acras. Revenue propre en façade, écoulement discret en back.</li>
+        <li>Ouvrir le Palm Garage : réparation auto officiellement, point de stockage et de réunion officieusement. L'argent propre et l'argent sale entrent par la même porte.</li>
         <li>Consolider la confiance interne avant toute expansion. Zéro fissure dans le groupe.</li>
       </ul>
     </div>
@@ -706,8 +739,8 @@ footer{position:relative;z-index:2;border-top:1px solid var(--glass-border);padd
   <div class="act-grid rv">
     <div>
       <div class="act-head" style="color:var(--teal)"><div class="act-dot" style="background:var(--teal)"></div>Activités Légales</div>
-      <div class="ai"><h4>Island Grill · Food Truck Caribéen</h4><p>Garé sur Figueroa, tenu par une proche de confiance. Colombo de cabri, acras en tout genre, spécialités caribéennes. Revenue propre, couverture crédible — et la "sauce spéciale du chef" comme nom de code pour les commandes discrètes.</p></div>
-      <div class="ai"><h4>Cornerstone Garage</h4><p>Un local retapé par les homies entre la 76ème et la 77ème. Officiellement on répare des voitures. Officieusement c'est un point de stockage, un lieu de réunion, et une laverie pour les liquidités. Quand un flic passe, il voit un garage. Rien d'autre.</p></div>
+      <div class="ai"><h4>Island Grill · Food Truck Salvadorien</h4><p>Garé sur Figueroa, tenu par une proche de confiance. Pupusas au chicharrón, tamales salvadoriens, yuca con chicharrón. Le barrio mange ici. Revenue propre, couverture crédible — et la "sauce spéciale du chef" comme nom de code pour les commandes discrètes.</p></div>
+      <div class="ai"><h4>Palm Garage</h4><p>Un local retapé par les homies entre la 76ème et la 77ème. Officiellement on répare des voitures. Officieusement c'est un point de stockage, un lieu de réunion, et une laverie pour les liquidités. Quand un flic passe, il voit un garage. Rien d'autre.</p></div>
       <div class="ai"><h4>Hood Days & Événements</h4><p>BBQ, musique live, tournois de basket. Familles du quartier, commerçants, têtes du voisinage. La PTL comme force sociale bienveillante. L'image qui s'installe, bloc par bloc.</p></div>
       <div class="ai"><h4>Emplois de Façade</h4><p>Livreur, chantier, vendeur. Chaque membre maintient une activité officielle qui justifie ses revenus, lui permet de circuler librement et crédibilise une vie légale.</p></div>
       <div class="ai"><h4>Carrière Musicale de Mateo</h4><p>Radio locale, soirées, clips tournés dans le quartier. La PTL investit dans la musique : sessions dans l'arrière du garage, beats sur laptops, SoundCloud et YouTube. Pub, recrutement, intimidation en même temps.</p></div>
@@ -717,7 +750,7 @@ footer{position:relative;z-index:2;border-top:1px solid var(--glass-border);padd
       <div class="ai"><h4>Trafic de Stupéfiants</h4><p>Principal revenu. La PTL contrôle la distribution sur son territoire : cocaïne, méthamphétamine, héroïne. Organisation en cercles pour protéger les têtes. Spots qui tournent, transactions rapides, zéro exposition inutile.</p></div>
       <div class="ai"><h4>Extorsion & Taxation</h4><p>Les commerces et trafiquants du territoire paient une taxe de protection. La menace implicite suffit. Revenue stable, prévisible, qui entretient une relation de long terme avec le tissu local.</p></div>
       <div class="ai"><h4>Racket & Intimidation</h4><p>Sur cibles précises, ponctuellement. Outil de pression plus que source de revenu systématique. Un message envoyé, une ligne posée, un acteur remis à sa place.</p></div>
-      <div class="ai"><h4>Cambriolages & Recel</h4><p>Opérations ciblées, préparées, toujours hors territoire PTL. Jamais dans le barrio. Recel de véhicules en parallèle — Cornerstone Garage comme point de réception discret.</p></div>
+      <div class="ai"><h4>Cambriolages & Recel</h4><p>Opérations ciblées, préparées, toujours hors territoire PTL. Jamais dans le barrio. Recel de véhicules en parallèle — Palm Garage comme point de réception discret.</p></div>
       <div class="ai"><h4>Contrats & Jeux d'Argent</h4><p>Prise en charge de contrats pour des groupes majeurs. Dice et jeux d'argent sur le bloc — cercles réguliers qui font circuler le cash au sein de la clique. Intimidation de témoins sur demande.</p></div>
     </div>
   </div>
@@ -753,12 +786,12 @@ footer{position:relative;z-index:2;border-top:1px solid var(--glass-border);padd
     <div class="tl-item">
       <div class="tl-time">12h · 17h</div>
       <div class="tl-title">L'Après-Midi</div>
-      <div class="tl-text">Jour de réapprovisionnement : deux ou trois membres montent en voiture pour retrouver le plug. Parking de fast-food sur Manchester, arrière d'un car wash sur Figueroa, parking d'une église vide. Cinq minutes max, téléphones éteints. La marchandise rentre au Cornerstone Garage et se répartit. La bouffe c'est en groupe — Island Grill, Wingstop, Jack in the Box. Assiettes en carton sur le capot. Trente minutes où on oublie presque où on vit. Ensuite c'est le travail de rue. Dealers sur leurs spots, scammers posés en voiture avec leur téléphone, guetteurs aux angles clés.</div>
+      <div class="tl-text">Jour de réapprovisionnement : deux ou trois membres montent en voiture pour retrouver le plug. Parking de fast-food sur Manchester, arrière d'un car wash sur Figueroa, parking d'une église vide. Cinq minutes max, téléphones éteints. La marchandise rentre au Palm Garage et se répartit. La bouffe c'est en groupe — Island Grill, Wingstop, Jack in the Box. Assiettes en carton sur le capot. Trente minutes où on oublie presque où on vit. Ensuite c'est le travail de rue. Dealers sur leurs spots, scammers posés en voiture avec leur téléphone, guetteurs aux angles clés.</div>
     </div>
     <div class="tl-item">
       <div class="tl-time">17h · 19h</div>
       <div class="tl-title">L'Heure du Studio</div>
-      <div class="tl-text">Ceux qui font de la musique se retrouvent dans l'arrière du Cornerstone Garage. Un laptop sur un établi, un micro, des panneaux de mousse au mur. Le beatmaker lance un instru, Mateo pose ses couplets, les autres traînent autour et donnent leur avis sans qu'on leur demande. C'est le seul moment de la journée où la violence et le hustle n'existent pas. Les morceaux sont postés sur SoundCloud et YouTube dans la semaine.</div>
+      <div class="tl-text">Ceux qui font de la musique se retrouvent dans l'arrière du Palm Garage. Un laptop sur un établi, un micro, des panneaux de mousse au mur. Le beatmaker lance un instru, Mateo pose ses couplets, les autres traînent autour et donnent leur avis sans qu'on leur demande. C'est le seul moment de la journée où la violence et le hustle n'existent pas. Les morceaux sont postés sur SoundCloud et YouTube dans la semaine.</div>
     </div>
     <div class="tl-item">
       <div class="tl-time">22h · 2h</div>
@@ -921,24 +954,88 @@ footer{position:relative;z-index:2;border-top:1px solid var(--glass-border);padd
 
 <!-- MUSIC -->
 <section id="music">
-<div class="sw n">
+<div class="sw">
   <div class="stag rv">Bande Originale</div>
   <h2 class="st rv d1">La Musique de <em>La Eme</em></h2>
-  <p class="rv d2">Un extrait de l'univers sonore de Mateo "La Eme" Aguilar — le genre de son qui sort du garage, finit sur SoundCloud et fait tourner le quartier.</p>
-  <div class="music-block rv">
-    <div style="flex-shrink:0">
-      <div class="music-label">Exemple sonore RP</div>
-      <div class="music-title">Mateo "La Eme" Aguilar</div>
-      <div class="music-sub">PTL · Palm Tree Locos · Long Beach</div>
+  <p class="rv d2" style="max-width:680px">Mateo "La Eme" Aguilar enregistre dans l'arrière du Palm Garage, sur un laptop posé sur un établi, avec des panneaux de mousse cloués au mur. Le son sort brut, sans fioriture — et c'est exactement pour ça qu'il résonne dans le quartier. Voici un exemple de l'univers sonore du barrio.</p>
+  <div class="rv" style="margin-top:2.5rem;background:var(--glass);border:1px solid var(--glass-border);border-radius:24px;overflow:hidden">
+    <div style="padding:2rem 2.5rem 1.5rem">
+      <div style="font-family:var(--ff-m);font-size:0.6rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem">Exemple sonore RP · Palm Tree Locos</div>
+      <div style="font-family:var(--ff-d);font-size:1.8rem;font-weight:700;color:var(--text);line-height:1.1;margin-bottom:0.4rem">Mateo <em style="background:linear-gradient(135deg,var(--gold2),var(--amber));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">"La Eme"</em> Aguilar</div>
+      <div style="font-family:var(--ff-m);font-size:0.7rem;letter-spacing:0.15em;color:var(--muted2)">PTL · Palm Tree Locos · Long Beach · 2026</div>
     </div>
-    <div class="music-iframe-wrap">
-      <iframe width="100%" height="120" src="https://www.youtube.com/embed/CxIlZHLtMKA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="border-radius:12px;display:block"></iframe>
+    <div style="position:relative;width:100%;padding-bottom:56.25%;height:0;overflow:hidden">
+      <iframe style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;display:block" src="https://www.youtube.com/embed/CxIlZHLtMKA" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
   </div>
 </div>
 </section>
 
 <div class="hr"></div>
+
+<!-- AMBITIONS -->
+<section id="ambitions">
+<div class="sw">
+  <div class="stag rv">Vision de Jeu</div>
+  <h2 class="st rv d1">Ambitions & <em>Vision</em></h2>
+  <p class="rv d2" style="max-width:700px">Ce que la PTL apporte sur le serveur, au-delà du dossier. Une philosophie de jeu, une façon d'exister dans Los Santos.</p>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.2rem;margin-top:3rem">
+
+    <div class="gc rv">
+      <div style="font-family:var(--ff-m);font-size:0.6rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem">01 · Identité</div>
+      <div style="font-family:var(--ff-d);font-size:1.2rem;font-weight:700;color:var(--text);margin-bottom:0.8rem">Un Mouvement, Pas un Gang</div>
+      <p style="font-size:0.85rem;margin:0">Notre projet repose sur la création d'un mouvement avec une mentalité inspirée des quartiers américains. L'objectif est de construire une identité forte, reconnaissable et cohérente, capable de s'imposer dans le South tout en rendant hommage à ceux qui ont marqué le quartier.</p>
+    </div>
+
+    <div class="gc rv d1">
+      <div style="font-family:var(--ff-m);font-size:0.6rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--violet);margin-bottom:1rem">02 · Structure</div>
+      <div style="font-family:var(--ff-d);font-size:1.2rem;font-weight:700;color:var(--text);margin-bottom:0.8rem">Liberté Individuelle</div>
+      <p style="font-size:0.85rem;margin:0">Le groupe fonctionne en clique avec une base soudée, mais une forte liberté individuelle. Chaque membre doit pouvoir exister par lui-même, développer son personnage et créer ses propres histoires. Le RP en solo est pleinement encouragé — beefs individuels, rivalités personnelles, évolutions indépendantes.</p>
+    </div>
+
+    <div class="gc rv d2">
+      <div style="font-family:var(--ff-m);font-size:0.6rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--teal);margin-bottom:1rem">03 · Réalisme</div>
+      <div style="font-family:var(--ff-d);font-size:1.2rem;font-weight:700;color:var(--text);margin-bottom:0.8rem">La Vie de Quartier</div>
+      <p style="font-size:0.85rem;margin:0">La vie de quartier est au centre du jeu. Une présence à pied, des scènes simples, des interactions naturelles et une activité régulière permettent de construire un environnement crédible et vivant. Privilégier le réalisme plutôt que le spectacle inutile.</p>
+    </div>
+
+    <div class="gc rv d1">
+      <div style="font-family:var(--ff-m);font-size:0.6rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--amber);margin-bottom:1rem">04 · Diversité</div>
+      <div style="font-family:var(--ff-d);font-size:1.2rem;font-weight:700;color:var(--text);margin-bottom:0.8rem">Archétypes Variés</div>
+      <p style="font-size:0.85rem;margin:0">Chaque personnage possède un profil différent : rappeur, influenceur, étudiant, hustler. Cette diversité crée un RP riche avec des interactions multiples et des histoires qui ne se ressemblent pas. Un musicien qui côtoie un dealer qui côtoie un gars qui fait semblant d'être civil — c'est ça, le barrio.</p>
+    </div>
+
+    <div class="gc rv d2">
+      <div style="font-family:var(--ff-m);font-size:0.6rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--rose);margin-bottom:1rem">05 · Dynamiques</div>
+      <div style="font-family:var(--ff-d);font-size:1.2rem;font-weight:700;color:var(--text);margin-bottom:0.8rem">Tensions Internes</div>
+      <p style="font-size:0.85rem;margin:0">Des conflits peuvent exister entre membres d'une même clique pour renforcer la cohérence et éviter un jeu figé. Ces dynamiques créent du développement de personnage et du contenu RP constant. Un groupe sans friction interne n'est pas un groupe — c'est un décor.</p>
+    </div>
+
+    <div class="gc rv d3">
+      <div style="font-family:var(--ff-m);font-size:0.6rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem">06 · Qualité</div>
+      <div style="font-family:var(--ff-d);font-size:1.2rem;font-weight:700;color:var(--text);margin-bottom:0.8rem">RP Travaillé</div>
+      <p style="font-size:0.85rem;margin:0">Une attention particulière portée à la qualité du jeu. Le RP doit être travaillé, cohérent et immersif, avec une dimension théâtrale dans les interactions et une vraie construction des scènes. L'objectif : proposer un style de jeu propre, sérieux et marquant qui se distingue.</p>
+    </div>
+
+  </div>
+
+  <div class="pq rv" style="margin-top:3rem">"L'ambition est de construire un mouvement durable, influent et respecté — basé sur une mentalité forte, une diversité de personnages et une capacité à générer du RP de qualité, aussi bien en groupe qu'en solo."</div>
+
+  <div style="margin-top:2.5rem;padding:2rem;border-radius:18px;border:1px solid rgba(212,168,67,0.15);background:rgba(212,168,67,0.03)" class="rv">
+    <div style="font-family:var(--ff-m);font-size:0.62rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);margin-bottom:1.2rem">Événements & Vie Locale</div>
+    <div style="display:flex;flex-wrap:wrap;gap:0.8rem">
+      <span style="font-family:var(--ff-m);font-size:0.7rem;padding:0.5rem 1.1rem;border-radius:100px;border:1px solid rgba(212,168,67,0.25);color:var(--muted)">Hood Day</span>
+      <span style="font-family:var(--ff-m);font-size:0.7rem;padding:0.5rem 1.1rem;border-radius:100px;border:1px solid rgba(212,168,67,0.25);color:var(--muted)">Fêtes de Quartier</span>
+      <span style="font-family:var(--ff-m);font-size:0.7rem;padding:0.5rem 1.1rem;border-radius:100px;border:1px solid rgba(212,168,67,0.25);color:var(--muted)">Matchs & Tournois</span>
+      <span style="font-family:var(--ff-m);font-size:0.7rem;padding:0.5rem 1.1rem;border-radius:100px;border:1px solid rgba(212,168,67,0.25);color:var(--muted)">Rassemblements Bloc</span>
+      <span style="font-family:var(--ff-m);font-size:0.7rem;padding:0.5rem 1.1rem;border-radius:100px;border:1px solid rgba(212,168,67,0.25);color:var(--muted)">Sessions Studio</span>
+      <span style="font-family:var(--ff-m);font-size:0.7rem;padding:0.5rem 1.1rem;border-radius:100px;border:1px solid rgba(212,168,67,0.25);color:var(--muted)">Island Grill Events</span>
+      <span style="font-family:var(--ff-m);font-size:0.7rem;padding:0.5rem 1.1rem;border-radius:100px;border:1px solid rgba(212,168,67,0.25);color:var(--muted)">Concerts & Showcases</span>
+    </div>
+  </div>
+</div>
+</section>
 
 <!-- CONCLUSION -->
 <section id="conclusion">
@@ -955,7 +1052,7 @@ footer{position:relative;z-index:2;border-top:1px solid var(--glass-border);padd
 
 <footer>
   <div class="fl">PTL · Palm Tree Locos · Playeros 13 · Noface WL</div>
-  <div class="fr">Dossier RP · Los Santos · 2025</div>
+  <div class="fr">Dossier RP · Los Santos · 2026</div>
 </footer>
 
 <script>
