@@ -3,1675 +3,549 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PTL — Palm Tree Locos | Playeros 13 | Dossier RP</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=Oswald:wght@200;300;400;500;600;700&family=Barlow+Condensed:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Cinzel:wght@400;700;900&display=swap" rel="stylesheet">
+<title>PTL — Palm Tree Locos</title>
+<link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=Oswald:wght@200;300;400;700&family=Barlow+Condensed:ital,wght@0,300;0,400;0,700;1,300&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --gold: #c9a84c;
-    --gold-light: #e8c97a;
-    --gold-dark: #8a6a28;
-    --bg-deep: #080808;
-    --bg-dark: #0e0e0e;
-    --bg-mid: #141414;
-    --bg-surface: #1a1a1a;
-    --text-primary: #e8e0d0;
-    --text-dim: #8a8070;
-    --text-muted: #4a4540;
-    --red-blood: #7a1a1a;
-    --red-accent: #a02020;
-    --white-off: #f0ece0;
-    --grain: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.08'/%3E%3C/svg%3E");
-  }
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    background: var(--bg-deep);
-    color: var(--text-primary);
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 18px;
-    overflow-x: hidden;
-    cursor: default;
-  }
-
-  /* GRAIN OVERLAY */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image: var(--grain);
-    opacity: 0.04;
-    pointer-events: none;
-    z-index: 9999;
-  }
-
-  /* ======================== HERO ======================== */
-  .hero {
-    position: relative;
-    height: 100vh;
-    min-height: 700px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    background: var(--bg-deep);
-  }
-
-  .hero-bg {
-    position: absolute;
-    inset: 0;
-    background:
-      radial-gradient(ellipse 80% 60% at 50% 80%, rgba(201,168,76,0.06) 0%, transparent 70%),
-      radial-gradient(ellipse 50% 40% at 20% 50%, rgba(120,20,20,0.08) 0%, transparent 60%),
-      linear-gradient(180deg, #050505 0%, #0a0a0a 40%, #080505 100%);
-  }
-
-  .hero-lines {
-    position: absolute;
-    inset: 0;
-    background-image:
-      repeating-linear-gradient(90deg, transparent, transparent 79px, rgba(201,168,76,0.02) 80px),
-      repeating-linear-gradient(0deg, transparent, transparent 79px, rgba(201,168,76,0.02) 80px);
-  }
-
-  .hero-palms {
-    position: absolute;
-    bottom: 0;
-    left: 0; right: 0;
-    height: 55%;
-    background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.8) 100%);
-    z-index: 1;
-  }
-
-  /* Palm tree SVG left */
-  .palm-left, .palm-right {
-    position: absolute;
-    bottom: 0;
-    opacity: 0.18;
-    z-index: 0;
-    animation: palmsway 6s ease-in-out infinite;
-  }
-  .palm-left { left: 0; transform-origin: bottom center; }
-  .palm-right { right: 0; transform-origin: bottom center; animation-direction: alternate-reverse; }
-
-  @keyframes palmsway {
-    0%,100% { transform: rotate(0deg); }
-    50% { transform: rotate(1.5deg); }
-  }
-
-  .hero-content {
-    position: relative;
-    z-index: 10;
-    text-align: center;
-    padding: 0 2rem;
-  }
-
-  .hero-sup {
-    font-family: 'Oswald', sans-serif;
-    font-weight: 300;
-    font-size: 0.85rem;
-    letter-spacing: 0.6em;
-    color: var(--gold-dark);
-    text-transform: uppercase;
-    margin-bottom: 1.5rem;
-    opacity: 0;
-    animation: fadeUp 0.8s ease 0.3s forwards;
-  }
-
-  .hero-gang-name {
-    font-family: 'UnifrakturMaguntia', cursive;
-    font-size: clamp(3.5rem, 8vw, 7rem);
-    color: var(--white-off);
-    line-height: 1;
-    text-shadow:
-      0 0 80px rgba(201,168,76,0.15),
-      0 2px 0 rgba(0,0,0,0.8),
-      0 4px 20px rgba(0,0,0,0.9);
-    opacity: 0;
-    animation: fadeUp 0.9s ease 0.6s forwards;
-    margin-bottom: 0.2rem;
-  }
-
-  .hero-clique {
-    font-family: 'UnifrakturMaguntia', cursive;
-    font-size: clamp(2rem, 5vw, 4.2rem);
-    color: var(--gold);
-    text-shadow:
-      0 0 40px rgba(201,168,76,0.4),
-      0 2px 0 rgba(0,0,0,0.9);
-    opacity: 0;
-    animation: fadeUp 0.9s ease 0.9s forwards;
-    margin-bottom: 2rem;
-  }
-
-  .hero-divider {
-    width: 200px;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--gold), transparent);
-    margin: 0 auto 1.5rem;
-    opacity: 0;
-    animation: expandWidth 0.8s ease 1.2s forwards;
-  }
-
-  @keyframes expandWidth {
-    from { width: 0; opacity: 0; }
-    to { width: 200px; opacity: 1; }
-  }
-
-  .hero-motto {
-    font-family: 'Oswald', sans-serif;
-    font-weight: 300;
-    font-size: 0.9rem;
-    letter-spacing: 0.5em;
-    color: var(--text-dim);
-    text-transform: uppercase;
-    opacity: 0;
-    animation: fadeUp 0.8s ease 1.5s forwards;
-    margin-bottom: 3rem;
-  }
-
-  .hero-tags {
-    display: flex;
-    gap: 1.5rem;
-    justify-content: center;
-    flex-wrap: wrap;
-    opacity: 0;
-    animation: fadeUp 0.8s ease 1.8s forwards;
-  }
-
-  .hero-tag {
-    font-family: 'Oswald', sans-serif;
-    font-weight: 600;
-    font-size: 0.75rem;
-    letter-spacing: 0.3em;
-    padding: 0.4rem 1.2rem;
-    border: 1px solid rgba(201,168,76,0.3);
-    color: var(--gold-dark);
-    text-transform: uppercase;
-    position: relative;
-    overflow: hidden;
-    transition: all 0.3s ease;
-  }
-  .hero-tag::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: rgba(201,168,76,0.05);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.3s ease;
-  }
-  .hero-tag:hover::before { transform: scaleX(1); }
-  .hero-tag:hover { color: var(--gold-light); border-color: var(--gold); }
-
-  .scroll-hint {
-    position: absolute;
-    bottom: 2rem;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 10;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-    opacity: 0;
-    animation: fadeUp 0.8s ease 2.2s forwards;
-  }
-  .scroll-hint span {
-    font-family: 'Oswald', sans-serif;
-    font-size: 0.65rem;
-    letter-spacing: 0.4em;
-    color: var(--text-muted);
-    text-transform: uppercase;
-  }
-  .scroll-arrow {
-    width: 1px;
-    height: 50px;
-    background: linear-gradient(180deg, var(--gold-dark), transparent);
-    animation: scrollpulse 2s ease-in-out infinite;
-  }
-  @keyframes scrollpulse {
-    0%,100% { opacity: 0.3; transform: scaleY(0.8); }
-    50% { opacity: 1; transform: scaleY(1); }
-  }
-
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(25px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  /* ======================== NAV ======================== */
-  nav {
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    background: rgba(8,8,8,0.95);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(201,168,76,0.15);
-    padding: 0 3rem;
-  }
-
-  .nav-inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    max-width: 1400px;
-    margin: 0 auto;
-    height: 60px;
-  }
-
-  .nav-logo {
-    font-family: 'UnifrakturMaguntia', cursive;
-    font-size: 1.4rem;
-    color: var(--gold);
-    text-decoration: none;
-    letter-spacing: 0.05em;
-  }
-
-  .nav-links {
-    display: flex;
-    gap: 2.5rem;
-    list-style: none;
-  }
-
-  .nav-links a {
-    font-family: 'Oswald', sans-serif;
-    font-weight: 400;
-    font-size: 0.75rem;
-    letter-spacing: 0.3em;
-    color: var(--text-dim);
-    text-decoration: none;
-    text-transform: uppercase;
-    transition: color 0.3s ease;
-    position: relative;
-  }
-  .nav-links a::after {
-    content: '';
-    position: absolute;
-    bottom: -4px;
-    left: 0; right: 0;
-    height: 1px;
-    background: var(--gold);
-    transform: scaleX(0);
-    transition: transform 0.3s ease;
-  }
-  .nav-links a:hover { color: var(--gold-light); }
-  .nav-links a:hover::after { transform: scaleX(1); }
-
-  .nav-badge {
-    font-family: 'Oswald', sans-serif;
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    color: var(--red-accent);
-    border: 1px solid var(--red-blood);
-    padding: 0.2rem 0.6rem;
-    text-transform: uppercase;
-  }
-
-  /* ======================== SECTIONS ======================== */
-  section {
-    padding: 7rem 3rem;
-    max-width: 1400px;
-    margin: 0 auto;
-  }
-
-  .full-bleed {
-    max-width: none;
-    padding-left: 0;
-    padding-right: 0;
-  }
-
-  .section-label {
-    font-family: 'Oswald', sans-serif;
-    font-weight: 300;
-    font-size: 0.7rem;
-    letter-spacing: 0.5em;
-    color: var(--gold-dark);
-    text-transform: uppercase;
-    margin-bottom: 1rem;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
-  .section-label::before {
-    content: '';
-    display: block;
-    width: 30px;
-    height: 1px;
-    background: var(--gold-dark);
-  }
-
-  .section-title {
-    font-family: 'UnifrakturMaguntia', cursive;
-    font-size: clamp(2rem, 4vw, 3.5rem);
-    color: var(--white-off);
-    margin-bottom: 0.5rem;
-    line-height: 1.1;
-  }
-
-  .section-subtitle {
-    font-family: 'Oswald', sans-serif;
-    font-weight: 300;
-    font-size: 1.1rem;
-    color: var(--text-dim);
-    margin-bottom: 3rem;
-    letter-spacing: 0.1em;
-  }
-
-  /* ======================== IDENTITY CARD ======================== */
-  .identity-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 0;
-    border: 1px solid rgba(201,168,76,0.15);
-    margin-bottom: 4rem;
-  }
-
-  .id-cell {
-    padding: 2rem 2.5rem;
-    border-right: 1px solid rgba(201,168,76,0.1);
-    border-bottom: 1px solid rgba(201,168,76,0.1);
-    position: relative;
-    transition: background 0.3s ease;
-  }
-  .id-cell:hover { background: rgba(201,168,76,0.03); }
-  .id-cell:nth-child(3n) { border-right: none; }
-
-  .id-cell-label {
-    font-family: 'Oswald', sans-serif;
-    font-size: 0.65rem;
-    letter-spacing: 0.4em;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    margin-bottom: 0.5rem;
-  }
-
-  .id-cell-value {
-    font-family: 'Oswald', sans-serif;
-    font-weight: 600;
-    font-size: 1.3rem;
-    color: var(--gold-light);
-    letter-spacing: 0.05em;
-  }
-
-  .id-cell-sub {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 300;
-    font-size: 0.9rem;
-    color: var(--text-dim);
-    margin-top: 0.2rem;
-    font-style: italic;
-  }
-
-  /* ======================== HISTORY ======================== */
-  .history-layout {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 5rem;
-    align-items: start;
-  }
-
-  .history-aside {
-    position: sticky;
-    top: 100px;
-  }
-
-  .big-ptl {
-    font-family: 'UnifrakturMaguntia', cursive;
-    font-size: clamp(5rem, 10vw, 9rem);
-    color: transparent;
-    -webkit-text-stroke: 1px rgba(201,168,76,0.2);
-    line-height: 0.9;
-    user-select: none;
-  }
-
-  .history-stat {
-    margin-top: 2rem;
-    padding: 1.5rem;
-    border-left: 2px solid var(--gold-dark);
-    background: rgba(201,168,76,0.03);
-  }
-  .history-stat-num {
-    font-family: 'Cinzel', serif;
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: var(--gold);
-  }
-  .history-stat-label {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.85rem;
-    color: var(--text-dim);
-    letter-spacing: 0.1em;
-    margin-top: 0.2rem;
-  }
-
-  .history-body p {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 300;
-    font-size: 1.05rem;
-    line-height: 1.8;
-    color: var(--text-primary);
-    margin-bottom: 1.5rem;
-  }
-
-  .history-body p strong {
-    color: var(--gold-light);
-    font-weight: 600;
-  }
-
-  .history-body .drop-cap::first-letter {
-    font-family: 'UnifrakturMaguntia', cursive;
-    font-size: 4rem;
-    float: left;
-    line-height: 0.8;
-    margin-right: 0.15em;
-    margin-top: 0.1em;
-    color: var(--gold);
-  }
-
-  /* ======================== TIMELINE ======================== */
-  .timeline-wrap {
-    background: var(--bg-mid);
-    border-top: 1px solid rgba(201,168,76,0.1);
-    border-bottom: 1px solid rgba(201,168,76,0.1);
-    padding: 5rem 3rem;
-  }
-
-  .timeline {
-    position: relative;
-    max-width: 900px;
-    margin: 0 auto;
-    padding-top: 2rem;
-  }
-
-  .timeline::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0; bottom: 0;
-    width: 1px;
-    background: linear-gradient(180deg, transparent, var(--gold-dark) 10%, var(--gold-dark) 90%, transparent);
-  }
-
-  .timeline-item {
-    padding-left: 3rem;
-    padding-bottom: 3.5rem;
-    position: relative;
-    opacity: 0;
-    transform: translateX(-20px);
-    transition: all 0.6s ease;
-  }
-  .timeline-item.visible {
-    opacity: 1;
-    transform: translateX(0);
-  }
-
-  .timeline-dot {
-    position: absolute;
-    left: -5px;
-    top: 0.4rem;
-    width: 11px;
-    height: 11px;
-    background: var(--gold);
-    border: 2px solid var(--bg-mid);
-    box-shadow: 0 0 12px rgba(201,168,76,0.5);
-  }
-
-  .timeline-date {
-    font-family: 'Oswald', sans-serif;
-    font-weight: 300;
-    font-size: 0.7rem;
-    letter-spacing: 0.4em;
-    color: var(--gold-dark);
-    text-transform: uppercase;
-    margin-bottom: 0.5rem;
-  }
-
-  .timeline-title {
-    font-family: 'Oswald', sans-serif;
-    font-weight: 600;
-    font-size: 1.3rem;
-    color: var(--white-off);
-    letter-spacing: 0.05em;
-    margin-bottom: 0.5rem;
-  }
-
-  .timeline-text {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 300;
-    font-size: 1rem;
-    line-height: 1.7;
-    color: var(--text-dim);
-  }
-
-  /* ======================== PARTICULARITÉS ======================== */
-  .features-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1px;
-    background: rgba(201,168,76,0.1);
-    border: 1px solid rgba(201,168,76,0.1);
-  }
-
-  .feature-card {
-    background: var(--bg-dark);
-    padding: 3rem 2.5rem;
-    position: relative;
-    overflow: hidden;
-    transition: background 0.4s ease;
-  }
-  .feature-card::after {
-    content: '';
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, var(--gold-dark), transparent);
-    transform: scaleX(0);
-    transition: transform 0.4s ease;
-  }
-  .feature-card:hover { background: rgba(201,168,76,0.04); }
-  .feature-card:hover::after { transform: scaleX(1); }
-
-  .feature-icon {
-    font-size: 2rem;
-    margin-bottom: 1.5rem;
-    display: block;
-    filter: sepia(1) brightness(0.7) hue-rotate(20deg);
-  }
-
-  .feature-num {
-    position: absolute;
-    top: 1.5rem; right: 2rem;
-    font-family: 'Cinzel', serif;
-    font-size: 3rem;
-    font-weight: 900;
-    color: rgba(201,168,76,0.06);
-    line-height: 1;
-  }
-
-  .feature-title {
-    font-family: 'Oswald', sans-serif;
-    font-weight: 700;
-    font-size: 1.1rem;
-    color: var(--gold-light);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    margin-bottom: 1rem;
-  }
-
-  .feature-text {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 300;
-    font-size: 0.95rem;
-    line-height: 1.7;
-    color: var(--text-dim);
-  }
-
-  /* ======================== VALEURS ======================== */
-  .values-band {
-    background: linear-gradient(135deg, #0a0a08 0%, #0e0c08 50%, #0a0a08 100%);
-    border-top: 1px solid rgba(201,168,76,0.15);
-    border-bottom: 1px solid rgba(201,168,76,0.15);
-    padding: 5rem 3rem;
-  }
-
-  .values-inner {
-    max-width: 1400px;
-    margin: 0 auto;
-  }
-
-  .values-list {
-    display: flex;
-    gap: 0;
-    margin-top: 3rem;
-  }
-
-  .value-item {
-    flex: 1;
-    padding: 3rem 2.5rem;
-    border-right: 1px solid rgba(201,168,76,0.08);
-    text-align: center;
-    position: relative;
-    transition: all 0.4s ease;
-  }
-  .value-item:last-child { border-right: none; }
-  .value-item:hover { background: rgba(201,168,76,0.04); }
-
-  .value-num {
-    font-family: 'Cinzel', serif;
-    font-size: 0.8rem;
-    font-weight: 700;
-    letter-spacing: 0.3em;
-    color: var(--gold-dark);
-    margin-bottom: 1rem;
-  }
-
-  .value-word {
-    font-family: 'UnifrakturMaguntia', cursive;
-    font-size: 2.2rem;
-    color: var(--white-off);
-    margin-bottom: 0.8rem;
-    display: block;
-  }
-
-  .value-desc {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 300;
-    font-size: 0.9rem;
-    color: var(--text-muted);
-    line-height: 1.6;
-    font-style: italic;
-  }
-
-  /* ======================== OBJECTIFS ======================== */
-  .objectives-tabs {
-    display: flex;
-    border-bottom: 1px solid rgba(201,168,76,0.15);
-    margin-bottom: 3rem;
-    gap: 0;
-  }
-
-  .obj-tab {
-    font-family: 'Oswald', sans-serif;
-    font-weight: 400;
-    font-size: 0.75rem;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    padding: 1rem 2.5rem;
-    cursor: pointer;
-    color: var(--text-muted);
-    border-bottom: 2px solid transparent;
-    margin-bottom: -1px;
-    transition: all 0.3s ease;
-    background: none;
-    border-top: none;
-    border-left: none;
-    border-right: none;
-  }
-  .obj-tab.active {
-    color: var(--gold-light);
-    border-bottom-color: var(--gold);
-  }
-  .obj-tab:hover:not(.active) { color: var(--text-dim); }
-
-  .obj-panel {
-    display: none;
-    animation: fadeUp 0.4s ease forwards;
-  }
-  .obj-panel.active { display: block; }
-
-  .obj-phase {
-    display: grid;
-    grid-template-columns: 220px 1fr;
-    gap: 3rem;
-    padding: 2.5rem 0;
-    border-bottom: 1px solid rgba(201,168,76,0.06);
-  }
-  .obj-phase:last-child { border-bottom: none; }
-
-  .obj-phase-meta {}
-
-  .obj-phase-term {
-    font-family: 'Oswald', sans-serif;
-    font-weight: 700;
-    font-size: 0.65rem;
-    letter-spacing: 0.4em;
-    text-transform: uppercase;
-    color: var(--gold-dark);
-    margin-bottom: 0.5rem;
-  }
-
-  .obj-phase-name {
-    font-family: 'UnifrakturMaguntia', cursive;
-    font-size: 1.8rem;
-    color: var(--white-off);
-    line-height: 1;
-    margin-bottom: 0.8rem;
-  }
-
-  .obj-phase-badge {
-    display: inline-block;
-    font-family: 'Oswald', sans-serif;
-    font-size: 0.6rem;
-    letter-spacing: 0.2em;
-    padding: 0.2rem 0.6rem;
-    border: 1px solid rgba(201,168,76,0.3);
-    color: var(--gold-dark);
-    text-transform: uppercase;
-  }
-
-  .obj-list {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .obj-list li {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 300;
-    font-size: 1rem;
-    line-height: 1.6;
-    color: var(--text-dim);
-    padding-left: 1.5rem;
-    position: relative;
-  }
-  .obj-list li::before {
-    content: '—';
-    position: absolute;
-    left: 0;
-    color: var(--gold-dark);
-    font-weight: 400;
-  }
-  .obj-list li strong {
-    color: var(--text-primary);
-    font-weight: 600;
-  }
-
-  /* ======================== ORGANISATION ======================== */
-  .org-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1px;
-    background: rgba(201,168,76,0.08);
-  }
-
-  .org-card {
-    background: var(--bg-dark);
-    padding: 2.5rem 2rem;
-    text-align: center;
-    position: relative;
-    transition: background 0.3s ease;
-  }
-  .org-card:hover { background: rgba(201,168,76,0.05); }
-  .org-card.leader { background: rgba(201,168,76,0.07); }
-
-  .org-rank {
-    font-family: 'Oswald', sans-serif;
-    font-size: 0.65rem;
-    letter-spacing: 0.4em;
-    color: var(--gold-dark);
-    text-transform: uppercase;
-    margin-bottom: 0.8rem;
-  }
-
-  .org-title {
-    font-family: 'UnifrakturMaguntia', cursive;
-    font-size: 1.6rem;
-    color: var(--white-off);
-    margin-bottom: 0.5rem;
-  }
-  .org-card.leader .org-title { color: var(--gold-light); }
-
-  .org-role {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 300;
-    font-size: 0.85rem;
-    color: var(--text-dim);
-    font-style: italic;
-    line-height: 1.5;
-  }
-
-  .org-sep {
-    position: absolute;
-    bottom: 0; left: 50%; transform: translateX(-50%);
-    width: 30px; height: 1px;
-    background: var(--gold-dark);
-  }
-
-  /* ======================== CODES & COULEURS ======================== */
-  .codes-layout {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-  }
-
-  .code-block {
-    padding: 2.5rem;
-    border: 1px solid rgba(201,168,76,0.12);
-    position: relative;
-  }
-  .code-block-title {
-    font-family: 'Oswald', sans-serif;
-    font-weight: 600;
-    font-size: 0.75rem;
-    letter-spacing: 0.4em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 1.5rem;
-  }
-
-  .color-row {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 1.5rem;
-  }
-  .color-swatch {
-    width: 50px;
-    height: 50px;
-    border: 1px solid rgba(255,255,255,0.1);
-  }
-  .color-info { flex: 1; }
-  .color-name {
-    font-family: 'Oswald', sans-serif;
-    font-weight: 600;
-    font-size: 0.95rem;
-    color: var(--text-primary);
-    margin-bottom: 0.2rem;
-  }
-  .color-meaning {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.85rem;
-    color: var(--text-muted);
-    font-style: italic;
-  }
-
-  .dress-list {
-    list-style: none;
-  }
-  .dress-list li {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 300;
-    font-size: 0.95rem;
-    color: var(--text-dim);
-    padding: 0.6rem 0;
-    border-bottom: 1px solid rgba(201,168,76,0.06);
-    padding-left: 1.2rem;
-    position: relative;
-    line-height: 1.4;
-  }
-  .dress-list li::before {
-    content: '✦';
-    position: absolute;
-    left: 0;
-    color: var(--gold-dark);
-    font-size: 0.5rem;
-    top: 0.8rem;
-  }
-
-  /* ======================== TERRITORY ======================== */
-  .territory-block {
-    background: var(--bg-mid);
-    padding: 4rem 3rem;
-    max-width: 1400px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 5rem;
-  }
-
-  .territory-map-placeholder {
-    aspect-ratio: 4/3;
-    border: 1px solid rgba(201,168,76,0.15);
-    position: relative;
-    overflow: hidden;
-    background: #0a0a08;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .map-grid {
-    position: absolute;
-    inset: 0;
-    background-image:
-      repeating-linear-gradient(90deg, rgba(201,168,76,0.04) 0, rgba(201,168,76,0.04) 1px, transparent 1px, transparent 40px),
-      repeating-linear-gradient(0deg, rgba(201,168,76,0.04) 0, rgba(201,168,76,0.04) 1px, transparent 1px, transparent 40px);
-  }
-
-  .map-label {
-    font-family: 'Oswald', sans-serif;
-    font-weight: 300;
-    font-size: 0.7rem;
-    letter-spacing: 0.4em;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    text-align: center;
-    position: relative;
-    z-index: 1;
-  }
-
-  .map-pin {
-    position: absolute;
-    width: 8px;
-    height: 8px;
-    background: var(--gold);
-    border-radius: 50%;
-    box-shadow: 0 0 10px rgba(201,168,76,0.6);
-    animation: pinpulse 2s ease-in-out infinite;
-  }
-  @keyframes pinpulse {
-    0%,100% { box-shadow: 0 0 6px rgba(201,168,76,0.6); }
-    50% { box-shadow: 0 0 20px rgba(201,168,76,0.9), 0 0 40px rgba(201,168,76,0.3); }
-  }
-  .map-pin::after {
-    content: '';
-    position: absolute;
-    inset: -6px;
-    border: 1px solid rgba(201,168,76,0.3);
-    border-radius: 50%;
-    animation: pinring 2s ease-in-out infinite;
-  }
-  @keyframes pinring {
-    0%,100% { transform: scale(1); opacity: 0.5; }
-    50% { transform: scale(1.5); opacity: 0; }
-  }
-
-  .pin-1 { top: 55%; left: 40%; }
-  .pin-2 { top: 35%; left: 55%; }
-  .pin-3 { top: 65%; left: 65%; }
-
-  .territory-list {
-    list-style: none;
-  }
-  .territory-list li {
-    display: flex;
-    gap: 1.5rem;
-    align-items: flex-start;
-    padding: 1.2rem 0;
-    border-bottom: 1px solid rgba(201,168,76,0.06);
-  }
-  .territory-list-icon {
-    width: 30px;
-    flex-shrink: 0;
-    margin-top: 0.1rem;
-    color: var(--gold);
-    font-size: 1rem;
-  }
-  .territory-list-label {
-    font-family: 'Oswald', sans-serif;
-    font-weight: 600;
-    font-size: 0.85rem;
-    letter-spacing: 0.1em;
-    color: var(--text-primary);
-    margin-bottom: 0.2rem;
-    text-transform: uppercase;
-  }
-  .territory-list-desc {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 300;
-    font-size: 0.9rem;
-    color: var(--text-muted);
-    line-height: 1.5;
-    font-style: italic;
-  }
-
-  /* ======================== FOOTER ======================== */
-  footer {
-    background: #050505;
-    border-top: 1px solid rgba(201,168,76,0.1);
-    padding: 4rem 3rem 2rem;
-    text-align: center;
-  }
-
-  .footer-emblem {
-    font-family: 'UnifrakturMaguntia', cursive;
-    font-size: 3.5rem;
-    color: rgba(201,168,76,0.15);
-    margin-bottom: 1rem;
-  }
-
-  .footer-motto {
-    font-family: 'Oswald', sans-serif;
-    font-weight: 300;
-    font-size: 0.75rem;
-    letter-spacing: 0.6em;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    margin-bottom: 3rem;
-  }
-
-  .footer-tags {
-    display: flex;
-    justify-content: center;
-    gap: 3rem;
-    margin-bottom: 3rem;
-  }
-
-  .footer-tag {
-    font-family: 'Oswald', sans-serif;
-    font-weight: 300;
-    font-size: 0.7rem;
-    letter-spacing: 0.3em;
-    color: var(--text-muted);
-    text-transform: uppercase;
-  }
-
-  .footer-legal {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.8rem;
-    color: var(--text-muted);
-    opacity: 0.4;
-    font-style: italic;
-    border-top: 1px solid rgba(201,168,76,0.05);
-    padding-top: 1.5rem;
-  }
-
-  /* ======================== QUOTE ======================== */
-  .quote-section {
-    padding: 6rem 3rem;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-  .quote-section::before {
-    content: '"';
-    position: absolute;
-    top: -1rem;
-    left: 50%;
-    transform: translateX(-50%);
-    font-family: 'UnifrakturMaguntia', cursive;
-    font-size: 20rem;
-    color: rgba(201,168,76,0.03);
-    line-height: 1;
-    user-select: none;
-    pointer-events: none;
-  }
-
-  .quote-text {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-style: italic;
-    font-weight: 300;
-    font-size: clamp(1.3rem, 2.5vw, 1.8rem);
-    color: var(--text-primary);
-    max-width: 800px;
-    margin: 0 auto 1.5rem;
-    line-height: 1.6;
-    position: relative;
-    z-index: 1;
-  }
-
-  .quote-author {
-    font-family: 'Oswald', sans-serif;
-    font-weight: 400;
-    font-size: 0.75rem;
-    letter-spacing: 0.4em;
-    color: var(--gold-dark);
-    text-transform: uppercase;
-  }
-
-  /* ======================== RESPONSIVE ======================== */
-  @media (max-width: 900px) {
-    section { padding: 4rem 1.5rem; }
-    nav { padding: 0 1.5rem; }
-    .nav-links { gap: 1.2rem; }
-    .identity-grid { grid-template-columns: 1fr 1fr; }
-    .history-layout { grid-template-columns: 1fr; gap: 2rem; }
-    .history-aside { position: static; }
-    .features-grid { grid-template-columns: 1fr; }
-    .values-list { flex-direction: column; }
-    .codes-layout { grid-template-columns: 1fr; }
-    .org-grid { grid-template-columns: 1fr 1fr; }
-    .territory-block { grid-template-columns: 1fr; padding: 3rem 1.5rem; }
-    .obj-phase { grid-template-columns: 1fr; gap: 1rem; }
-  }
-
-  /* SCROLL REVEAL */
-  .reveal {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.7s ease;
-  }
-  .reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:#07070a;color:#ede8e0;font-family:'Barlow Condensed',sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased;cursor:none}
+
+/* CURSOR */
+#c{width:6px;height:6px;background:#c9a04a;border-radius:50%;position:fixed;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .25s,height .25s}
+#cr{width:28px;height:28px;border:1px solid rgba(201,160,74,.35);border-radius:50%;position:fixed;pointer-events:none;z-index:9998;transform:translate(-50%,-50%)}
+
+/* TOKENS */
+:root{
+  --g:#c9a04a;
+  --gb:rgba(201,160,74,.12);
+  --gd:rgba(201,160,74,.18);
+  --b:rgba(255,255,255,.06);
+  --bd:rgba(255,255,255,.1);
+  --t1:#ede8e0;
+  --t2:rgba(237,232,224,.5);
+  --t3:rgba(237,232,224,.2);
+}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:800;height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 4rem;background:rgba(7,7,10,.8);backdrop-filter:blur(20px);border-bottom:1px solid var(--b)}
+.nav-logo{font-family:'UnifrakturMaguntia',cursive;font-size:1.25rem;color:var(--g);text-decoration:none}
+.nav-links{display:flex;gap:2.5rem;list-style:none}
+.nav-links a{font-family:'Oswald',sans-serif;font-weight:300;font-size:.68rem;letter-spacing:.35em;text-transform:uppercase;color:var(--t3);text-decoration:none;transition:color .2s}
+.nav-links a:hover{color:var(--g)}
+.nav-dot{width:6px;height:6px;background:var(--g);border-radius:50%;box-shadow:0 0 8px var(--g)}
+
+/* ── HERO ── */
+.hero{position:relative;height:100vh;min-height:700px;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 50% 90%,rgba(201,160,74,.055) 0%,transparent 65%),#07070a}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.016) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.016) 1px,transparent 1px);background-size:72px 72px}
+.hero-center{position:relative;z-index:2;text-align:center;padding:0 2rem}
+.hero-over{font-family:'Oswald',sans-serif;font-weight:200;font-size:.7rem;letter-spacing:.7em;text-transform:uppercase;color:var(--g);margin-bottom:2.5rem;opacity:0;animation:up .7s ease .3s both;display:flex;align-items:center;justify-content:center;gap:1.5rem}
+.hero-over::before,.hero-over::after{content:'';display:block;width:32px;height:1px;background:rgba(201,160,74,.3)}
+.hero-main{font-family:'UnifrakturMaguntia',cursive;font-size:clamp(5rem,13vw,12rem);color:#fff;line-height:.88;letter-spacing:-.01em;opacity:0;animation:up .9s ease .55s both}
+.hero-main em{color:var(--g);font-style:normal}
+.hero-sub{font-family:'Oswald',sans-serif;font-weight:200;font-size:clamp(.9rem,1.8vw,1.4rem);letter-spacing:.5em;text-transform:uppercase;color:var(--t2);margin-top:1.2rem;opacity:0;animation:up .7s ease .8s both}
+.hero-line{width:1px;height:64px;background:linear-gradient(180deg,var(--g) 0%,transparent 100%);margin:2.5rem auto;opacity:0;animation:up .7s ease 1s both}
+.hero-chips{display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap;opacity:0;animation:up .7s ease 1.2s both}
+.chip{font-family:'Oswald',sans-serif;font-weight:300;font-size:.65rem;letter-spacing:.3em;text-transform:uppercase;padding:.35rem 1rem;border:1px solid var(--b);color:var(--t3);border-radius:100px;transition:all .25s}
+.chip:hover{border-color:var(--gd);color:var(--g)}
+.hero-scroll{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:.5rem;opacity:0;animation:up .6s ease 1.8s both}
+.hero-scroll span{font-family:'Oswald',sans-serif;font-weight:200;font-size:.58rem;letter-spacing:.5em;color:var(--t3);text-transform:uppercase}
+.sline{width:1px;height:44px;background:linear-gradient(180deg,rgba(201,160,74,.4) 0%,transparent 100%);animation:sb 2s ease-in-out infinite}
+@keyframes sb{0%,100%{opacity:.3;transform:scaleY(.7)}50%{opacity:1;transform:scaleY(1)}}
+@keyframes up{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── SECTION BASE ── */
+.s{position:relative;z-index:1}
+.inner{max-width:1320px;margin:0 auto;padding:7rem 4rem}
+.kicker{font-family:'Oswald',sans-serif;font-weight:300;font-size:.65rem;letter-spacing:.55em;text-transform:uppercase;color:var(--g);margin-bottom:.8rem;display:flex;align-items:center;gap:.7rem}
+.kicker::before{content:'';width:16px;height:1px;background:rgba(201,160,74,.35)}
+.stitle{font-family:'UnifrakturMaguntia',cursive;font-size:clamp(2.2rem,4.5vw,4rem);color:#fff;line-height:.95;margin-bottom:3.5rem}
+
+/* ── STATS HERO ── */
+.stats-band{background:rgba(255,255,255,.02);border-top:1px solid var(--b);border-bottom:1px solid var(--b)}
+.stats-row{max-width:1320px;margin:0 auto;padding:0 4rem;display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+.stat{padding:3rem 2rem;border-right:1px solid var(--b);text-align:center;transition:background .3s}
+.stat:last-child{border-right:none}
+.stat:hover{background:rgba(201,160,74,.03)}
+.stat-n{font-family:'Oswald',sans-serif;font-weight:700;font-size:3.5rem;color:#fff;line-height:1;letter-spacing:-.02em}
+.stat-n span{color:var(--g)}
+.stat-l{font-family:'Oswald',sans-serif;font-weight:300;font-size:.68rem;letter-spacing:.35em;text-transform:uppercase;color:var(--t3);margin-top:.5rem}
+
+/* ── IDENTITÉ BIG GRID ── */
+.id-big{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--b);border:1px solid var(--b);border-radius:16px;overflow:hidden}
+.id-big-left{background:#07070a;padding:4rem;display:flex;flex-direction:column;justify-content:center}
+.id-big-right{background:#07070a;display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--b)}
+.id-c{background:#07070a;padding:2rem 1.8rem;transition:background .25s}
+.id-c:hover{background:rgba(201,160,74,.03)}
+.id-k{font-family:'Oswald',sans-serif;font-weight:200;font-size:.6rem;letter-spacing:.4em;text-transform:uppercase;color:var(--t3);margin-bottom:.45rem}
+.id-v{font-family:'Oswald',sans-serif;font-weight:600;font-size:1rem;color:var(--t1);letter-spacing:.02em}
+.id-s{font-family:'Barlow Condensed',sans-serif;font-weight:300;font-size:.78rem;color:var(--t3);font-style:italic;margin-top:.15rem}
+.id-name{font-family:'UnifrakturMaguntia',cursive;font-size:5rem;color:#fff;line-height:.9;margin-bottom:1.5rem}
+.id-desc{font-family:'Barlow Condensed',sans-serif;font-weight:300;font-size:1.05rem;line-height:1.75;color:var(--t2);max-width:340px}
+.id-desc strong{color:var(--t1);font-weight:600}
+
+/* ── HISTOIRE FULL ── */
+.hist-wrap{display:grid;grid-template-columns:1fr 1fr;gap:0;min-height:80vh}
+.hist-left{background:rgba(201,160,74,.04);border-right:1px solid var(--b);padding:6rem 4rem;display:flex;flex-direction:column;justify-content:center;align-items:flex-start}
+.hist-ghost{font-family:'UnifrakturMaguntia',cursive;font-size:14rem;color:transparent;-webkit-text-stroke:1px rgba(201,160,74,.08);line-height:.85;user-select:none;margin-bottom:2rem}
+.hist-stat{padding:1.5rem 2rem;border:1px solid var(--gd);border-radius:12px;margin-bottom:1rem;backdrop-filter:blur(8px)}
+.hist-n{font-family:'Oswald',sans-serif;font-weight:700;font-size:3rem;color:var(--g);line-height:1}
+.hist-l{font-family:'Oswald',sans-serif;font-weight:300;font-size:.65rem;letter-spacing:.3em;color:var(--t3);text-transform:uppercase;margin-top:.3rem}
+.hist-right{padding:6rem 4rem;display:flex;flex-direction:column;justify-content:center}
+.hist-body{display:flex;flex-direction:column;gap:2rem}
+.hist-para{font-family:'Barlow Condensed',sans-serif;font-weight:300;font-size:1.1rem;line-height:1.85;color:var(--t2)}
+.hist-para strong{color:var(--t1);font-weight:600}
+.hist-para.big{font-size:1.35rem;color:var(--t1);font-weight:400}
+.hist-para.big::first-letter{font-family:'UnifrakturMaguntia',cursive;font-size:4rem;float:left;line-height:.8;margin:.05em .1em 0 0;color:var(--g)}
+
+/* ── TIMELINE ── */
+.tl-wrap{background:rgba(255,255,255,.015);border-top:1px solid var(--b);border-bottom:1px solid var(--b);padding:6rem 4rem}
+.tl-inner{max-width:960px;margin:0 auto}
+.tl{position:relative;padding-top:1rem}
+.tl::before{content:'';position:absolute;left:0;top:0;bottom:0;width:1px;background:linear-gradient(180deg,transparent,var(--gd) 8%,var(--gd) 92%,transparent)}
+.tl-item{padding-left:2.8rem;padding-bottom:4rem;position:relative;opacity:0;transform:translateX(-14px);transition:all .55s ease}
+.tl-item.in{opacity:1;transform:translateX(0)}
+.tl-dot{position:absolute;left:-4px;top:6px;width:9px;height:9px;background:var(--g);border-radius:50%;box-shadow:0 0 14px rgba(201,160,74,.6)}
+.tl-dot::after{content:'';position:absolute;inset:-5px;border:1px solid rgba(201,160,74,.25);border-radius:50%;animation:pulse 2.5s ease-in-out infinite}
+@keyframes pulse{0%,100%{transform:scale(1);opacity:.4}50%{transform:scale(2);opacity:0}}
+.tl-d{font-family:'Oswald',sans-serif;font-weight:300;font-size:.62rem;letter-spacing:.45em;text-transform:uppercase;color:var(--g);margin-bottom:.3rem}
+.tl-t{font-family:'Oswald',sans-serif;font-weight:700;font-size:1.45rem;color:#fff;letter-spacing:.02em;margin-bottom:.5rem}
+.tl-p{font-family:'Barlow Condensed',sans-serif;font-weight:300;font-size:.98rem;line-height:1.75;color:var(--t2);max-width:680px}
+
+/* ── VALEURS LARGE ── */
+.val-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--b);border:1px solid var(--b);border-radius:16px;overflow:hidden}
+.val{background:#07070a;padding:5rem 3rem;text-align:center;position:relative;overflow:hidden;transition:background .3s}
+.val::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 60% at 50% 110%,rgba(201,160,74,.05) 0%,transparent 70%);opacity:0;transition:opacity .4s}
+.val:hover{background:rgba(201,160,74,.025)}
+.val:hover::before{opacity:1}
+.val-i{font-family:'Oswald',sans-serif;font-weight:200;font-size:.65rem;letter-spacing:.5em;text-transform:uppercase;color:var(--t3);margin-bottom:1.5rem;display:block}
+.val-w{font-family:'UnifrakturMaguntia',cursive;font-size:3.2rem;color:#fff;display:block;margin-bottom:1rem}
+.val-line{width:20px;height:1px;background:rgba(201,160,74,.3);margin:.8rem auto 1.2rem}
+.val-t{font-family:'Barlow Condensed',sans-serif;font-weight:300;font-size:1rem;color:var(--t2);line-height:1.65;max-width:220px;margin:0 auto}
+
+/* ── BENTO FEATURES ── */
+.bento{display:grid;grid-template-columns:repeat(6,1fr);grid-template-rows:auto auto;gap:12px}
+.bc{background:rgba(255,255,255,.025);border:1px solid var(--b);border-radius:16px;padding:2.2rem 2rem;position:relative;overflow:hidden;transition:border-color .3s,background .3s,transform .3s;backdrop-filter:blur(14px)}
+.bc:hover{border-color:var(--gd);background:rgba(255,255,255,.04);transform:translateY(-3px)}
+.bc::after{content:'';position:absolute;top:-50px;right:-50px;width:120px;height:120px;background:radial-gradient(circle,rgba(201,160,74,.06) 0%,transparent 70%);pointer-events:none}
+.bc-1{grid-column:span 2}
+.bc-2{grid-column:span 2}
+.bc-3{grid-column:span 2}
+.bc-4{grid-column:span 3}
+.bc-5{grid-column:span 3}
+.bc-n{position:absolute;top:1.2rem;right:1.4rem;font-family:'Oswald',sans-serif;font-weight:200;font-size:.6rem;letter-spacing:.2em;color:var(--t3)}
+.bc-ico{font-size:1.6rem;margin-bottom:1rem;display:block}
+.bc-t{font-family:'Oswald',sans-serif;font-weight:700;font-size:.82rem;letter-spacing:.18em;text-transform:uppercase;color:var(--g);margin-bottom:.7rem}
+.bc-p{font-family:'Barlow Condensed',sans-serif;font-weight:300;font-size:.92rem;line-height:1.65;color:var(--t2)}
+
+/* ── OBJECTIFS ── */
+.obj-wrap{display:grid;grid-template-columns:240px 1fr;gap:0;border:1px solid var(--b);border-radius:16px;overflow:hidden}
+.obj-nav{background:rgba(255,255,255,.02);border-right:1px solid var(--b)}
+.obj-navbtn{display:block;width:100%;padding:2rem 2.2rem;border:none;background:none;text-align:left;cursor:pointer;border-bottom:1px solid var(--b);transition:background .25s;position:relative}
+.obj-navbtn:last-child{border-bottom:none}
+.obj-navbtn.on{background:rgba(201,160,74,.07)}
+.obj-navbtn.on::after{content:'';position:absolute;right:0;top:50%;transform:translateY(-50%);width:2px;height:40px;background:var(--g);border-radius:2px 0 0 2px}
+.obj-nk{font-family:'Oswald',sans-serif;font-weight:200;font-size:.6rem;letter-spacing:.4em;text-transform:uppercase;color:var(--t3);margin-bottom:.3rem}
+.obj-nt{font-family:'Oswald',sans-serif;font-weight:700;font-size:1.05rem;color:var(--t2);transition:color .25s}
+.obj-navbtn.on .obj-nt{color:#fff}
+.obj-content{padding:3.5rem}
+.obj-panel{display:none}
+.obj-panel.on{display:block;animation:up .3s ease both}
+.obj-ph-t{font-family:'UnifrakturMaguntia',cursive;font-size:2.8rem;color:#fff;line-height:.95;margin-bottom:.5rem}
+.obj-badge{display:inline-block;font-family:'Oswald',sans-serif;font-size:.58rem;font-weight:500;letter-spacing:.2em;padding:.25rem .8rem;background:rgba(201,160,74,.1);border:1px solid rgba(201,160,74,.25);color:var(--g);border-radius:100px;margin-bottom:2rem}
+.obj-list{list-style:none;display:flex;flex-direction:column;gap:1.1rem}
+.obj-list li{font-family:'Barlow Condensed',sans-serif;font-weight:300;font-size:1.05rem;line-height:1.65;color:var(--t2);padding-left:1.4rem;position:relative}
+.obj-list li::before{content:'—';position:absolute;left:0;color:rgba(201,160,74,.4)}
+.obj-list li strong{color:var(--t1);font-weight:600}
+
+/* ── ORGANIGRAMME ── */
+.org-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.org-c{background:rgba(255,255,255,.025);border:1px solid var(--b);border-radius:16px;padding:2.2rem 1.8rem;text-align:center;transition:all .3s;backdrop-filter:blur(12px)}
+.org-c:hover{border-color:var(--gd);background:rgba(201,160,74,.05);transform:translateY(-2px)}
+.org-c.chief{border-color:rgba(201,160,74,.3);background:rgba(201,160,74,.05)}
+.org-r{font-family:'Oswald',sans-serif;font-weight:200;font-size:.58rem;letter-spacing:.4em;color:var(--g);text-transform:uppercase;margin-bottom:.6rem}
+.org-t{font-family:'UnifrakturMaguntia',cursive;font-size:2rem;color:#fff;margin-bottom:.5rem}
+.org-c.chief .org-t{color:var(--g)}
+.org-d{font-family:'Barlow Condensed',sans-serif;font-weight:300;font-size:.82rem;color:var(--t3);line-height:1.5;font-style:italic}
+
+/* ── DRESS CODE SPLIT ── */
+.dress-split{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--b);border:1px solid var(--b);border-radius:16px;overflow:hidden}
+.dress-col{background:#07070a;padding:3.5rem 3rem}
+.dress-col-t{font-family:'Oswald',sans-serif;font-weight:700;font-size:.7rem;letter-spacing:.4em;text-transform:uppercase;color:var(--g);margin-bottom:2rem;padding-bottom:1.2rem;border-bottom:1px solid var(--b)}
+.color-r{display:flex;align-items:center;gap:1.2rem;margin-bottom:1.2rem}
+.sw{width:42px;height:42px;border-radius:8px;border:1px solid var(--b);flex-shrink:0}
+.cn{font-family:'Oswald',sans-serif;font-weight:500;font-size:.95rem;color:var(--t1)}
+.cm{font-family:'Barlow Condensed',sans-serif;font-weight:300;font-size:.8rem;color:var(--t3);font-style:italic;margin-top:.1rem}
+.dl{list-style:none}
+.dl li{font-family:'Barlow Condensed',sans-serif;font-weight:300;font-size:.95rem;color:var(--t2);padding:.6rem 0 .6rem 1.2rem;border-bottom:1px solid var(--b);position:relative;line-height:1.4}
+.dl li::before{content:'✦';position:absolute;left:0;color:rgba(201,160,74,.3);font-size:.42rem;top:.8rem}
+.dl li:last-child{border-bottom:none}
+
+/* ── TERRITOIRE ── */
+.terr-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:16px;align-items:start}
+.map-card{background:rgba(255,255,255,.025);border:1px solid rgba(201,160,74,.2);border-radius:16px;overflow:hidden;aspect-ratio:16/10;position:relative}
+.map-g{position:absolute;inset:0;background-image:linear-gradient(rgba(201,160,74,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(201,160,74,.045) 1px,transparent 1px);background-size:36px 36px}
+.map-c{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.8rem}
+.map-glyph{font-family:'UnifrakturMaguntia',cursive;font-size:6rem;color:transparent;-webkit-text-stroke:1px rgba(201,160,74,.12);line-height:1}
+.map-sub{font-family:'Oswald',sans-serif;font-weight:200;font-size:.6rem;letter-spacing:.5em;text-transform:uppercase;color:var(--t3);text-align:center}
+.mp{position:absolute;width:8px;height:8px;background:var(--g);border-radius:50%;box-shadow:0 0 12px rgba(201,160,74,.8)}
+.mp::after{content:'';position:absolute;inset:-5px;border:1px solid rgba(201,160,74,.3);border-radius:50%;animation:pulse 2s ease-in-out infinite}
+.mp1{top:53%;left:37%}.mp2{top:34%;left:58%;animation-delay:.8s}.mp3{top:66%;left:67%;animation-delay:1.5s}
+.terr-list{list-style:none;background:rgba(255,255,255,.02);border:1px solid var(--b);border-radius:16px;overflow:hidden}
+.terr-item{display:flex;align-items:flex-start;gap:1.2rem;padding:1.4rem 1.8rem;border-bottom:1px solid var(--b);transition:background .25s}
+.terr-item:last-child{border-bottom:none}
+.terr-item:hover{background:rgba(201,160,74,.03)}
+.terr-num{font-family:'Oswald',sans-serif;font-weight:200;font-size:.62rem;letter-spacing:.25em;color:var(--g);margin-top:.1rem;flex-shrink:0;width:22px}
+.terr-t{font-family:'Oswald',sans-serif;font-weight:600;font-size:.88rem;letter-spacing:.08em;text-transform:uppercase;color:var(--t1);margin-bottom:.15rem}
+.terr-d{font-family:'Barlow Condensed',sans-serif;font-weight:300;font-size:.82rem;color:var(--t3);line-height:1.5;font-style:italic}
+
+/* ── QUOTE ── */
+.quote{background:rgba(201,160,74,.03);border-top:1px solid var(--b);border-bottom:1px solid var(--b);padding:7rem 4rem;text-align:center;position:relative;overflow:hidden}
+.q-bg{position:absolute;top:-3rem;left:50%;transform:translateX(-50%);font-family:'UnifrakturMaguntia',cursive;font-size:20rem;color:rgba(201,160,74,.03);line-height:1;pointer-events:none;user-select:none}
+.q-t{font-family:'Barlow Condensed',sans-serif;font-weight:300;font-style:italic;font-size:clamp(1.3rem,2.2vw,1.8rem);color:var(--t2);line-height:1.75;max-width:760px;margin:0 auto 1.5rem;position:relative}
+.q-s{font-family:'Oswald',sans-serif;font-weight:200;font-size:.65rem;letter-spacing:.45em;text-transform:uppercase;color:var(--t3)}
+
+/* ── FOOTER ── */
+footer{background:#050508;border-top:1px solid var(--b);padding:5rem 4rem 2rem;text-align:center}
+.f-logo{font-family:'UnifrakturMaguntia',cursive;font-size:4rem;color:rgba(201,160,74,.08);display:block;margin-bottom:.8rem}
+.f-tag{font-family:'Oswald',sans-serif;font-weight:200;font-size:.65rem;letter-spacing:.55em;text-transform:uppercase;color:var(--t3);margin-bottom:2.5rem}
+.f-row{display:flex;justify-content:center;gap:2.5rem;margin-bottom:2.5rem}
+.f-i{font-family:'Oswald',sans-serif;font-weight:200;font-size:.65rem;letter-spacing:.3em;text-transform:uppercase;color:var(--t3)}
+.f-legal{font-family:'Barlow Condensed',sans-serif;font-size:.72rem;color:var(--t3);font-style:italic;opacity:.35;border-top:1px solid var(--b);padding-top:1.5rem}
+
+/* REVEAL */
+.rv{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
+.rv.in{opacity:1;transform:translateY(0)}
+
+@media(max-width:960px){
+  nav{padding:0 1.5rem}.nav-links{display:none}
+  .inner{padding:4rem 1.5rem}
+  .stats-row{grid-template-columns:1fr 1fr;padding:0 1.5rem}
+  .id-big{grid-template-columns:1fr}
+  .hist-wrap{grid-template-columns:1fr}
+  .val-row{grid-template-columns:1fr}
+  .bento{grid-template-columns:1fr}
+  .bc-1,.bc-2,.bc-3,.bc-4,.bc-5{grid-column:span 1}
+  .obj-wrap{grid-template-columns:1fr}
+  .obj-nav{display:flex;overflow-x:auto;border-right:none;border-bottom:1px solid var(--b)}
+  .obj-navbtn{border-bottom:none;border-right:1px solid var(--b);white-space:nowrap}
+  .org-grid{grid-template-columns:1fr 1fr}
+  .dress-split{grid-template-columns:1fr}
+  .terr-grid{grid-template-columns:1fr}
+  .quote{padding:4rem 1.5rem}
+}
 </style>
 </head>
 <body>
 
-<!-- NAVIGATION -->
+<div id="c"></div>
+<div id="cr"></div>
+
+<!-- NAV -->
 <nav>
-  <div class="nav-inner">
-    <a href="#" class="nav-logo">Palm Tree Locos</a>
-    <ul class="nav-links">
-      <li><a href="#histoire">Histoire</a></li>
-      <li><a href="#particularites">Code</a></li>
-      <li><a href="#objectifs">Objectifs</a></li>
-      <li><a href="#organisation">Structure</a></li>
-      <li><a href="#territoire">Territoire</a></li>
-    </ul>
-    <span class="nav-badge">NOFACE WL</span>
-  </div>
+  <a href="#" class="nav-logo">PTL</a>
+  <ul class="nav-links">
+    <li><a href="#identite">Identité</a></li>
+    <li><a href="#histoire">Histoire</a></li>
+    <li><a href="#code">Code</a></li>
+    <li><a href="#objectifs">Objectifs</a></li>
+    <li><a href="#structure">Structure</a></li>
+    <li><a href="#territoire">Territoire</a></li>
+  </ul>
+  <div class="nav-dot"></div>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
   <div class="hero-bg"></div>
-  <div class="hero-lines"></div>
-
-  <!-- Palm trees SVG -->
-  <svg class="palm-left" width="320" height="600" viewBox="0 0 320 600" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M160 600 L155 200 Q120 150 60 80 Q90 130 140 180 L135 120 Q80 70 20 20 Q70 90 130 150 L125 80 Q90 40 40 10 Q80 50 120 110 L150 0 L160 150 L170 0 L200 110 Q240 50 280 10 Q230 40 195 80 L190 150 Q250 90 300 20 Q250 70 205 120 L200 180 Q260 130 290 80 Q230 150 195 200 L190 600Z" fill="#2a3a1a"/>
-  </svg>
-
-  <svg class="palm-right" width="320" height="600" viewBox="0 0 320 600" fill="none" xmlns="http://www.w3.org/2000/svg" style="transform: scaleX(-1)">
-    <path d="M160 600 L155 200 Q120 150 60 80 Q90 130 140 180 L135 120 Q80 70 20 20 Q70 90 130 150 L125 80 Q90 40 40 10 Q80 50 120 110 L150 0 L160 150 L170 0 L200 110 Q240 50 280 10 Q230 40 195 80 L190 150 Q250 90 300 20 Q250 70 205 120 L200 180 Q260 130 295 80 Q230 150 195 200 L190 600Z" fill="#2a3a1a"/>
-  </svg>
-
-  <div class="hero-content">
-    <p class="hero-sup">Playeros 13 — Clique Officielle</p>
-    <h1 class="hero-gang-name">Palm Tree</h1>
-    <h2 class="hero-clique">Locos</h2>
-    <div class="hero-divider"></div>
-    <p class="hero-motto">Playa · Familia · Respeto</p>
-    <div class="hero-tags">
-      <span class="hero-tag">PTL</span>
-      <span class="hero-tag">P13</span>
-      <span class="hero-tag">Vespucci Beach</span>
-      <span class="hero-tag">Los Santos</span>
+  <div class="hero-grid"></div>
+  <div class="hero-center">
+    <p class="hero-over">Playeros 13 — Clique Officielle</p>
+    <h1 class="hero-main">Palm Tree<br><em>Locos</em></h1>
+    <p class="hero-sub">PTL &nbsp;·&nbsp; P13 &nbsp;·&nbsp; East Side &nbsp;·&nbsp; Los Santos</p>
+    <div class="hero-line"></div>
+    <div class="hero-chips">
+      <span class="chip">Vespucci Beach</span>
+      <span class="chip">Chicano</span>
+      <span class="chip">Sur</span>
+      <span class="chip">🌴</span>
+      <span class="chip">Flashback RP</span>
     </div>
   </div>
-
-  <div class="scroll-hint">
+  <div class="hero-scroll">
     <span>Dossier</span>
-    <div class="scroll-arrow"></div>
+    <div class="sline"></div>
   </div>
 </section>
 
+<!-- STATS BAND -->
+<div class="stats-band">
+  <div class="stats-row">
+    <div class="stat rv"><div class="stat-n">13<span>×</span></div><div class="stat-l">Chiffre Sacré</div></div>
+    <div class="stat rv" style="transition-delay:.1s"><div class="stat-n"><span>PTL</span></div><div class="stat-l">Sigle Officiel</div></div>
+    <div class="stat rv" style="transition-delay:.2s"><div class="stat-n">P<span>13</span></div><div class="stat-l">Gang Affilié</div></div>
+    <div class="stat rv" style="transition-delay:.3s"><div class="stat-n"><span>01</span></div><div class="stat-l">Phase Active</div></div>
+  </div>
+</div>
 
 <!-- IDENTITÉ -->
-<section id="identite">
-  <div class="section-label">Fiche d'identité</div>
-  <h2 class="section-title">La Clique</h2>
-  <p class="section-subtitle">Palm Tree Locos — Division active des Playeros 13</p>
-
-  <div class="identity-grid reveal">
-    <div class="id-cell">
-      <div class="id-cell-label">Désignation officielle</div>
-      <div class="id-cell-value">Palm Tree Locos</div>
-      <div class="id-cell-sub">East Side Playeros — PTL</div>
-    </div>
-    <div class="id-cell">
-      <div class="id-cell-label">Gang affilié</div>
-      <div class="id-cell-value">Playeros 13</div>
-      <div class="id-cell-sub">P13 — Sur Los Santos</div>
-    </div>
-    <div class="id-cell">
-      <div class="id-cell-label">Sigle</div>
-      <div class="id-cell-value">PTL</div>
-      <div class="id-cell-sub">🌴 Emblème : Palmier</div>
-    </div>
-    <div class="id-cell">
-      <div class="id-cell-label">Zone d'opération</div>
-      <div class="id-cell-value">Vespucci Beach</div>
-      <div class="id-cell-sub">Los Santos — Côte Ouest</div>
-    </div>
-    <div class="id-cell">
-      <div class="id-cell-label">Origine</div>
-      <div class="id-cell-value">Los Santos</div>
-      <div class="id-cell-sub">Transplantés depuis la playa</div>
-    </div>
-    <div class="id-cell">
-      <div class="id-cell-label">Statut actuel</div>
-      <div class="id-cell-value">En Expansion</div>
-      <div class="id-cell-sub">Implantation en cours — Phase 1</div>
-    </div>
-    <div class="id-cell">
-      <div class="id-cell-label">Couleurs</div>
-      <div class="id-cell-value">Noir & Or</div>
-      <div class="id-cell-sub">Avec liseré blanc — Tenue chicana</div>
-    </div>
-    <div class="id-cell">
-      <div class="id-cell-label">Valeurs fondatrices</div>
-      <div class="id-cell-value">Playa · Familia · Respeto</div>
-      <div class="id-cell-sub">Code inviolable depuis la genèse</div>
-    </div>
-    <div class="id-cell">
-      <div class="id-cell-label">Activités déclarées</div>
-      <div class="id-cell-value">Plage & Commerce</div>
-      <div class="id-cell-sub">Économie souterraine côtière</div>
+<section class="s" id="identite">
+  <div class="inner">
+    <div class="kicker">Fiche d'identité</div>
+    <div class="id-big rv">
+      <div class="id-big-left">
+        <div class="id-name">Palm Tree<br>Locos</div>
+        <p class="id-desc">Clique chicana de <strong>Vespucci Beach</strong>. Division active des <strong>Playeros 13 — P13</strong>. Ils reviennent sur Los Santos avec une mission : reprendre ce qui leur appartient.</p>
+      </div>
+      <div class="id-big-right">
+        <div class="id-c"><div class="id-k">Désignation</div><div class="id-v">Palm Tree Locos</div><div class="id-s">East Side PTL</div></div>
+        <div class="id-c"><div class="id-k">Gang</div><div class="id-v">Playeros 13</div><div class="id-s">P13 — Sur LS</div></div>
+        <div class="id-c"><div class="id-k">Zone</div><div class="id-v">Vespucci Beach</div><div class="id-s">Côte Ouest</div></div>
+        <div class="id-c"><div class="id-k">Statut</div><div class="id-v">En Expansion</div><div class="id-s">Phase 1 — Active</div></div>
+        <div class="id-c"><div class="id-k">Couleurs</div><div class="id-v">Noir & Or</div><div class="id-s">Liseré blanc</div></div>
+        <div class="id-c"><div class="id-k">Emblème</div><div class="id-v">🌴 Palmier</div><div class="id-s">Vespucci signature</div></div>
+        <div class="id-c"><div class="id-k">Valeurs</div><div class="id-v">Playa · Familia</div><div class="id-s">Respeto</div></div>
+        <div class="id-c"><div class="id-k">Activité</div><div class="id-v">Commerce Côtier</div><div class="id-s">Économie nocturne</div></div>
+      </div>
     </div>
   </div>
 </section>
-
 
 <!-- HISTOIRE -->
-<section id="histoire">
-  <div class="history-layout">
-    <div class="history-aside reveal">
-      <div class="big-ptl">PTL</div>
-      <div class="history-stat">
-        <div class="history-stat-num">13</div>
-        <div class="history-stat-label">Le chiffre sacré — Surenos</div>
-      </div>
-      <div class="history-stat" style="margin-top:1rem; border-left-color: var(--red-blood);">
-        <div class="history-stat-num" style="color:var(--red-accent)">P13</div>
-        <div class="history-stat-label">Playeros 13 — La vague qui ne s'arrête pas</div>
-      </div>
+<section class="s" id="histoire">
+  <div class="hist-wrap">
+    <div class="hist-left rv">
+      <div class="hist-ghost">P<br>T<br>L</div>
+      <div class="hist-stat"><div class="hist-n">13</div><div class="hist-l">Chiffre Sacré — Sureños</div></div>
+      <div class="hist-stat" style="border-color:rgba(120,40,40,.3)"><div class="hist-n" style="color:#a84040">P13</div><div class="hist-l">La vague qui ne s'arrête pas</div></div>
     </div>
-
-    <div class="history-body">
-      <div class="section-label">Genèse & Background</div>
-      <h2 class="section-title">L'Histoire des Locos</h2>
-
-      <p class="drop-cap reveal" style="transition-delay:0.1s">
-        <strong>Les Playeros 13</strong> sont nés dans les rues chaudes et salées du bord de mer de Los Santos. Gang chicano aux racines profondes, ils ont grandi entre les palmiers et les ruelles sombres de Vespucci Beach — un quartier que le reste de la ville regarde de loin, mais que les siens connaissent comme leur propre peau. Depuis toujours, la mer est à eux. <em>La playa es nuestra.</em>
-      </p>
-
-      <p class="reveal" style="transition-delay:0.2s">
-        Au fil des années, le gang se structure. Des cliques naissent, chacune avec sa propre identité, son propre terrain, ses propres hommes. C'est dans ce contexte que les <strong>Palm Tree Locos — PTL</strong> voient le jour. La clique des palmiers. Ceux qui vivent dans l'ombre des arbres qui marquent chaque avenue de Vespucci. Ni les plus violents, ni les plus sages — mais peut-être les plus <em>vrais.</em>
-      </p>
-
-      <p class="reveal" style="transition-delay:0.3s">
-        Le PTL s'est construit autour d'un noyau d'hommes qui n'avaient rien à perdre et tout à prouver. Des fils de familles ouvrières immigrées, des gosses du béton qui regardaient l'océan sans jamais pouvoir y toucher — jusqu'à ce qu'ils décident de prendre ce qui était à eux. Ils ont tenu le bloc. Ils ont tenu la plage. Et quand les fédéraux ont commencé à serrer, une partie d'entre eux a disparu.
-      </p>
-
-      <p class="reveal" style="transition-delay:0.4s">
-        <strong>Aujourd'hui, les Palm Tree Locos débarquent à Los Santos.</strong> La ville a changé, les rues aussi. Mais le code reste le même. Ils reviennent avec les cicatrices du temps et la faim de ceux qui ont tout reconstruit de zéro. Ce n'est pas une nouvelle histoire qui commence — c'est l'ancienne qui reprend là où elle s'était arrêtée. Et cette fois, ils ne lâcheront pas.
-      </p>
+    <div class="hist-right rv" style="transition-delay:.15s">
+      <div class="kicker">Genèse</div>
+      <h2 class="stitle" style="margin-bottom:2rem">L'Histoire<br>des Locos</h2>
+      <div class="hist-body">
+        <p class="hist-para big"><strong>Les Playeros 13</strong> sont nés dans les rues salées de Vespucci Beach. Gang chicano aux racines profondes — la mer est à eux. <em>La playa es nuestra.</em></p>
+        <p class="hist-para">Les <strong>Palm Tree Locos</strong> émergent du bloc. La clique des palmiers — ceux qui vivent dans l'ombre des arbres qui marquent chaque avenue de l'East Side. Ni les plus violents, ni les plus sages — les plus vrais.</p>
+        <p class="hist-para">Un coup de filet frappe la clique. Certains tombent, d'autres fuient. Le PTL se met en veille — mais le nom continue de circuler dans les rues comme une promesse.</p>
+        <p class="hist-para"><strong>Aujourd'hui ils reviennent.</strong> La ville a changé. Le code, jamais. Discrets mais déterminés — la ville va entendre parler d'eux.</p>
+      </div>
     </div>
   </div>
 </section>
-
 
 <!-- TIMELINE -->
-<div class="timeline-wrap" id="timeline">
-  <section style="padding: 0;">
-    <div class="section-label">Chronologie</div>
-    <h2 class="section-title">La Montée en Puissance</h2>
-    <p class="section-subtitle">De la plage aux rues — l'histoire continue</p>
-
-    <div class="timeline">
-
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-date">Avant Los Santos — Les Origines</div>
-        <div class="timeline-title">La Naissance des Playeros 13</div>
-        <div class="timeline-text">
-          Le gang prend racine à Vespucci Beach. Une poignée de familles chicanas s'organisent pour contrôler leur quartier face aux autres clans. Le nom "Playeros" — ceux de la plage — s'impose naturellement. Le 13 vient s'y greffer comme un tatouage : appartenance aux Sureños, fidélité au sud.
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-date">La Structuration</div>
-        <div class="timeline-title">Création de la Clique Palm Tree Locos</div>
-        <div class="timeline-text">
-          À mesure que les Playeros 13 étendent leur influence, des cliques autonomes se forment. Les PTL émergent du bloc autour des palmiers caractéristiques de l'East Side. Un groupe resserré, fidèle au cœur, qui opère dans l'ombre mais jamais dans la confusion. La clique développe ses propres traditions, son propre argot, sa propre façon de marquer le territoire.
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-date">La Dispersion</div>
-        <div class="timeline-title">Coup de Filet — Les Locos se Dispersent</div>
-        <div class="timeline-text">
-          Une vague d'arrestations frappe durement le PTL. Certains hommes tombent, d'autres fuient, quelques-uns se planquent dans d'autres États. La clique ne disparaît pas — elle se met en veille. Dans les prisons et les rues, le nom Palm Tree Locos continue de circuler comme une promesse.
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-date">Aujourd'hui — Phase 1</div>
-        <div class="timeline-title">Retour à Los Santos — L'Implantation</div>
-        <div class="timeline-text">
-          Les Locos reviennent. Discrets mais déterminés, ils reprennent pied à Vespucci Beach, reconnectent avec les Playeros 13 et commencent à poser les jalons d'une présence durable. Chaque bloc reconquis, chaque connexion rétablie est une pierre de plus dans l'édifice. La ville va entendre parler d'eux.
-        </div>
-      </div>
-
-    </div>
-  </section>
-</div>
-
-
-<!-- QUOTE -->
-<div class="quote-section">
-  <p class="quote-text">
-    "On n'a pas choisi cette vie. La vie nous a choisis, nous a forgés dans le béton et le sel. La plage était notre terrain de jeu, et elle le redeviendra — quoi qu'il en coûte."
-  </p>
-  <p class="quote-author">— Code interne PTL</p>
-</div>
-
-
-<!-- PARTICULARITÉS -->
-<section id="particularites">
-  <div class="section-label">Identité & Code</div>
-  <h2 class="section-title">Particularités de la Clique</h2>
-  <p class="section-subtitle">Ce qui distingue les Palm Tree Locos — dans la rue comme en affaires</p>
-
-  <div class="features-grid reveal">
-    <div class="feature-card">
-      <span class="feature-num">01</span>
-      <span class="feature-icon">🌴</span>
-      <div class="feature-title">L'Emblème du Palmier</div>
-      <p class="feature-text">Le palmier n'est pas qu'un symbole — c'est une déclaration. Les PTL tatouent, arborent et revendiquent l'arbre comme marque de leur appartenance. On le retrouve dans leurs graffiti, leurs briquets, leurs tenues. Visible partout dans Vespucci.</p>
-    </div>
-    <div class="feature-card">
-      <span class="feature-num">02</span>
-      <span class="feature-icon">🌊</span>
-      <div class="feature-title">Économie Côtière</div>
-      <p class="feature-text">Les PTL maîtrisent la plage comme territoire économique. Vente discrète, contacts maritimes, mécanique de la nuit sur le front de mer. Ils savent que la mer amène autant d'opportunités que de dangers — et ils surfent les deux.</p>
-    </div>
-    <div class="feature-card">
-      <span class="feature-num">03</span>
-      <span class="feature-icon">🤝</span>
-      <div class="feature-title">La Loi du Respeto</div>
-      <p class="feature-text">Les PTL ne tirent pas en premier — mais ils finissent toujours. Leur code est basé sur le respect mutuel, les deals honorés, la parole donnée. Dans leur monde, briser ce code est une faute impardonnable qui appelle une réponse inévitable.</p>
-    </div>
-    <div class="feature-card">
-      <span class="feature-num">04</span>
-      <span class="feature-icon">🔗</span>
-      <div class="feature-title">Loyauté Familiale</div>
-      <p class="feature-text">Chaque membre est lié par des années de vécu commun ou une cooptation exigeante. La familia n'est pas un mot en l'air — c'est la raison d'être du groupe. On protège les siens avant tout, on ne laisse jamais un membre derrière.</p>
-    </div>
-    <div class="feature-card">
-      <span class="feature-num">05</span>
-      <span class="feature-icon">🚗</span>
-      <div class="feature-title">Culture Lowrider</div>
-      <p class="feature-text">La culture chicana coule dans leurs veines. Les lowriders, la musique, les tatouages traditionnels, les fêtes de bloc — le PTL maintient un héritage culturel fort qui lui donne une identité unique dans les rues de Los Santos.</p>
-    </div>
-    <div class="feature-card">
-      <span class="feature-num">06</span>
-      <span class="feature-icon">🌙</span>
-      <div class="feature-title">Opérations Nocturnes</div>
-      <p class="feature-text">Les Locos s'épanouissent la nuit. Le front de mer endormi devient leur terrain de jeu. Livraisons, rencontres, diplomatie de rue — tout se joue après minuit, quand les touristes sont rentrés et que Vespucci Beach appartient aux siens.</p>
+<div class="tl-wrap">
+  <div class="tl-inner">
+    <div class="kicker">Chronologie</div>
+    <h2 class="stitle">La Montée</h2>
+    <div class="tl">
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-d">Les Origines</div><div class="tl-t">Naissance des Playeros 13</div><div class="tl-p">Une poignée de familles chicanas s'organisent à Vespucci Beach. Le 13 se greffe comme un tatouage — appartenance aux Sureños, fidélité au sud.</div></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-d">La Structuration</div><div class="tl-t">Création des Palm Tree Locos</div><div class="tl-p">Le PTL émerge du bloc autour des palmiers de l'East Side. Un groupe resserré, fidèle au cœur, qui opère dans l'ombre mais jamais dans la confusion.</div></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-d">La Dispersion</div><div class="tl-t">Coup de Filet — La Veille</div><div class="tl-p">Arrestations massives. La clique se met en veille. Dans les prisons et les rues, le nom PTL continue de circuler comme une promesse non tenue.</div></div>
+      <div class="tl-item" style="padding-bottom:0"><div class="tl-dot"></div><div class="tl-d">Aujourd'hui — Phase 1</div><div class="tl-t">Retour à Los Santos</div><div class="tl-p">Les Locos reviennent. Chaque bloc reconquis, chaque connexion rétablie est une pierre de plus dans l'édifice. La ville va entendre parler d'eux.</div></div>
     </div>
   </div>
-</section>
-
+</div>
 
 <!-- VALEURS -->
-<div class="values-band">
-  <div class="values-inner">
-    <div class="section-label">Code d'honneur</div>
-    <h2 class="section-title">Les Trois Piliers</h2>
-    <div class="values-list reveal">
-      <div class="value-item">
-        <div class="value-num">I</div>
-        <span class="value-word">Playa</span>
-        <p class="value-desc">La plage est notre origine, notre territoire, notre identité. Elle précède tout et survivra à tout. On ne trahit pas la plage.</p>
-      </div>
-      <div class="value-item">
-        <div class="value-num">II</div>
-        <span class="value-word">Familia</span>
-        <p class="value-desc">Le sang et le serment ont la même valeur ici. On protège les siens sans compter, on ne les abandonne jamais — ni dans la rue, ni derrière les barreaux.</p>
-      </div>
-      <div class="value-item">
-        <div class="value-num">III</div>
-        <span class="value-word">Respeto</span>
-        <p class="value-desc">Le respect s'earn dans la rue, il ne se réclame pas. Les PTL l'accordent à ceux qui le méritent, et l'exigent des autres sans nécessité d'insister deux fois.</p>
-      </div>
+<section class="s">
+  <div class="inner" style="padding-top:5rem;padding-bottom:5rem">
+    <div class="kicker">Code d'honneur</div>
+    <h2 class="stitle">Les Trois Piliers</h2>
+    <div class="val-row rv">
+      <div class="val"><span class="val-i">I</span><span class="val-w">Playa</span><div class="val-line"></div><p class="val-t">La plage est notre origine et notre territoire. Elle précède tout. On ne trahit pas la plage.</p></div>
+      <div class="val"><span class="val-i">II</span><span class="val-w">Familia</span><div class="val-line"></div><p class="val-t">Le sang et le serment ont la même valeur. On protège les siens sans compter, jamais.</p></div>
+      <div class="val"><span class="val-i">III</span><span class="val-w">Respeto</span><div class="val-line"></div><p class="val-t">Le respect s'earn dans la rue. On l'accorde à ceux qui le méritent — et l'exige des autres.</p></div>
     </div>
   </div>
+</section>
+
+<!-- QUOTE -->
+<div class="quote">
+  <div class="q-bg">"</div>
+  <p class="q-t">On n'a pas choisi cette vie. La vie nous a choisis, forgés dans le béton et le sel. La plage était notre terrain de jeu — et elle le redeviendra.</p>
+  <p class="q-s">— Code interne PTL</p>
 </div>
 
+<!-- PARTICULARITÉS BENTO -->
+<section class="s" id="code">
+  <div class="inner">
+    <div class="kicker">Identité & Particularités</div>
+    <h2 class="stitle">Ce qui Définit les Locos</h2>
+    <div class="bento rv">
+      <div class="bc bc-1"><span class="bc-n">01</span><span class="bc-ico">🌴</span><div class="bc-t">L'Emblème Palmier</div><p class="bc-p">Tatoué, revendiqué, partout. Le palmier est une déclaration — dans les graffiti, les tenues, les accessoires. Visible dans tout Vespucci.</p></div>
+      <div class="bc bc-2"><span class="bc-n">02</span><span class="bc-ico">🌊</span><div class="bc-t">Économie Côtière</div><p class="bc-p">La plage comme territoire économique. Contacts maritimes, mécanique nocturne. La mer amène des opportunités — ils surfent les deux.</p></div>
+      <div class="bc bc-3"><span class="bc-n">03</span><span class="bc-ico">🤝</span><div class="bc-t">La Loi du Respeto</div><p class="bc-p">Ils ne tirent pas en premier — mais finissent toujours. Les deals sont honorés. Briser le code appelle une réponse inévitable.</p></div>
+      <div class="bc bc-4"><span class="bc-n">04</span><span class="bc-ico">🔗</span><div class="bc-t">Loyauté Absolue</div><p class="bc-p">Chaque membre est lié par des années de vécu ou une cooptation exigeante. La familia n'est pas un mot — c'est la raison d'être. On ne laisse jamais personne derrière, ni dans la rue ni derrière les barreaux.</p></div>
+      <div class="bc bc-5"><span class="bc-n">05</span><span class="bc-ico">🚗</span><div class="bc-t">Culture Lowrider & Opérations Nocturnes</div><p class="bc-p">La culture chicana coule dans leurs veines — lowriders, tatouages traditionnels, musique. La nuit, Vespucci leur appartient. Livraisons, rencontres, diplomatie de rue — tout après minuit.</p></div>
+    </div>
+  </div>
+</section>
 
 <!-- OBJECTIFS -->
-<section id="objectifs">
-  <div class="section-label">Stratégie & Ambitions</div>
-  <h2 class="section-title">Objectifs</h2>
-  <p class="section-subtitle">La feuille de route des Palm Tree Locos sur Los Santos</p>
-
-  <div class="objectives-tabs reveal">
-    <button class="obj-tab active" onclick="switchTab('ct')">Court Terme</button>
-    <button class="obj-tab" onclick="switchTab('mt')">Moyen Terme</button>
-    <button class="obj-tab" onclick="switchTab('lt')">Long Terme</button>
-  </div>
-
-  <!-- COURT TERME -->
-  <div class="obj-panel active" id="tab-ct">
-    <div class="obj-phase">
-      <div class="obj-phase-meta">
-        <div class="obj-phase-term">Semaines 1 à 4</div>
-        <div class="obj-phase-name">L'Enracinement</div>
-        <span class="obj-phase-badge">Phase 1 — Active</span>
+<section class="s" id="objectifs">
+  <div class="inner">
+    <div class="kicker">Stratégie & Ambitions</div>
+    <h2 class="stitle">Objectifs</h2>
+    <div class="obj-wrap rv">
+      <div class="obj-nav">
+        <button class="obj-navbtn on" onclick="ot(this,'oc')"><div class="obj-nk">Semaines 1–4</div><div class="obj-nt">Court Terme</div></button>
+        <button class="obj-navbtn" onclick="ot(this,'om')"><div class="obj-nk">Mois 1–3</div><div class="obj-nt">Moyen Terme</div></button>
+        <button class="obj-navbtn" onclick="ot(this,'ol')"><div class="obj-nk">Mois 3+</div><div class="obj-nt">Long Terme</div></button>
       </div>
-      <ul class="obj-list">
-        <li><strong>Reconnaître le terrain :</strong> Cartographier Vespucci Beach, identifier les acteurs déjà en place, les zones libres et celles déjà tenues.</li>
-        <li><strong>Installer la présence :</strong> Marquer symboliquement le territoire (graffiti PTL, présence régulière sur le front de mer), se faire voir sans se faire remarquer des forces de l'ordre.</li>
-        <li><strong>Recrutement ciblé :</strong> Trouver des locaux fiables — loyaux, discrets, motivés. La qualité avant la quantité. Chaque nouveau membre passe par une période de test.</li>
-        <li><strong>Première trésorerie :</strong> Générer du cash rapidement via de petits deals locaux, de la revente ou des services discrets. Financer les opérations sans dépendre d'aide extérieure.</li>
-        <li><strong>Contact avec le P13 :</strong> Rétablir les liens formels avec la structure Playeros 13, se positionner comme une clique fiable et ambitieuse.</li>
-      </ul>
-    </div>
-  </div>
-
-  <!-- MOYEN TERME -->
-  <div class="obj-panel" id="tab-mt">
-    <div class="obj-phase">
-      <div class="obj-phase-meta">
-        <div class="obj-phase-term">Mois 1 à 3</div>
-        <div class="obj-phase-name">L'Affirmation</div>
-        <span class="obj-phase-badge">Phase 2 — Planifiée</span>
+      <div class="obj-content">
+        <div class="obj-panel on" id="oc">
+          <div class="obj-ph-t">L'Enracinement</div>
+          <span class="obj-badge">Phase 1 — Active</span>
+          <ul class="obj-list">
+            <li><strong>Reconnaître le terrain</strong> — Cartographier Vespucci, identifier les acteurs en place et les zones libres.</li>
+            <li><strong>Installer la présence</strong> — Marquer le territoire, graffiti PTL, présence régulière sur le front de mer.</li>
+            <li><strong>Recrutement ciblé</strong> — Qualité avant quantité. Chaque nouveau membre passe une période de test.</li>
+            <li><strong>Première trésorerie</strong> — Générer du cash rapidement via deals discrets. Financer les opérations.</li>
+            <li><strong>Contact P13</strong> — Rétablir les liens formels avec la structure Playeros 13.</li>
+          </ul>
+        </div>
+        <div class="obj-panel" id="om">
+          <div class="obj-ph-t">L'Affirmation</div>
+          <span class="obj-badge">Phase 2 — Planifiée</span>
+          <ul class="obj-list">
+            <li><strong>Contrôle du front de mer</strong> — Vespucci identifié comme territoire PTL par alliés, ennemis et neutres.</li>
+            <li><strong>Diversifier les revenus</strong> — Minimum deux flux économiques stables. Éviter la dépendance à un seul secteur.</li>
+            <li><strong>Alliances stratégiques</strong> — Collaborations mutuellement bénéfiques. Pas d'ennemis inutiles.</li>
+            <li><strong>Structurer la hiérarchie</strong> — Définir clairement les rôles. Leadership affirmé, conflits internes évités.</li>
+            <li><strong>Réputation sur la ville</strong> — Être connu au-delà de Vespucci. Que les autres sachent qui sont les PTL.</li>
+          </ul>
+        </div>
+        <div class="obj-panel" id="ol">
+          <div class="obj-ph-t">La Domination</div>
+          <span class="obj-badge">Phase 3 — Vision</span>
+          <ul class="obj-list">
+            <li><strong>Clique de référence P13</strong> — La plus active, fiable et influente des Playeros 13.</li>
+            <li><strong>Monopole côtier</strong> — Personne ne fait d'argent à Vespucci sans que les PTL aient leur part.</li>
+            <li><strong>Légitimité de rue</strong> — Un nom qui compte quand il est prononcé dans les rues de Los Santos.</li>
+            <li><strong>Protéger la comunidad</strong> — Force protectrice dans le quartier — familles, commerces locaux.</li>
+            <li><strong>Legacy solide</strong> — Former la prochaine génération. La clique dépasse ses fondateurs.</li>
+          </ul>
+        </div>
       </div>
-      <ul class="obj-list">
-        <li><strong>Contrôle du front de mer :</strong> Vespucci Beach doit être identifié comme territoire PTL — par les alliés, par les ennemis, par les neutres.</li>
-        <li><strong>Diversifier les sources de revenus :</strong> Développer au moins deux flux économiques stables : recel, protection, économie de rue. Éviter la dépendance à un seul secteur.</li>
-        <li><strong>Alliances stratégiques :</strong> Identifier d'autres groupes ou individus avec qui une collaboration est mutuellement bénéfique. Pas d'ennemis inutiles — mais pas de faiblesse non plus.</li>
-        <li><strong>Gérer les tensions :</strong> Des conflits surgiront. L'objectif est de les résoudre rapidement et intelligemment — par la diplomatie si possible, par la force si nécessaire.</li>
-        <li><strong>Structurer la hiérarchie :</strong> Définir clairement les rôles au sein de la clique. Un leadership affirmé évite les conflits internes et donne une direction lisible.</li>
-        <li><strong>Réputation sur la ville :</strong> Commencer à être connu au-delà de Vespucci — que les autres gangs sachent qui sont les PTL et ce qu'ils représentent.</li>
-      </ul>
-    </div>
-  </div>
-
-  <!-- LONG TERME -->
-  <div class="obj-panel" id="tab-lt">
-    <div class="obj-phase">
-      <div class="obj-phase-meta">
-        <div class="obj-phase-term">Mois 3 et au-delà</div>
-        <div class="obj-phase-name">La Domination</div>
-        <span class="obj-phase-badge">Phase 3 — Vision</span>
-      </div>
-      <ul class="obj-list">
-        <li><strong>Faire des PTL la clique de référence des P13 :</strong> Être reconnu comme la clique la plus active, la plus fiable et la plus influente au sein des Playeros 13.</li>
-        <li><strong>Contrôle économique du bord de mer :</strong> Monopoliser certaines activités sur la côte — personne ne fait d'argent à Vespucci Beach sans que les PTL aient leur part.</li>
-        <li><strong>Légitimité de rue :</strong> Être respecté, craint et parfois admiré dans les rues de Los Santos. Un nom qui compte quand il est prononcé.</li>
-        <li><strong>Protéger la comunidad :</strong> S'imposer comme une force protectrice dans le quartier — pas seulement pour les membres, mais pour les familles, les commerces locaux. La crédibilité de la rue se bâtit aussi là.</li>
-        <li><strong>Pérenniser la structure :</strong> Former la prochaine génération, assurer la continuité de la clique au-delà de ses membres fondateurs. Un legacy solide.</li>
-        <li><strong>Influence politique de rue :</strong> À terme, avoir une voix dans les grandes décisions qui concernent Vespucci — pas en se compromettant, mais en étant incontournable.</li>
-      </ul>
     </div>
   </div>
 </section>
 
-
-<!-- ORGANISATION -->
-<section id="organisation">
-  <div class="section-label">Structure Interne</div>
-  <h2 class="section-title">Hiérarchie de la Clique</h2>
-  <p class="section-subtitle">La chaîne de commandement — ordonnée, respectée, absolue</p>
-
-  <div class="org-grid reveal">
-    <div class="org-card leader">
-      <div class="org-rank">Rang I — Leadership</div>
-      <div class="org-title">Veterano</div>
-      <p class="org-role">Le chef de clique. Sa parole est loi. Il représente les PTL auprès du P13 et prend les décisions stratégiques majeures.</p>
-      <div class="org-sep"></div>
-    </div>
-    <div class="org-card">
-      <div class="org-rank">Rang II — Command</div>
-      <div class="org-title">Shotcaller</div>
-      <p class="org-role">Bras droit du Veterano. Coordonne les opérations quotidiennes, gère les hommes sur le terrain, résout les conflits internes.</p>
-    </div>
-    <div class="org-card">
-      <div class="org-rank">Rang III — Opérations</div>
-      <div class="org-title">Soldado</div>
-      <p class="org-role">Le cœur actif de la clique. Exécute les missions, tient le territoire, génère les revenus. Loyal et fiable avant tout.</p>
-    </div>
-    <div class="org-card">
-      <div class="org-rank">Rang IV — Probatoire</div>
-      <div class="org-title">Pee Wee</div>
-      <p class="org-role">Nouveau membre en probation. Doit prouver sa valeur, sa loyauté et sa discrétion avant d'être pleinement intégré.</p>
+<!-- STRUCTURE -->
+<section class="s" id="structure">
+  <div class="inner">
+    <div class="kicker">Organisation Interne</div>
+    <h2 class="stitle">Hiérarchie</h2>
+    <div class="org-grid rv">
+      <div class="org-c chief"><div class="org-r">Rang I — Leadership</div><div class="org-t">Veterano</div><p class="org-d">Chef de clique. Sa parole est loi. Représente les PTL auprès du P13.</p></div>
+      <div class="org-c"><div class="org-r">Rang II — Command</div><div class="org-t">Shotcaller</div><p class="org-d">Bras droit. Coordonne les opérations et gère les hommes sur le terrain.</p></div>
+      <div class="org-c"><div class="org-r">Rang III — Terrain</div><div class="org-t">Soldado</div><p class="org-d">Le cœur actif. Exécute les missions, tient le territoire, génère les revenus.</p></div>
+      <div class="org-c"><div class="org-r">Rang IV — Probatoire</div><div class="org-t">Pee Wee</div><p class="org-d">Nouveau en probation. Doit prouver valeur et discrétion avant l'intégration.</p></div>
     </div>
   </div>
 </section>
 
-
-<!-- CODES & COULEURS -->
-<section id="codes">
-  <div class="section-label">Codes visuels & Dress Code</div>
-  <h2 class="section-title">L'Identité Visuelle</h2>
-  <p class="section-subtitle">Comment les PTL se reconnaissent et se montrent</p>
-
-  <div class="codes-layout reveal">
-    <div class="code-block">
-      <div class="code-block-title">Couleurs de Clique</div>
-      <div class="color-row">
-        <div class="color-swatch" style="background:#0a0a0a; border: 1px solid #333;"></div>
-        <div class="color-info">
-          <div class="color-name">Noir Profond</div>
-          <div class="color-meaning">La nuit, le secret, la rue. Couleur principale — omniprésente.</div>
-        </div>
+<!-- DRESS CODE -->
+<section class="s">
+  <div class="inner">
+    <div class="kicker">Dress Code & Couleurs</div>
+    <h2 class="stitle">L'Identité Visuelle</h2>
+    <div class="dress-split rv">
+      <div class="dress-col">
+        <div class="dress-col-t">Couleurs de Clique</div>
+        <div class="color-r"><div class="sw" style="background:#09090c"></div><div><div class="cn">Noir Profond</div><div class="cm">La nuit, le secret, la rue.</div></div></div>
+        <div class="color-r"><div class="sw" style="background:#c9a04a"></div><div><div class="cn">Vieux Or</div><div class="cm">Richesse gagnée à la sueur.</div></div></div>
+        <div class="color-r"><div class="sw" style="background:#e8e2d6;border-color:rgba(255,255,255,.1)"></div><div><div class="cn">Blanc Crème</div><div class="cm">Pureté du code — tee-shirts.</div></div></div>
       </div>
-      <div class="color-row">
-        <div class="color-swatch" style="background:#c9a84c;"></div>
-        <div class="color-info">
-          <div class="color-name">Or / Vieux Or</div>
-          <div class="color-meaning">La valeur, la richesse gagnée à la sueur. Couleur d'accent sur les broderies, bijoux, lettrage.</div>
-        </div>
+      <div class="dress-col">
+        <div class="dress-col-t">Dress Code PTL</div>
+        <ul class="dl">
+          <li>Pantalons noirs ou chinos beige, bien repassés</li>
+          <li>Tees blancs oversized — sous veste ouverte</li>
+          <li>Flannels noirs portés ouverts</li>
+          <li>Chaussures blanches propres — Cortez, Chucks ou Vans</li>
+          <li>Bandana noir — poche arrière ou poignet</li>
+          <li>Chaînes dorées — pendentif palmier ou PTL</li>
+          <li>Casquette à plat brodée PTL / P13</li>
+          <li>Tatouages chicanos — palmiers, Vierge, chiffre 13</li>
+        </ul>
       </div>
-      <div class="color-row">
-        <div class="color-swatch" style="background:#e8e0d0;"></div>
-        <div class="color-info">
-          <div class="color-name">Blanc Crème</div>
-          <div class="color-meaning">Le respect, la pureté du code. Sur le blanc, le noir et l'or ressortent au maximum.</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="code-block">
-      <div class="code-block-title">Dress Code PTL</div>
-      <ul class="dress-list">
-        <li>Pantalons noirs ou chinos beige/crème bien repassés, tombant droit</li>
-        <li>Polos ou tees blancs oversized, souvent seul ou sous une veste ouverte</li>
-        <li>Flannels noirs ou quadrillés portés ouverts sur le haut</li>
-        <li>Chaussures blanches propres — Nike Cortez, Chucks blancs ou Vans classiques</li>
-        <li>Bandana noir dans la poche arrière ou noué au poignet</li>
-        <li>Chaînes dorées visibles — pendentif palmier ou lettres PTL</li>
-        <li>Casquettes à plat avec broderie PTL / P13 sur le côté</li>
-        <li>Tatouages traditionnels chicanos — palmiers, Vierge Marie, chiffre 13</li>
-        <li>Tenues soignées — les PTL sont fiers de leur apparence, même dans la rue</li>
-      </ul>
     </div>
   </div>
 </section>
-
 
 <!-- TERRITOIRE -->
-<div style="background: var(--bg-mid); border-top: 1px solid rgba(201,168,76,0.08);">
-<section id="territoire" class="full-bleed" style="padding:0; max-width:none;">
-  <div class="territory-block">
-    <div>
-      <div class="section-label">Zones de contrôle</div>
-      <h2 class="section-title">Territoire PTL</h2>
-      <p class="section-subtitle" style="margin-bottom:2rem;">Vespucci Beach — Tous les blocs qui comptent</p>
-
-      <ul class="territory-list">
-        <li>
-          <span class="territory-list-icon">🌴</span>
-          <div>
-            <div class="territory-list-label">Vespucci Beach Boardwalk</div>
-            <div class="territory-list-desc">Le cœur du territoire. La promenade, les terrains de basket, les spots de deal discrets entre touristes et locaux.</div>
-          </div>
-        </li>
-        <li>
-          <span class="territory-list-icon">🚗</span>
-          <div>
-            <div class="territory-list-label">East Side — Blocs résidentiels</div>
-            <div class="territory-list-desc">Les rues intérieures derrière la plage. Les familles qui vivent là connaissent les PTL — certaines en font partie.</div>
-          </div>
-        </li>
-        <li>
-          <span class="territory-list-icon">🌊</span>
-          <div>
-            <div class="territory-list-label">Front de mer nocturne</div>
-            <div class="territory-list-desc">Après minuit, la plage appartient aux Locos. Zone de transit pour marchandises et rendez-vous discrets.</div>
-          </div>
-        </li>
-        <li>
-          <span class="territory-list-icon">⛽</span>
-          <div>
-            <div class="territory-list-label">Station-service & parking du bord de mer</div>
-            <div class="territory-list-desc">Point de rencontre officieux, zone tampon entre Vespucci et les quartiers adjacents. Surveillance permanente.</div>
-          </div>
-        </li>
-        <li>
-          <span class="territory-list-icon">🏖️</span>
-          <div>
-            <div class="territory-list-label">Zones de loisirs & terrains vagues</div>
-            <div class="territory-list-desc">Espaces à faible présence policière utilisés pour les réunions de la clique et le stockage ponctuel.</div>
-          </div>
-        </li>
-      </ul>
-    </div>
-
-    <div>
-      <div class="territory-map-placeholder">
-        <div class="map-grid"></div>
-        <div class="map-pin pin-1"></div>
-        <div class="map-pin pin-2" style="animation-delay:0.7s"></div>
-        <div class="map-pin pin-3" style="animation-delay:1.4s"></div>
-        <div class="map-label">
-          <div style="font-size:1.5rem; margin-bottom:0.5rem; color: rgba(201,168,76,0.3);">🌴</div>
-          VESPUCCI BEACH<br>
-          <span style="color: rgba(201,168,76,0.2); font-size:0.6rem; letter-spacing:0.3em;">LOS SANTOS — PTL TERRITORY</span>
+<section class="s" id="territoire">
+  <div class="inner">
+    <div class="kicker">Zones de Contrôle</div>
+    <h2 class="stitle">Territoire PTL</h2>
+    <div class="terr-grid rv">
+      <div class="map-card">
+        <div class="map-g"></div>
+        <div class="mp mp1"></div>
+        <div class="mp mp2"></div>
+        <div class="mp mp3"></div>
+        <div class="map-c">
+          <div class="map-glyph">PTL</div>
+          <div class="map-sub">Vespucci Beach<br><span style="opacity:.4;font-size:.5rem">LOS SANTOS — P13 TERRITORY</span></div>
         </div>
       </div>
-      <p style="font-family:'Barlow Condensed',sans-serif; font-size:0.8rem; color:var(--text-muted); margin-top:1rem; font-style:italic; text-align:center;">
-        Carte symbolique — les zones d'influence réelles s'étendent et évoluent selon les alliances en cours.
-      </p>
+      <ul class="terr-list">
+        <li class="terr-item"><span class="terr-num">01</span><div><div class="terr-t">Boardwalk</div><div class="terr-d">La promenade — spots discrets entre touristes et locaux.</div></div></li>
+        <li class="terr-item"><span class="terr-num">02</span><div><div class="terr-t">East Side Résidentiel</div><div class="terr-d">Les rues intérieures. Les familles qui y vivent connaissent les PTL.</div></div></li>
+        <li class="terr-item"><span class="terr-num">03</span><div><div class="terr-t">Front de Mer — Nuit</div><div class="terr-d">Après minuit, la plage appartient aux Locos.</div></div></li>
+        <li class="terr-item"><span class="terr-num">04</span><div><div class="terr-t">Station & Parking</div><div class="terr-d">Zone tampon entre Vespucci et les quartiers voisins.</div></div></li>
+        <li class="terr-item"><span class="terr-num">05</span><div><div class="terr-t">Terrains Vagues</div><div class="terr-d">Faible présence policière — réunions et stockage discret.</div></div></li>
+      </ul>
     </div>
   </div>
 </section>
-</div>
-
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-emblem">PTL</div>
-  <p class="footer-motto">Palm Tree Locos — Playeros 13 — P13 — La Playa es Nuestra</p>
-  <div class="footer-tags">
-    <span class="footer-tag">Playa</span>
-    <span class="footer-tag">·</span>
-    <span class="footer-tag">Familia</span>
-    <span class="footer-tag">·</span>
-    <span class="footer-tag">Respeto</span>
+  <span class="f-logo">PTL</span>
+  <p class="f-tag">Palm Tree Locos — Playeros 13 — La Playa es Nuestra</p>
+  <div class="f-row">
+    <span class="f-i">Playa</span><span class="f-i">·</span>
+    <span class="f-i">Familia</span><span class="f-i">·</span>
+    <span class="f-i">Respeto</span>
   </div>
-  <p class="footer-legal">Dossier GTA RP — Flashback — Personnage fictif dans un contexte de roleplay. Toutes les informations sont inventées pour usage RP.</p>
+  <p class="f-legal">Dossier GTA RP — Flashback — Personnage fictif dans un contexte de roleplay. Toutes les informations sont inventées pour usage RP exclusivement.</p>
 </footer>
 
-
 <script>
-  // Tab switching
-  function switchTab(id) {
-    document.querySelectorAll('.obj-tab').forEach(t => t.classList.remove('active'));
-    document.querySelectorAll('.obj-panel').forEach(p => p.classList.remove('active'));
-    document.getElementById('tab-' + id).classList.add('active');
-    event.currentTarget.classList.add('active');
+/* CURSOR */
+const C=document.getElementById('c'),R=document.getElementById('cr');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;C.style.left=mx+'px';C.style.top=my+'px'});
+(function loop(){rx+=(mx-rx)*.11;ry+=(my-ry)*.11;R.style.left=rx+'px';R.style.top=ry+'px';requestAnimationFrame(loop)})();
+document.querySelectorAll('a,button,.bc,.org-c,.id-c,.chip,.terr-item,.val').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{C.style.width='12px';C.style.height='12px';R.style.width='44px';R.style.height='44px'});
+  el.addEventListener('mouseleave',()=>{C.style.width='6px';C.style.height='6px';R.style.width='28px';R.style.height='28px'});
+});
+
+/* OBJECTIFS TABS */
+function ot(btn,id){
+  document.querySelectorAll('.obj-navbtn').forEach(b=>b.classList.remove('on'));
+  document.querySelectorAll('.obj-panel').forEach(p=>p.classList.remove('on'));
+  btn.classList.add('on');
+  document.getElementById(id).classList.add('on');
+}
+
+/* SCROLL REVEAL */
+const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('in')}),{threshold:.08,rootMargin:'0px 0px -30px 0px'});
+document.querySelectorAll('.rv,.tl-item').forEach(el=>io.observe(el));
+
+/* TIMELINE STAGGER */
+let tldone=false;
+const tlio=new IntersectionObserver(e=>{
+  if(!tldone&&e[0].isIntersecting){
+    tldone=true;
+    document.querySelectorAll('.tl-item').forEach((el,i)=>setTimeout(()=>el.classList.add('in'),i*130));
   }
-
-  // Scroll reveal
-  const reveals = document.querySelectorAll('.reveal, .timeline-item');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-
-  reveals.forEach(el => observer.observe(el));
-
-  // Staggered timeline
-  const timelineItems = document.querySelectorAll('.timeline-item');
-  const timelineObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
-      if (entry.isIntersecting) {
-        setTimeout(() => {
-          entry.target.classList.add('visible');
-        }, 150 * Array.from(timelineItems).indexOf(entry.target));
-      }
-    });
-  }, { threshold: 0.1 });
-
-  timelineItems.forEach(el => timelineObserver.observe(el));
+},{threshold:.05});
+const ft=document.querySelector('.tl-item');
+if(ft)tlio.observe(ft);
 </script>
-
 </body>
 </html>
