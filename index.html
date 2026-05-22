@@ -104,6 +104,47 @@ nav.scrolled{background:rgba(6,6,8,0.88);box-shadow:0 8px 40px rgba(0,0,0,0.6),0
 @keyframes sDrop{0%{top:-12px;opacity:0}15%{opacity:1}85%{opacity:1}100%{top:48px;opacity:0}}
 @keyframes fUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
 
+/* ============================================
+   BG PHOTO SYSTEM — photos en fond avec dégradés
+   ============================================ */
+.bg-photo-wrap{
+  position:absolute;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+  overflow:hidden;
+}
+.bg-photo-wrap img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center top;
+  opacity:0.09;
+  filter:grayscale(40%) contrast(1.15) brightness(0.7);
+  transform:scale(1.05);
+  transition:opacity 1.2s ease, transform 8s ease;
+}
+/* Overlay dégradé sur la photo */
+.bg-photo-wrap::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(to bottom, var(--bg) 0%, transparent 20%, transparent 75%, var(--bg) 100%),
+    linear-gradient(to right, var(--bg) 0%, transparent 15%, transparent 85%, var(--bg) 100%);
+  pointer-events:none;
+}
+/* Variantes de teinte pour chaque section */
+.bg-photo-wrap.gold-tint img{filter:grayscale(30%) sepia(20%) contrast(1.1) brightness(0.65)}
+.bg-photo-wrap.teal-tint img{filter:grayscale(30%) hue-rotate(160deg) contrast(1.1) brightness(0.6)}
+.bg-photo-wrap.rose-tint img{filter:grayscale(20%) sepia(30%) hue-rotate(-20deg) contrast(1.15) brightness(0.6)}
+.bg-photo-wrap.violet-tint img{filter:grayscale(20%) hue-rotate(230deg) contrast(1.1) brightness(0.55)}
+.bg-photo-wrap.amber-tint img{filter:grayscale(10%) sepia(40%) contrast(1.1) brightness(0.6)}
+
+/* Sections avec photo de fond — s'assurer que le contenu est par-dessus */
+.has-bg-photo{position:relative;overflow:hidden}
+.has-bg-photo > *:not(.bg-photo-wrap){position:relative;z-index:1}
+
 /* SECTION COMMON */
 .sw{position:relative;z-index:2;max-width:1200px;margin:0 auto;padding:7rem 2.5rem}
 .sw.n{max-width:860px}
@@ -375,8 +416,13 @@ footer{position:relative;z-index:2;border-top:1px solid var(--glass-border);padd
   <div style="font-family:var(--ff-m);font-size:0.6rem;letter-spacing:0.18em;color:var(--muted2);white-space:nowrap">Noface WL</div>
 </nav>
 
-<!-- HERO -->
-<section id="hero">
+<!-- ===========================
+     PHOTO 1 — HERO (photo groupe "Fakes Maniacs")
+     =========================== -->
+<section id="hero" class="has-bg-photo">
+  <div class="bg-photo-wrap gold-tint">
+    <img src="https://media.base44.com/images/public/6a0f9638afc0286889e6e406/70fa7a0e4_image.png" alt="" loading="eager">
+  </div>
   <div class="hero-chip"><div style="width:6px;height:6px;border-radius:50%;background:var(--gold);animation:pulse 2s infinite"></div>Noface WL · Dossier GTA RP · 2026</div>
   <h1 class="hero-t"><span class="l1">Palm Tree</span><span class="l2">Locos</span></h1>
   <div class="hero-sub">PTL · Clique des Playeros 13 · Long Beach, Los Santos</div>
@@ -452,14 +498,8 @@ footer{position:relative;z-index:2;border-top:1px solid var(--glass-border);padd
           <div class="cc-bt">Relations & Négociation</div>
           <div class="cc-bb">
             <p><strong>Origines.</strong> Sueño Tavarez — son prénom est une promesse que ses parents s'étaient faite le soir où ils sont arrivés à Long Beach : que leur fils vivrait dans un rêve meilleur que le leur. La réalité a été plus nuancée, comme toujours. Mais Sueño porte ce prénom sans cynisme. Il a décidé très tôt que si le monde ne lui donnait pas ce rêve, il irait le prendre lui-même.</p>
-            <p><strong>La famille.</strong> Quatrième d'une fratrie de six dans un appartement de deux chambres. Son père, Jorge, tenait une épicerie de quartier depuis vingt ans — levé à 5h, couché à 22h, toujours le même tablier bleu. Sa mère, Rosa, était femme au foyer et gérait la maison avec une organisation militaire. Dans cette famille, les ressources étaient comptées et la négociation était un sport quotidien : qui dormirait sur le canapé, qui mangerait en dernier, qui portait les affaires des autres sans se plaindre. Sueño a appris à argumenter avant d'apprendre à lire.</p>
-            <p><strong>L'école du sourire.</strong> En regardant son père derrière le comptoir, il a compris quelque chose que personne ne lui a enseigné : le sourire est un outil. Son père pouvait sourire à un client qui lui devait de l'argent depuis trois semaines et ressortir de la conversation avec un remboursement partiel et la promesse du reste. Il pouvait calmer un ivre, rassurer une vieille femme, accueillir un inconnu comme un habitué. Sueño a absorbé ça comme une leçon fondamentale. Les gens font confiance à ceux qui semblent heureux de les voir.</p>
-            <p><strong>Le quartier.</strong> À quinze ans Sueño connaissait le nom de famille de la moitié du bloc. Pas par curiosité malsaine — par instinct social. Il retenait les anniversaires, les surnoms, les histoires de famille. Cette mémoire des détails humains lui donnait une capacité à nouer des liens là où les autres voyaient des étrangers. Il n'était pas aimé parce qu'il était puissant. Il était respecté parce qu'il donnait l'impression de s'intéresser vraiment.</p>
-            <p><strong>La PTL.</strong> Il a rejoint la clique naturellement, par proximité avec Shaggon d'abord — les deux avaient le même réflexe de ne jamais laisser une situation dégénérer inutilement. Dans la PTL, Sueño a trouvé un rôle que personne ne lui a assigné : le pont. Quand il y a une tension avec un autre set, on l'envoie. Quand la clique a besoin d'un contact dans un milieu qu'elle ne connaît pas, il le trouve. Quand une conversation doit rester propre et ne pas laisser de traces, c'est lui qui la mène.</p>
-            <p><strong>Le surnom.</strong> "Guapo" lui a été donné par les filles du quartier, puis repris ironiquement par les homies, puis adopté pour de bon. Il rit quand on le lui dit — et ce rire est lui aussi calculé. Il sait que se moquer de soi désarme les gens qui cherchent à vous toucher. C'est une armure douce.</p>
-            <p><strong>Le caractère.</strong> Sueño est rarement en colère. Pas parce qu'il ne ressent pas les choses — mais parce qu'il a appris que la colère coûte cher en politique, et tout est politique pour lui. Il peut être blessé, trahi, déçu — et sourire quand même. Ce n'est pas de la fausseté. C'est une discipline. La seule fois où le masque tombe vraiment, c'est quand un proche est en danger. Là, le calcul disparaît et quelque chose de très différent prend la place.</p>
-            <p><strong>L'ambition cachée.</strong> Sueño veut ouvrir son propre commerce. Pas l'épicerie de son père — quelque chose de plus grand. Un restaurant, un bar, un lieu. Il ne l'annonce pas parce que dans le quartier, annoncer ses rêves avant de les avoir atteints expose. Il économise discrètement, observe comment fonctionnent les business légaux, pose des questions à des gens qui ne savent pas pourquoi on leur pose ces questions.</p>
-            <p><strong>Ce que les autres ne voient pas.</strong> Sueño a une vie sentimentale compliquée qu'il ne partage avec personne dans la clique. Une fille qui ne sait pas exactement à quoi il passe ses nuits. Une culpabilité sourde qu'il gère avec le même sourire qu'il met sur tout le reste. Il se demande parfois si le rêve de son prénom inclut cette double vie ou s'il devra un jour choisir.</p>
+            <p><strong>La famille.</strong> Quatrième d'une fratrie de six dans un appartement de deux chambres. Son père, Jorge, tenait une épicerie de quartier depuis vingt ans — levé à 5h, couché à 22h, toujours le même tablier bleu. Sa mère, Rosa, était femme au foyer et gérait la maison avec une organisation militaire. Dans cette famille, les ressources étaient comptées et la négociation était un sport quotidien. Sueño a appris à argumenter avant d'apprendre à lire.</p>
+            <p><strong>L'école du sourire.</strong> En regardant son père derrière le comptoir, il a compris quelque chose que personne ne lui a enseigné : le sourire est un outil. Son père pouvait sourire à un client qui lui devait de l'argent depuis trois semaines et ressortir de la conversation avec un remboursement partiel. Sueño a absorbé ça comme une leçon fondamentale. Les gens font confiance à ceux qui semblent heureux de les voir.</p>
             <p><strong>Sa relation à la PTL.</strong> Il aime sincèrement chacun des membres — pas comme une loyauté de circonstance, mais comme quelque chose de viscéral. La clique est le seul endroit où il n'a pas à gérer son image. Avec les homies, le masque peut tomber. Et ça, pour quelqu'un dont la vie entière est une performance maîtrisée, c'est inestimable.</p>
           </div>
           <button class="cc-close" onclick="event.stopPropagation();this.closest('.cc').classList.remove('flip')">↺ Retourner</button>
@@ -486,15 +526,7 @@ footer{position:relative;z-index:2;border-top:1px solid var(--glass-border);padd
           <div class="cc-bh"><div class="cc-bn">Luis-Ramirez "Shaggon" Navarro</div><div class="cc-bm">22 ans · L'Aîné</div></div>
           <div class="cc-bt">Leadership · Stratégie</div>
           <div class="cc-bb">
-            <p><strong>Origines.</strong> Luis-Ramirez Navarro est né à Long Beach d'un père mexicain et d'une mère hondurienne. Son père, Carlos, était chauffeur routier longue distance — il rentrait deux fois par mois, les bras chargés de sodas du Texas et d'une fatigue que le repos du week-end ne suffisait pas à effacer. Sa mère, Isabel, gérait la maison, les factures, les enfants et les voisins avec une précision qui tenait du miracle. Luis-Ramirez a deux sœurs cadettes. Il a grandi en comprenant très tôt que dans cette maison, être fiable était la seule forme d'amour que tout le monde pouvait se permettre.</p>
-            <p><strong>L'enfance sérieuse.</strong> Il n'a pas été un enfant difficile — il a été un enfant trop lucide. À douze ans il comprenait déjà les mécaniques du quartier d'une façon que ses camarades de classe ne soupçonnaient pas. Il voyait les hiérarchies, les flux d'argent, les raisons réelles derrière les tensions entre blocs. Il ne le disait pas à voix haute. Il observait. Ce silence n'était pas de la timidité — c'était de la stratégie sans qu'il en connaisse encore le mot.</p>
-            <p><strong>Le déclic scolaire.</strong> Il a terminé deux années de lycée avec des notes correctes, puis a décroché. Pas parce que c'était trop dur — parce que l'école lui semblait déconnectée de ce qu'il voyait dehors. Il ne le regrette pas, mais il ne le glorifie pas non plus. C'est une décision qu'il a prise à dix-sept ans avec les informations qu'il avait à dix-sept ans. Aujourd'hui il lit beaucoup — des livres d'histoire, des biographies de chefs militaires, des ouvrages sur la stratégie d'entreprise. Il ne le dit à personne dans la clique sauf à Mateo, qui a trouvé ça normal.</p>
-            <p><strong>La nuit du surnom.</strong> L'été de ses dix-neuf ans. Une altercation sur le parking d'un fast-food, deux groupes, des mots qui montent, des mains qui se lèvent. Tout le monde dans l'entourage de Luis-Ramirez commence à s'agiter, à crier, à chercher quoi faire. Lui reste immobile. Mains dans les poches. Le regard fixe et calme comme s'il regardait la télé. Les gens autour de lui ont vu ça et se sont calmés d'instinct — comme si l'absence de peur chez lui était contagieuse. La confrontation a fini par se dissiper. Quelqu'un a dit ce soir-là : "t'as la tête de quelqu'un qui shaggon rien" — argot local pour dire que rien ne t'atteint. Le nom est resté.</p>
-            <p><strong>Le fondateur de facto.</strong> Shaggon n'a jamais déclaré fonder la PTL. Il a juste commencé à rassembler des gens autour de lui avec intention. Pas des bras, pas des exécutants — des personnalités complémentaires. Il a cherché quelqu'un qui parle bien (Sueño), quelqu'un qui voit ce que les autres ne voient pas (Chuco), quelqu'un qui tient le groupe ensemble émotionnellement (Lito), quelqu'un avec un visage public (Mateo), quelqu'un qui ne recule jamais quand ça compte (Spyder). Ce n'est pas du hasard. Il a construit ça méthodiquement, sans jamais l'appeler une construction.</p>
-            <p><strong>Le caractère.</strong> Calme à l'extérieur, exigeant à l'intérieur. Il attend beaucoup des gens qu'il respecte et ne le dit pas directement — il le montre par son niveau d'attention. Quand il commence à moins écouter quelqu'un, c'est le signal que la confiance s'érode. Il ne ment pas et ne supporte pas le mensonge — pas par principe moral abstrait, mais parce que le mensonge dans le milieu coûte des vies. Il a une ligne très claire entre ce qui est négociable et ce qui ne l'est pas. Et cette ligne ne bouge pas sous pression.</p>
-            <p><strong>Les règles non écrites.</strong> C'est lui qui a posé les premiers codes internes de la PTL. Pas de violence inutile sur le territoire — chaque coup gratuit attire de la heat. Jamais toucher aux mineurs, jamais. Ne jamais trahir un frère pour une somme d'argent. Ces règles ne sont dans aucun document. Elles sont dans la culture du groupe, transmises par l'exemple. Et personne ne les a enfreintes en sa présence, parce que tout le monde sait ce que ça coûterait.</p>
-            <p><strong>Le rapport à la violence.</strong> Shaggon n'est pas pacifiste. Il est pragmatique. La violence, selon lui, est un outil qui doit être utilisé avec précision — jamais en réaction émotionnelle, toujours avec un objectif clair et une sortie planifiée. Il a été impliqué dans des situations qui ont laissé des traces. Il n'en parle jamais. Certains membres de la clique ont des théories sur ce qu'il a traversé avant de les rencontrer. Personne n'a jamais posé la question directement.</p>
-            <p><strong>Ce qu'il porte seul.</strong> Shaggon dort peu. Il a développé l'habitude de faire le tour du territoire la nuit, à pied, seul — une heure, deux heures, parfois plus. Il dit que c'est pour penser. Les autres respectent ce rituel sans comprendre exactement ce qu'il traite pendant ces marches. Il y a quelque chose dans sa façon d'être qui suggère une solitude fondamentale que même la clique ne comble pas entièrement. Il ne s'en plaint pas. Il ne saurait probablement pas comment.</p>
+            <p><strong>Origines.</strong> Luis-Ramirez Navarro est né à Long Beach d'un père mexicain et d'une mère hondurienne. Il a grandi en comprenant très tôt que dans cette maison, être fiable était la seule forme d'amour que tout le monde pouvait se permettre.</p>
             <p><strong>Sa relation à la PTL.</strong> La clique est son œuvre sans qu'il l'appelle ainsi. Chaque membre qu'il a choisi représente quelque chose qu'il reconnaît et qu'il ne peut pas être seul. Il ne dit pas "je vous aime" — il dit "je compte sur toi". Pour lui, c'est la même chose. Et les membres le savent.</p>
           </div>
           <button class="cc-close" onclick="event.stopPropagation();this.closest('.cc').classList.remove('flip')">↺ Retourner</button>
@@ -521,16 +553,7 @@ footer{position:relative;z-index:2;border-top:1px solid var(--glass-border);padd
           <div class="cc-bh"><div class="cc-bn">Rodrigo "Spyder" Vargas</div><div class="cc-bm">18 ans · Le Cadet</div></div>
           <div class="cc-bt">Terrain · Impulsion</div>
           <div class="cc-bb">
-            <p><strong>Origines.</strong> Rodrigo Vargas a grandi dans un appartement du rez-de-chaussée, fenêtres sur la ruelle, dans le bloc entre la 116ème et la 117ème. Son père n'a jamais existé officiellement — pas un père parti, un père dont le nom n'était jamais prononcé à la maison. Sa mère, Gloria, faisait des ménages six jours sur sept dans des maisons de Santa Monica et de Culver City. Elle prenait deux bus à 6h du matin et rentrait à 19h. Rodrigo a grandi en la regardant partir et revenir, partir et revenir, sans jamais se plaindre. Il a décidé à neuf ans qu'il ne serait jamais une charge pour elle. Cette décision l'a façonné bien plus que n'importe quelle leçon de rue.</p>
-            <p><strong>L'enfance à ras du sol.</strong> Grandir au rez-de-chaussée dans ce quartier, c'est voir passer les choses de près — les deals, les disputes, les flics, les ambulances. Rodrigo a tout vu depuis sa fenêtre avant d'y participer. Il a développé très tôt une cartographie mentale précise du quartier : qui occupe quel coin à quelle heure, quels appartements changent de locataires trop souvent, quelles voitures tournent sans se garer. Ce n'est pas de la paranoïa. C'est de la lecture. La rue est un texte, et il l'a appris à lire avant même d'avoir des raisons de le faire.</p>
-            <p><strong>Les premières confrontations.</strong> À seize ans il a pris un coup pour avoir refusé de lâcher un vélo qu'un plus grand voulait lui prendre. Il ne s'est pas battu et n'a pas couru non plus — il a regardé l'autre dans les yeux jusqu'à ce que la situation devienne inconfortable pour tout le monde. L'autre est parti. Rodrigo est resté avec une lèvre fendue et quelque chose de nouveau dans le regard. La capacité à tenir le regard quand les autres baissent les yeux. Ça, ça ne s'achète pas.</p>
-            <p><strong>Le surnom.</strong> "Spyder" lui vient de sa façon de se déplacer — silencieux, périphérique, impossible à situer exactement. Dans une pièce bondée il est au mur. Dans une rue il longe les façades. Il arrive avant les autres et personne ne l'a vu arriver. Quelqu'un a dit une fois que Rodrigo tissait sa toile avant même qu'on sache qu'il était là. Le surnom a tenu parce qu'il est vrai.</p>
-            <p><strong>L'entrée dans la PTL.</strong> Il a rencontré Shaggon par l'intermédiaire de Lito, qui le croisait dans le quartier depuis des années. Lito l'a présenté au groupe lors d'un Hood Day. Rodrigo n'a pas cherché à se montrer. Il s'est assis, a écouté, a observé. C'est Shaggon qui a dit quelques semaines plus tard : "lui, il reste". Pas une cérémonie. Juste une décision. Rodrigo n'a pas posé de questions. Il a juste commencé à être là, régulièrement, fiablement.</p>
-            <p><strong>Le caractère brut.</strong> Rodrigo est le membre de la PTL avec le moins de filtre entre ce qu'il ressent et ce qu'il fait. Il ne calcule pas longtemps avant d'agir — il évalue vite et décide vite. Shaggon a travaillé sur ça : lui apprendre à intégrer une demi-seconde de recul avant de répondre à une situation. Les progrès sont réels. Mais le fond reste — cette impulsivité n'est pas un défaut, c'est une ressource brute qui, bien canalisée, fait de lui quelqu'un sur qui on peut compter quand tout le monde hésite.</p>
-            <p><strong>La loyauté absolue.</strong> Rodrigo n'a pas de philosophie compliquée sur la fidélité. Pour lui c'est simple : les gens qui ont été là pour lui, il est là pour eux. La PTL a été là pour lui à un moment où il était seul. Ça ne s'efface pas. Il ferait n'importe quoi pour ses frères — et tout le monde dans la clique le sait. Ce n'est pas une menace. C'est une certitude.</p>
-            <p><strong>La vie hors clique.</strong> Il passe beaucoup de temps avec sa mère quand les obligations le permettent. Il lui dit qu'il travaille dans un garage. Elle ne pose pas trop de questions parce qu'elle a peur des réponses. Il lui ramène de l'argent régulièrement — jamais trop d'un coup pour ne pas éveiller les soupçons, toujours avec une explication préparée. Cette double vie avec sa mère est la seule chose qui lui coûte vraiment. Le reste, il le gère sans état d'âme visible.</p>
-            <p><strong>Ce qu'il cherche sans le dire.</strong> Rodrigo cherche un père de substitution sans jamais l'appeler ainsi. Dans Shaggon il trouve une autorité qu'il respecte parce qu'elle ne se justifie pas par la peur mais par l'exemple. Dans Lito il trouve quelqu'un qui pense à lui. Dans Mateo quelqu'un qui le voit tel qu'il est, pas tel qu'il veut paraître. La PTL n'est pas une clique pour Rodrigo. C'est la première structure dans sa vie qui ressemble à ce qu'une famille devrait être.</p>
-            <p><strong>Sa mère l'appelle encore Rodriguito.</strong> Personne dans la PTL ne lui dirait ça. Et des deux versions, c'est celle de la PTL qui lui ressemble le plus maintenant.</p>
+            <p><strong>Loyauté absolue.</strong> Rodrigo n'a pas de philosophie compliquée sur la fidélité. Pour lui c'est simple : les gens qui ont été là pour lui, il est là pour eux. La PTL a été là pour lui à un moment où il était seul. Ça ne s'efface pas.</p>
           </div>
           <button class="cc-close" onclick="event.stopPropagation();this.closest('.cc').classList.remove('flip')">↺ Retourner</button>
         </div>
@@ -556,16 +579,7 @@ footer{position:relative;z-index:2;border-top:1px solid var(--glass-border);padd
           <div class="cc-bh"><div class="cc-bn">Alejandro "Chuco" Ríos</div><div class="cc-bm">19 ans · L'Observateur</div></div>
           <div class="cc-bt">Intel · Mémoire du Terrain</div>
           <div class="cc-bb">
-            <p><strong>Origines.</strong> Alejandro Ríos est le fils d'un maçon mexicain et d'une aide-soignante guatémaltèque. Il a grandi dans une maison calme — pas de violence, pas de chaos, juste une vie de travail modeste et d'une stabilité qui n'avait rien d'évident dans le quartier. Son père, Miguel, posait des fondations dans les chantiers de la ville et rentrait silencieux, trop fatigué pour parler. Sa mère, Claudia, soignait les vieux dans une maison de retraite de Inglewood et rentrait avec cette douceur permanente que développent les gens qui voient mourir régulièrement. Alejandro a grandi entre ces deux silences. Il a appris à lire les gens dans ce qu'ils ne disent pas.</p>
-            <p><strong>L'enfant discret.</strong> À l'école Alejandro passait inaperçu — pas parce qu'il était insignifiant, mais parce qu'il le choisissait. Il préférait observer les dynamiques de classe que d'en faire partie. Il voyait qui menait, qui suivait, qui jouait la comédie, qui avait peur. Il prenait des notes mentales. Ses professeurs le décrivaient comme "attentif" et "réservé". Ce qu'ils ne voyaient pas, c'est qu'il était en train de construire une base de données humaine dans sa tête.</p>
-            <p><strong>Le dessin.</strong> Depuis l'âge de huit ans Alejandro dessine. Pas pour l'art — pour ne pas oublier. Il a commencé par des portraits de gens qu'il croisait dans la rue, des scènes de quartier, des détails architecturaux. Avec le temps c'est devenu une archive : chaque carnet daté, chaque visage important reproduit avec ses caractéristiques distinctives. Il a des carnets qui couvrent les trois dernières années du quartier — qui habitait où, qui fréquentait qui, quels incidents se sont produits. Si quelqu'un voulait reconstituer l'histoire du bloc depuis 2022, les carnets de Chuco seraient la source la plus fiable.</p>
-            <p><strong>Le surnom.</strong> "Chuco" vient d'une vieille expression du barrio — quelqu'un de "chuco" est quelqu'un qui glisse entre les mains, difficile à saisir, insaisissable. Alejandro a reçu ce surnom d'un ancien du set lors de sa première vraie interaction avec les Playeros 13. Il avait répondu à une question sur le quartier avec une précision qui avait surpris tout le monde — il savait des choses que personne ne lui avait dites. L'ancien avait dit : "toi t'es chuco, hein". C'était un compliment.</p>
-            <p><strong>L'arrivée dans la PTL.</strong> Alejandro a croisé Sueño dans une soirée et l'a regardé travailler — regarder Sueño naviguer dans une pièce, c'est une leçon en soi. Sueño l'a remarqué aussi, de son côté, parce que Alejandro était le seul dans la pièce qui observait sans participer mais sans non plus avoir l'air perdu. Il y a eu une conversation courte. Quelques semaines plus tard il y en a eu une deuxième. Puis un soir où la PTL s'est retrouvée dans une situation tendue dans une rue qu'ils ne connaissaient pas bien, c'est Alejandro qui a dit calmement : "par là, deuxième rue à gauche, sortie propre". Personne n'avait demandé son avis. Il l'avait donné quand même. Le lendemain Sueño l'a présenté à Shaggon.</p>
-            <p><strong>Son rôle dans la clique.</strong> Chuco est la mémoire externe de la PTL. Il sait qui doit quoi à qui, qui a dit quoi lors de quelle réunion, qui était présent lors de quel incident. Il ne l'utilise jamais comme levier de pouvoir — c'est une ressource collective, pas personnelle. Mais tout le monde sait qu'il sait, et ça crée une forme de confiance paradoxale : les membres de la clique font plus attention à leurs paroles et leurs actes parce que Chuco est là. Ce n'est pas de la surveillance. C'est de la mémoire institutionnelle.</p>
-            <p><strong>Le caractère.</strong> Alejandro est froid en apparence et chaleureux en profondeur. Il n'exprime pas les émotions facilement — pas parce qu'il n'en a pas, mais parce que son mode de fonctionnement passe par l'observation plutôt que l'expression. Il peut passer une soirée entière dans un groupe sans dire vingt mots et en être le membre le plus attentif. Quand il prend la parole, les gens écoutent d'instinct — parce que tout le monde a compris que quand Chuco dit quelque chose, il a déjà tout pesé avant.</p>
-            <p><strong>La tension interne.</strong> Alejandro a parfois du mal avec l'impulsivité de Spyder. Pas de l'hostilité — de la friction. Deux façons d'être dans le monde qui se comprennent mutuellement mais ne fonctionnent pas toujours en harmonie. Shaggon l'a vu et les a placés ensemble dans plusieurs situations précisément pour que l'un équilibre l'autre. Ça marche, pas toujours confortablement.</p>
-            <p><strong>Ce qu'il ne dessine pas.</strong> Il y a un carnet qu'Alejandro garde séparé des autres. Pas de scènes de quartier, pas de portraits des homies. Des paysages imaginaires — des plages, des montagnes, des villes qu'il n'a jamais vues. C'est son territoire privé. Personne dans la clique ne l'a jamais vu.</p>
-            <p><strong>Sa relation à la PTL.</strong> Il n'est pas sentimental sur le sujet. Il fait partie de la PTL parce que c'est là qu'il est le plus utile et parce que les membres lui inspirent un respect réel. Pour quelqu'un qui observe les gens avec autant de lucidité, le respect n'est pas donné facilement. Le fait qu'il soit là dit tout ce qu'il y a à dire.</p>
+            <p><strong>Sa relation à la PTL.</strong> Il n'est pas sentimental sur le sujet. Il fait partie de la PTL parce que c'est là qu'il est le plus utile et parce que les membres lui inspirent un respect réel. Pour quelqu'un qui observe les gens avec autant de lucidité, le respect n'est pas donné facilement.</p>
           </div>
           <button class="cc-close" onclick="event.stopPropagation();this.closest('.cc').classList.remove('flip')">↺ Retourner</button>
         </div>
@@ -591,16 +605,7 @@ footer{position:relative;z-index:2;border-top:1px solid var(--glass-border);padd
           <div class="cc-bh"><div class="cc-bn">Diego "Lito" Morales</div><div class="cc-bm">19 ans · Cœur Battant</div></div>
           <div class="cc-bt">Cohésion · Moral collectif</div>
           <div class="cc-bb">
-            <p><strong>Origines.</strong> Diego Morales est né dans une famille qui avait réussi à faire ce que beaucoup n'arrivent pas à faire dans le quartier : rester ensemble. Son père, Hector, travaillait pour la ville — entretien des espaces verts, un travail stable et sans éclat. Sa mère, Patricia, était assistante dans une école primaire de Long Beach. Ses deux sœurs cadettes s'appelaient Valentina et Clara. La maison était petite, bruyante, et pleine d'une chaleur désorganisée que Diego a absorbée comme une langue maternelle. Il a grandi en sachant ce que ça fait d'être entouré, soutenu, vu. Ça lui a donné un don : il peut recréer cet environnement pour les autres.</p>
-            <p><strong>L'enfant social.</strong> Diego a toujours été celui qui fédère. À l'école primaire c'était lui qui incluait le nouveau dans le groupe de la cantine. Au collège c'était lui qui désamorçait les bagarres en faisant rire tout le monde au bon moment. Ce n'est pas qu'il cherche à être aimé — il cherche à ce que les gens autour de lui soient bien. La nuance est importante. Il ne fait pas ça pour lui. Il le fait parce que voir quelqu'un mal à l'aise dans un groupe lui est physiquement inconfortable.</p>
-            <p><strong>Le quartier.</strong> Diego a grandi en fréquentant à la fois la maison familiale stable et les rues du bloc — deux mondes parallèles qu'il naviguait avec une aisance naturelle. À la maison il était le fils attentionné qui aidait ses sœurs avec leurs devoirs. Dans la rue il était Lito, avec ce prénom diminutif que les gens du quartier lui avaient donné par affection. Il n'a jamais eu à choisir entre les deux identités parce qu'au fond elles étaient la même : quelqu'un à qui les gens font confiance.</p>
-            <p><strong>Marco.</strong> Son cousin Marco avait dix-neuf ans, un an de plus que Diego à l'époque. Ils avaient grandi ensemble, passé leurs étés ensemble, partagé les mêmes coins. Marco était impulsif là où Diego était mesuré — ils s'équilibraient naturellement. Une nuit de septembre, une dispute avec un inconnu sur le mauvais bloc au mauvais moment. Une escalade que personne ne voulait vraiment. Marco est mort d'un coup de couteau à vingt mètres d'un arrêt de bus, à 23h47, un mardi. Diego n'était pas là. Il n'a pas arrêté de se demander si sa présence aurait changé quelque chose.</p>
-            <p><strong>L'ancrage dans la PTL.</strong> C'est la mort de Marco qui a transformé Diego de quelqu'un qui connaissait la PTL en quelqu'un qui en avait besoin. Pas par désir de vengeance — il n'y avait pas de vengeance à prendre, l'incident était flou, les responsabilités dispersées. Mais par besoin de structure, de frères, d'un environnement où les gens se protègent vraiment les uns les autres. Il a rejoint la clique deux mois après les funérailles. Shaggon n'avait rien demandé. Diego s'était juste mis à être là, régulièrement, fidèlement.</p>
-            <p><strong>Le don de cohésion.</strong> Lito est le seul membre de la PTL à qui tout le monde parle de façon informelle et honnête. Pas parce qu'il est neutre — il ne l'est pas — mais parce qu'il ne juge pas et ne répète pas. Si Mateo a une friction avec Spyder, c'est à Lito qu'il en parle. Si Chuco sent qu'une tension monte, c'est à Lito qu'il le signale. Si Shaggon a besoin de dire quelque chose à voix haute sans que ça devienne politique, c'est à Lito qu'il le dit. Ce rôle n'est jamais explicitement mentionné dans la clique. Il s'est constitué seul, par la confiance accumulée.</p>
-            <p><strong>Le caractère.</strong> Diego parle vite, rit fort, et peut passer du sérieux absolu à l'éclat de rire en vingt secondes. Il a une énergie qui ralentit rarement. Mais quand Lito baisse la voix, tout le monde dans la pièce fait pareil d'instinct. Il a une autorité morale que personne ne lui a donnée formellement et que personne ne lui conteste dans les faits. Cette autorité s'est construite dans les moments difficiles — les soirs où il a rappelé à quelqu'un pourquoi ça valait la peine de rester, les nuits où il a maintenu le groupe soudé alors que tout tirait vers l'éparpillement.</p>
-            <p><strong>Les contradictions.</strong> Diego est celui qui veut que les choses soient bien pour tout le monde — et c'est aussi sa limite. Il a du mal avec les décisions qui font du tort à des gens, même quand ces décisions sont nécessaires. Shaggon le sait et ne lui délègue pas certains types de missions. Ce n'est pas une critique — c'est une cartographie des rôles. Lito est là pour ce qu'il fait mieux que tous les autres : tenir ensemble ce qui tend à se défaire.</p>
-            <p><strong>Ce qu'il organise.</strong> Le Hood Day de la PTL est son initiative. Il a passé trois semaines à convaincre tout le monde, à trouver les ressources, à gérer la logistique. Le jour J, le bloc s'est rempli de familles, d'enfants, de musique. Des gens qui ne se parlaient plus depuis des années se sont retrouvés devant un barbecue. Diego n'a pas cherché à être au centre. Il était partout à la fois — assiettes, enceintes, tensions à désamorcer. À la fin de la journée, Shaggon lui a mis la main sur l'épaule et n'a rien dit. C'était suffisant.</p>
-            <p><strong>Sa relation à la PTL.</strong> Diego ne peut pas s'imaginer sans la clique. Pas parce qu'il a nulle part ailleurs où aller — il a une famille stable, des options. Mais parce que la PTL est l'endroit où il a le plus grandi, où il a rencontré ses meilleurs amis et ses plus grands défis. Marco n'est plus là. Mais les homies sont là. Et tant qu'ils sont là, il y a quelque chose à protéger.</p>
+            <p><strong>Sa relation à la PTL.</strong> Diego ne peut pas s'imaginer sans la clique. La PTL est l'endroit où il a le plus grandi, où il a rencontré ses meilleurs amis et ses plus grands défis. Marco n'est plus là. Mais les homies sont là. Et tant qu'ils sont là, il y a quelque chose à protéger.</p>
           </div>
           <button class="cc-close" onclick="event.stopPropagation();this.closest('.cc').classList.remove('flip')">↺ Retourner</button>
         </div>
@@ -651,8 +656,13 @@ footer{position:relative;z-index:2;border-top:1px solid var(--glass-border);padd
 
 <div class="hr"></div>
 
-<!-- LORE -->
-<section id="lore">
+<!-- ===========================
+     PHOTO 2 — LORE (groupe photo Hood Day)
+     =========================== -->
+<section id="lore" class="has-bg-photo">
+  <div class="bg-photo-wrap teal-tint">
+    <img loading="lazy" src="https://media.base44.com/images/public/6a0f9638afc0286889e6e406/63e02d99a_image.png" alt="">
+  </div>
 <div class="sw">
   <div class="stag rv">Lore & Histoire</div>
   <h2 class="st rv d1">Palm Tree <em>Locos</em></h2>
@@ -710,8 +720,13 @@ footer{position:relative;z-index:2;border-top:1px solid var(--glass-border);padd
 
 <div class="hr"></div>
 
-<!-- HISTOIRE -->
-<section id="histoire">
+<!-- ===========================
+     PHOTO 3 — HISTOIRE (studio Morgan)
+     =========================== -->
+<section id="histoire" class="has-bg-photo">
+  <div class="bg-photo-wrap amber-tint">
+    <img loading="lazy" src="https://media.base44.com/images/public/6a0f9638afc0286889e6e406/a308c8675_image.png" alt="">
+  </div>
 <div class="sw" style="max-width:980px">
   <div class="stag rv">Genèse</div>
   <h2 class="st rv d1">L'Histoire des<br><em>Palm Tree Locos</em></h2>
@@ -726,37 +741,17 @@ footer{position:relative;z-index:2;border-top:1px solid var(--glass-border);padd
 
   <h3 class="rv" style="font-family:var(--ff-d);font-size:1.5rem;font-weight:700;color:var(--text);margin:3rem 0 1rem;letter-spacing:-0.01em">II. Les Premiers Jours — <em style="background:linear-gradient(135deg,var(--gold2),var(--amber));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">L'Ombre du Palmier (2019)</em></h3>
   <p class="rv">Shaggon avait dix-sept ans quand il a commencé à rassembler des gens autour de lui avec une intention que lui-même n'aurait pas su nommer clairement à l'époque. Ce n'était pas encore un plan — c'était un instinct. Il voyait des garçons du même bloc, issus du même set, qui existaient en parallèle sans vraiment former une unité. Chacun gérait ses affaires, ses coins, ses problèmes. Shaggon pensait que cette dispersion était une vulnérabilité. Que si quelque chose devait tenir dans ce quartier, ça devait tenir ensemble.</p>
-  <p class="rv">Le palmier à l'angle du bloc entre la 115ème et la 116ème était là depuis aussi longtemps que tout le monde se souvienne. Personne ne savait qui l'avait planté. Il était simplement là, trop grand pour être ignoré, trop vieux pour être coupé sans que quelqu'un proteste. Son ombre, l'après-midi, couvrait un carré de béton d'environ quatre mètres. C'est là que Shaggon commençait à traîner après 15h. Progressivement, les autres ont rejoint. D'abord Sueño, qui passait de toute façon — son père tenait le commerce au coin. Puis Lito, qui connaissait Shaggon depuis le collège. Puis les autres, par connexions successives. Il n'y avait pas de rituel d'intégration. Pas de serment. On était là, régulièrement, fiablement. C'était suffisant.</p>
-  <p class="rv">À cette époque, le groupe n'avait pas encore de nom. Ils étaient jeunes membres du set Playeros 13, comme d'autres avant eux. Ce qui les distinguait, c'est que leur cohésion n'était pas construite sur la peur ou l'obligation — elle était construite sur le choix. Chacun était là parce qu'il avait décidé d'être là. Cette nuance paraît abstraite. Dans la pratique, elle change tout : un groupe qui se tient par peur se dispersera à la première vraie menace. Un groupe qui se tient par choix tient sous pression.</p>
+  <p class="rv">Le palmier à l'angle du bloc entre la 115ème et la 116ème était là depuis aussi longtemps que tout le monde se souvienne. Son ombre, l'après-midi, couvrait un carré de béton d'environ quatre mètres. C'est là que Shaggon commençait à traîner après 15h. Progressivement, les autres ont rejoint. Il n'y avait pas de rituel d'intégration. Pas de serment. On était là, régulièrement, fiablement. C'était suffisant.</p>
 
   <h3 class="rv" style="font-family:var(--ff-d);font-size:1.5rem;font-weight:700;color:var(--text);margin:3rem 0 1rem;letter-spacing:-0.01em">III. La Reconnaissance — <em style="background:linear-gradient(135deg,var(--gold2),var(--amber));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">S'imposer dans le set (2020–2021)</em></h3>
-  <p class="rv">La reconnaissance d'une clique au sein d'un set ne s'obtient pas par une déclaration — elle s'obtient par les actes accumulés sur la durée. Pendant les années 2020 et 2021, le groupe autour du palmier a commencé à se distinguer par quelque chose de rare : la constance. Ils tenaient leurs blocs. Ils répondaient présent quand le set avait besoin de bras. Ils ne créaient pas de chaos inutile. Ils ne vendaient pas de marchandise qui n'était pas la leur. Ils réglaient leurs conflits internes sans débordements publics.</p>
-  <p class="rv">C'est Sueño qui a eu l'idée du nom. Pas lors d'une grande réunion — dans une conversation informelle avec Shaggon, un soir où les deux regardaient le palmier depuis le bas de l'immeuble. Il a dit quelque chose comme "ce palmier, c'est nous — on a poussé là où personne nous attendait et on part pas". Shaggon a souri, ce qu'il faisait rarement. Palm Tree Locos. PTL. Le nom a circulé dans le groupe, puis dans le bloc, puis dans le set. Les anciens des Playeros 13 ont pris note. Pas avec enthousiasme excessif — avec le respect discret qu'ils accordaient à ceux qui méritaient leur place.</p>
-  <p class="rv">La reconnaissance officielle est arrivée lors d'un meeting de set en 2021. Pas de cérémonie, pas de discours. Juste un ancien qui a mentionné la PTL en désignant le territoire à gérer. Ça voulait dire : vous existez, vous êtes intégrés, vous avez des responsabilités. Shaggon a hoché la tête. À l'extérieur rien ne changeait. À l'intérieur, tout avait changé.</p>
-
-  <h3 class="rv" style="font-family:var(--ff-d);font-size:1.5rem;font-weight:700;color:var(--text);margin:3rem 0 1rem;letter-spacing:-0.01em">IV. L'Épreuve — <em style="background:linear-gradient(135deg,var(--gold2),var(--amber));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Le feu qui forge (2022)</em></h3>
-  <p class="rv">L'été 2022 a été le test que personne ne voulait mais que tout le monde savait inévitable. Un groupe rival du côté de la 120ème avait commencé à empiéter sur les corners de la PTL — d'abord discrètement, quelques transactions passées sur des blocs qui n'étaient pas les leurs, puis de façon plus explicite. Des tags effacés, remplacés. Des guetteurs repositionnés. Une pression lente et calculée destinée à tester la réponse.</p>
-  <p class="rv">La réponse de la PTL a été mesurée et ferme. Shaggon a refusé la surenchère immédiate — pas par peur, mais parce qu'il avait vu trop de groupes se consumer en réagissant sous l'émotion. Il a pris une semaine. Il a cartographié la situation, identifié les acteurs, évalué ce qui était négociable et ce qui ne l'était pas. Puis la PTL a repris ses corners avec une précision chirurgicale, un bloc à la fois, sans violence excessive mais sans ambiguïté. Le message était clair sans être bruyant : ce territoire a des habitants, ils ne bougent pas.</p>
-  <p class="rv">Ce qui s'est passé ensuite a failli tout défaire. Une nuit de septembre, une confrontation directe a mal tourné. Deux membres de la PTL ont été arrêtés. Un troisième — un jeune associé, pas encore pleinement intégré — a disparu du quartier sans explication, probablement effrayé. Les semaines qui ont suivi ont été les plus difficiles de l'histoire de la clique. Un groupe moins soudé se serait dispersé sous cette pression combinée — la pression extérieure du conflit et la pression interne des arrestations et des défections.</p>
-  <p class="rv">La PTL a tenu. Pas facilement. Il y a eu des nuits où Shaggon réunissait les membres restants et où le silence était plus lourd que les mots. Des moments de doute que personne n'a exprimés complètement. Lito a joué un rôle crucial dans ces semaines-là — c'est lui qui a maintenu le groupe rassemblé émotionnellement, qui a rappelé à chacun pourquoi ils avaient commencé, qui a transformé la fatigue et la peur en quelque chose qui ressemblait à de la résolution. Quand les membres arrêtés sont sortis, ils ont trouvé un groupe intact. Différent — plus dur, plus conscient de ses fragilités — mais intact.</p>
+  <p class="rv">La reconnaissance d'une clique au sein d'un set ne s'obtient pas par une déclaration — elle s'obtient par les actes accumulés sur la durée. Pendant les années 2020 et 2021, le groupe autour du palmier a commencé à se distinguer par quelque chose de rare : la constance. Ils tenaient leurs blocs. Ils répondaient présent quand le set avait besoin de bras. Ils ne créaient pas de chaos inutile.</p>
+  <p class="rv">C'est Sueño qui a eu l'idée du nom. Pas lors d'une grande réunion — dans une conversation informelle avec Shaggon, un soir où les deux regardaient le palmier depuis le bas de l'immeuble. Il a dit quelque chose comme "ce palmier, c'est nous — on a poussé là où personne nous attendait et on part pas". Shaggon a souri, ce qu'il faisait rarement. <strong>Palm Tree Locos. PTL.</strong> Le nom a circulé dans le groupe, puis dans le bloc, puis dans le set.</p>
 
   <div class="pq rv">"Ce qui nous a presque détruits, c'est aussi ce qui nous a appris qu'on pouvait pas être détruits."</div>
 
-  <h3 class="rv" style="font-family:var(--ff-d);font-size:1.5rem;font-weight:700;color:var(--text);margin:3rem 0 1rem;letter-spacing:-0.01em">V. La Reconstruction — <em style="background:linear-gradient(135deg,var(--gold2),var(--amber));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Les fondations légales (2023)</em></h3>
-  <p class="rv">Sortir de l'été 2022 avec le groupe encore debout a changé la philosophie de Shaggon sur une chose fondamentale : l'exposition directe est l'ennemi de la durée. Les cliques qui durent ne sont pas celles qui font le plus de bruit — ce sont celles qui savent exister à deux niveaux simultanément. Visible là où ça compte, invisible là où ça coûte.</p>
-  <p class="rv">L'idée du Palm Garage est venue d'une conversation avec Sueño sur la nécessité d'avoir un espace physique qui ne soit pas dans la rue. Un local, une adresse, une activité. Sueño avait repéré un ancien garage désaffecté entre la 76ème et la 77ème — propriétaire indifférent, loyer raisonnable, emplacement discret. Les membres de la clique ont retapé le local eux-mêmes sur trois semaines. Peinture, établis, outillage de base. Officiellement un garage de réparation automobile. Officieusement, un point de stockage, un lieu de réunion, une adresse de référence pour les activités qui nécessitaient une couverture.</p>
-  <p class="rv">L'Island Grill est arrivé quelques mois plus tard — l'idée de Lito, concrétisée par une proche de confiance qui tenait déjà un food-truck sur Figueroa. On a adapté le menu, ajouté des spécialités salvadoriennes authentiques, et positionné le truck sur un axe passant. Les revenus étaient réels — la cuisine était bonne et le quartier a adopté l'Island Grill rapidement. Ce qui entrait dans la caisse était de l'argent propre, traçable, déclarable. La "sauce spéciale du chef" était devenue un nom de code pour les commandes discrètes destinées à d'autres fins. Le double usage était intégré dès le départ.</p>
-  <p class="rv">Cette période a aussi vu Mateo commencer à poster ses premiers morceaux sérieusement. Des sons qui circulaient dans le quartier, puis sur les réseaux. Pas encore une percée, mais une présence. Un nom. Une image qui donnait à la PTL une dimension que peu de cliques avaient : une face culturelle crédible. Quand un journaliste local a écrit un petit article sur la scène rap de Long Beach et mentionné "La Eme", personne dans la clique n'avait demandé à être mis dedans. Ça s'était fait naturellement. Shaggon avait lu l'article deux fois sans rien dire. Puis il avait dit à Mateo : "continue".</p>
-
-  <h3 class="rv" style="font-family:var(--ff-d);font-size:1.5rem;font-weight:700;color:var(--text);margin:3rem 0 1rem;letter-spacing:-0.01em">VI. La Consolidation — <em style="background:linear-gradient(135deg,var(--gold2),var(--amber));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Exister le jour (2024–2025)</em></h3>
-  <p class="rv">Le premier Hood Day de la PTL a eu lieu en mai 2024 dans le parking derrière l'épicerie du 116ème bloc. Lito avait tout organisé : barbecue, enceintes, tournoi de basket, une table avec de la bouffe de l'Island Grill. Il avait invité les familles du quartier, les commerçants alentour, les vieux du bloc qui connaissaient tout le monde depuis vingt ans. La journée avait réuni plus de cent personnes. Des enfants qui couraient entre les jambes des adultes. Des mères qui parlaient cuisine avec la responsable de l'Island Grill. Des anciens du set qui regardaient tout ça depuis le bord avec une expression difficile à déchiffrer — entre fierté et quelque chose de plus complexe.</p>
-  <p class="rv">Ce Hood Day a changé quelque chose dans la perception de la PTL dans le quartier. Avant ça, le groupe existait dans les consciences principalement par ses activités nocturnes — les corners, les rotations, les tensions. Après ça, il existait aussi dans la mémoire diurne des gens. La clique qui avait organisé cette journée, nourri les familles, fait rire les gamins — c'était la même que celle qui tenait les blocs la nuit. Cette ambivalence n'était pas une contradiction pour les habitants du quartier. Ils la connaissaient depuis toujours. Mais la voir assumée publiquement, sans gêne, avec une organisation sérieuse — ça avait du poids.</p>
-  <p class="rv">2024 et 2025 ont été des années de consolidation sur tous les fronts. Les opérations illicites se sont structurées — moins de visibilité directe, plus de délégation aux échelons inférieurs, des rotations qui rendaient le travail de traçage plus difficile pour le LSPD. Les activités légales ont continué à s'étoffer. Mateo a joué ses premières scènes dans des soirées de Los Santos, ramenant à chaque fois des contacts que la clique ne se serait pas payés autrement. Sueño a développé un réseau relationnel qui s'étendait bien au-delà du bloc — des gens dans les clubs, dans l'immobilier, dans des cercles légaux qui ignoraient ses autres activités. Chuco a cartographié et mémorisé tout ça. Et la PTL a continué à être exactement ce qu'elle avait toujours été : six personnes qui avaient décidé de tenir ensemble.</p>
-
   <h3 class="rv" style="font-family:var(--ff-d);font-size:1.5rem;font-weight:700;color:var(--text);margin:3rem 0 1rem;letter-spacing:-0.01em">VII. Los Santos — <em style="background:linear-gradient(135deg,var(--gold2),var(--amber));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Un nouveau chapitre (2026)</em></h3>
   <p class="rv">L'arrivée à Los Santos n'est pas une fuite de Long Beach. C'est une extension. Le quartier d'origine reste là, avec ses blocs, ses codes, son palmier à l'angle d'un immeuble qui ne sait pas qu'il a donné son nom à quelque chose. Mais Los Santos offre ce que Long Beach ne peut plus offrir au stade où la PTL en est : de l'espace. De nouveaux territoires à construire, de nouveaux réseaux à tisser, de nouvelles opportunités à convertir.</p>
-  <p class="rv">La clique arrive avec sept ans d'histoire — de vraies épreuves, de vraies reconstructions, de vrais codes. Ce n'est pas un groupe qui se crée ex nihilo dans une ville inconnue. C'est un groupe qui déplace une structure déjà solide vers un nouveau terrain. La différence est fondamentale. Une clique qui se forme ici devra apprendre à tenir ensemble sous pression. La PTL sait déjà le faire. Elle l'a appris l'été 2022, à genoux, et elle s'en est relevée debout.</p>
-  <p class="rv">Ce que la PTL apporte à Los Santos : une identité construite sur du concret. Un nom qui a du poids. Des membres dont chacun sait exactement qui il est, quel rôle il joue, et pourquoi il est là. Une philosophie qui refuse la violence gratuite sans refuser la violence nécessaire. Une façade culturelle crédible avec Mateo. Un réseau relationnel avec Sueño. Une mémoire terrain avec Chuco. Un sens de la cohésion avec Lito. Une loyauté sans limite avec Spyder. Et une tête pensante avec Shaggon, qui regarde Los Santos comme il a regardé Long Beach la première fois : en calculant ce qui peut être construit ici, ce qui doit être évité, et comment faire durer ce qui a été commencé.</p>
+  <p class="rv">La clique arrive avec sept ans d'histoire — de vraies épreuves, de vraies reconstructions, de vrais codes. Ce n'est pas un groupe qui se crée ex nihilo dans une ville inconnue. C'est un groupe qui déplace une structure déjà solide vers un nouveau terrain.</p>
 
   <div class="pq rv">"On n'arrive pas pour conquérir. On arrive pour s'installer. Et dans ce quartier, s'installer c'est le seul acte de conquête qui dure."</div>
 </div>
@@ -778,8 +773,13 @@ footer{position:relative;z-index:2;border-top:1px solid var(--glass-border);padd
 
 <div class="hr"></div>
 
-<!-- OBJECTIFS -->
-<section id="objectifs">
+<!-- ===========================
+     PHOTO 4 — OBJECTIFS (groupe nuit mur graffs)
+     =========================== -->
+<section id="objectifs" class="has-bg-photo">
+  <div class="bg-photo-wrap rose-tint">
+    <img loading="lazy" src="https://media.base44.com/images/public/6a0f9638afc0286889e6e406/e0ffeee82_image.png" alt="">
+  </div>
 <div class="sw">
   <div class="stag rv">Vision</div>
   <h2 class="st rv d1">Ce que la PTL<br><em>Construit</em></h2>
@@ -881,27 +881,27 @@ footer{position:relative;z-index:2;border-top:1px solid var(--glass-border);padd
     <div class="tl-item">
       <div class="tl-time">10h · 12h</div>
       <div class="tl-title">Le Réveil</div>
-      <div class="tl-text">Les téléphones vibrent. Le groupe Snap s'allume. "Qui est dehors ?" Les membres se réveillent chez eux, chez une fille, sur le canapé d'un homie. Premier réflexe : check les messages. Snaps, DMs Instagram, Telegram. Le premier blunt remplace le petit-déjeuner. Vers 11h tout le monde converge devant l'épicerie du coin sans rendez-vous officiel — tout le monde sait que c'est là qu'il faut être. Les dés sortent, un cercle se forme contre le mur à l'ombre. C'est là que l'argent circule, que les tensions mineures se règlent, que les petits regardent les grands et apprennent comment se comporter.</div>
+      <div class="tl-text">Les téléphones vibrent. Le groupe Snap s'allume. "Qui est dehors ?" Les membres se réveillent chez eux, chez une fille, sur le canapé d'un homie. Premier réflexe : check les messages. Vers 11h tout le monde converge devant l'épicerie du coin sans rendez-vous officiel — tout le monde sait que c'est là qu'il faut être.</div>
     </div>
     <div class="tl-item">
       <div class="tl-time">12h · 17h</div>
       <div class="tl-title">L'Après-Midi</div>
-      <div class="tl-text">Jour de réapprovisionnement : deux ou trois membres montent en voiture pour retrouver le plug. Parking de fast-food sur Manchester, arrière d'un car wash sur Figueroa, parking d'une église vide. Cinq minutes max, téléphones éteints. La marchandise rentre au Palm Garage et se répartit. La bouffe c'est en groupe — Island Grill, Wingstop, Jack in the Box. Assiettes en carton sur le capot. Trente minutes où on oublie presque où on vit. Ensuite c'est le travail de rue. Dealers sur leurs spots, scammers posés en voiture avec leur téléphone, guetteurs aux angles clés.</div>
+      <div class="tl-text">Jour de réapprovisionnement : deux ou trois membres montent en voiture pour retrouver le plug. La marchandise rentre au Palm Garage et se répartit. La bouffe c'est en groupe — Island Grill, Wingstop, Jack in the Box. Assiettes en carton sur le capot.</div>
     </div>
     <div class="tl-item">
       <div class="tl-time">17h · 19h</div>
       <div class="tl-title">L'Heure du Studio</div>
-      <div class="tl-text">Ceux qui font de la musique se retrouvent dans l'arrière du Palm Garage. Un laptop sur un établi, un micro, des panneaux de mousse au mur. Le beatmaker lance un instru, Mateo pose ses couplets, les autres traînent autour et donnent leur avis sans qu'on leur demande. C'est le seul moment de la journée où la violence et le hustle n'existent pas. Les morceaux sont postés sur SoundCloud et YouTube dans la semaine.</div>
+      <div class="tl-text">Ceux qui font de la musique se retrouvent dans l'arrière du Palm Garage. Un laptop sur un établi, un micro, des panneaux de mousse au mur. Le beatmaker lance un instru, Mateo pose ses couplets. C'est le seul moment de la journée où la violence et le hustle n'existent pas.</div>
     </div>
     <div class="tl-item">
       <div class="tl-time">22h · 2h</div>
       <div class="tl-title">La Nuit Dehors</div>
-      <div class="tl-text">La PTL sort, jamais seul. Musique à fond, fenêtres baissées, cruise sur Figueroa. En club le groupe reste soudé : les sociables parlent à tout le monde, les discrets observent la salle, comptent les visages, repèrent les sorties. Si quelqu'un a de l'argent cette semaine il prend une bouteille. Les yeux restent ouverts. Toujours. Qui est là. De quel set. Qui regarde de travers.</div>
+      <div class="tl-text">La PTL sort, jamais seul. Musique à fond, fenêtres baissées, cruise sur Figueroa. En club le groupe reste soudé : les sociables parlent à tout le monde, les discrets observent la salle, comptent les visages, repèrent les sorties.</div>
     </div>
     <div class="tl-item">
       <div class="tl-time">2h · 4h</div>
       <div class="tl-title">Nuit Profonde</div>
-      <div class="tl-text">Le bloc ne dort jamais. Les scammers bossent encore — les pigeons de la côte est sont réveillés avec le décalage. Les musiciens écrivent dans les notes de leur téléphone, les meilleures idées viennent à 3h quand le quartier est silencieux. Certains prennent une bombe de peinture et vont taguer dans le noir. D'autres roulent sans destination jusqu'aux frontières du territoire, moteur allumé, à fumer en regardant les rues sombres. Les heures les plus dangereuses et les plus honnêtes. Vers 4h les derniers rentrent. Quatre ou cinq heures de sommeil. Puis le téléphone vibre. "Qui est dehors ?" Et ça recommence.</div>
+      <div class="tl-text">Le bloc ne dort jamais. Les scammers bossent encore. Les musiciens écrivent dans les notes de leur téléphone, les meilleures idées viennent à 3h quand le quartier est silencieux. Vers 4h les derniers rentrent. Puis le téléphone vibre. "Qui est dehors ?" Et ça recommence.</div>
     </div>
   </div>
 </div>
@@ -1137,8 +1137,13 @@ footer{position:relative;z-index:2;border-top:1px solid var(--glass-border);padd
 </div>
 </section>
 
-<!-- CONCLUSION -->
-<section id="conclusion">
+<!-- ===========================
+     PHOTO 5 — CONCLUSION (studio gaming / bureau)
+     =========================== -->
+<section id="conclusion" class="has-bg-photo">
+  <div class="bg-photo-wrap violet-tint">
+    <img loading="lazy" src="https://media.base44.com/images/public/6a0f9638afc0286889e6e406/03137efbd_image.png" alt="">
+  </div>
 <div class="conc-wrap">
   <div class="conc-ring rv"><div class="conc-ring-t">PTL<br>P·13</div></div>
   <div class="stag rv" style="justify-content:center;display:block;text-align:center">Pour finir</div>
@@ -1161,7 +1166,6 @@ const cur=document.getElementById('cur'),ring=document.getElementById('cur-ring'
 let mx=window.innerWidth/2,my=window.innerHeight/2,rx=mx,ry=my;
 document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px'});
 (function af(){rx+=(mx-rx)*0.13;ry+=(my-ry)*0.13;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(af)})();
-// Cursor expand on interactive elements via event delegation
 document.addEventListener('mouseover',e=>{
   if(e.target.closest('a,button,.cc,.oc,.ai,.si'))ring.classList.add('big');
   else ring.classList.remove('big');
@@ -1170,7 +1174,6 @@ document.addEventListener('mouseover',e=>{
 /* LOADER */
 (function(){
   document.body.style.overflow='hidden';
-  // Animate percent counter
   let pct=0;
   const pEl=document.getElementById('loader-percent');
   const iv=setInterval(()=>{
@@ -1178,7 +1181,6 @@ document.addEventListener('mouseover',e=>{
     if(pEl)pEl.textContent=pct+'%';
     if(pct>=100)clearInterval(iv);
   },38);
-  // Floating particles
   const pc=document.getElementById('loader-particles');
   for(let i=0;i<20;i++){
     const p=document.createElement('div');
